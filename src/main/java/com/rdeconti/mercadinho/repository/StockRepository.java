@@ -1,0 +1,10 @@
+package com.rdeconti.mercadinho.repository;
+
+import com.rdeconti.mercadinho.models.StockModel;
+import org.springframework.data.repository.CrudRepository;
+
+public interface StockRepository extends CrudRepository<StockModel, String> {
+
+    public StockModel findByCodigo(Integer codigo);
+
+}
