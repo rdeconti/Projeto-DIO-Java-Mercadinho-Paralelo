@@ -1,4 +1,4 @@
-package com.rdeconti.mercadinho.controllersToReview;
+package com.rdeconti.mercadinho.controllers;
 
 import com.rdeconti.mercadinho.models.SaleModel;
 import com.rdeconti.mercadinho.services.SaleService;

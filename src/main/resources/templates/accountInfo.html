@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Account Info</title>
+  <title>User Info</title>
   <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
 </head>
 <body>
@@ -10,8 +10,8 @@
 <th:block th:include="/_header"></th:block>
 <th:block th:include="/_menu"></th:block>
 
-<div class="page-title">Account Info</div>
-<div class="account-container">
+<div class="page-title">User Info</div>
+<div class="User-container">
   <ul>
     <li>User Name: <span th:utext="${#request.userPrincipal.name}"></span></li>
     <li>

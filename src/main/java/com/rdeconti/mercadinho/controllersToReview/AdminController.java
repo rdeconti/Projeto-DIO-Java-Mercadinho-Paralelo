@@ -60,8 +60,8 @@ public class AdminController {
         return "login";
     }
 
-    @RequestMapping(value = { "/admin/accountInfo" }, method = RequestMethod.GET)
-    public String accountInfo(Model model) {
+    @RequestMapping(value = { "/admin/UserInfo" }, method = RequestMethod.GET)
+    public String UserInfo(Model model) {
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(userDetails.getPassword());
@@ -69,7 +69,7 @@ public class AdminController {
         System.out.println(userDetails.isEnabled());
 
         model.addAttribute("userDetails", userDetails);
-        return "accountInfo";
+        return "UserInfo";
     }
 
     @RequestMapping(value = { "/admin/orderList" }, method = RequestMethod.GET)

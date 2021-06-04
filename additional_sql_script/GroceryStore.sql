@@ -32,15 +32,9 @@ DROP TABLE IF EXISTS CONTACTS;
 DROP TABLE IF EXISTS ROLES;
 DROP TABLE IF EXISTS PRODUCTS;
 DROP TABLE IF EXISTS STOCKS;
-
-
-
 DROP TABLE IF EXISTS SALES;
 DROP TABLE IF EXISTS PURCHASES;
 
-
-DROP TABLE IF EXISTS ACCOUNTS;
-DROP TABLE IF EXISTS PRODUCTS;
 DROP TABLE IF EXISTS ORDER_DETAILS;
 DROP TABLE IF EXISTS ORDERS;
 
@@ -55,56 +49,65 @@ CREATE TABLE CONTACTS (
 	contact_type INT NOT NULL,
 	contact_document VARCHAR (14) NULL,
 	contact_status BIT NOT NULL,
+	contact_email VARCHAR (255) NOT NULL,
 	contact_createdon DATE NOT NULL,
 	contact_changedon DATE NOT NULL,
 	PRIMARY KEY (contact_ID),
 );
 
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(1,'Fornecedor 1','Endere�o 1', '9-9999-9999', 2, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(2,'Fornecedor 2','Endere�o 2', '9-9999-9999', 2, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(3,'Fornecedor 3','Endere�o 3', '9-9999-9999', 2, '99999999999999', 'True', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(1,'Fornecedor 1','Endereço 1', '9-9999-9999', 2, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(2,'Fornecedor 2','Endereço 2', '9-9999-9999', 2, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(3,'Fornecedor 3','Endereço 3', '9-9999-9999', 2, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
 
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(4,'Cliente 1','Endere�o 4', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(5,'Cliente 2','Endere�o 5', '9-9999-9999', 2, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(6,'Cliente 3','Endere�o 6', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(4,'Cliente 1','Endereço 4', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(5,'Cliente 2','Endereço 5', '9-9999-9999', 2, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(6,'Cliente 3','Endereço 6', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
 
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(7,'Empregado 1','Endere�o 7', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(8,'Empregado 2','Endere�o 8', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(9,'Empregado 3','Endere�o 9', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(7,'Empregado 1','Endereço 7', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(8,'Empregado 2','Endereço 8', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(9,'Empregado 3','Endereço 9', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
 
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(10,'Usu�rio 1','Endere�o 10', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(11,'Usu�rio 2','Endere�o 11', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(12,'Usu�rio 3','Endere�o 12', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(10,'MANAGER','Endereço 10', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(11,'EMPLOYEE','Endereço 11', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
 
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(13,'Loja 1','Endere�o 13', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(14,'Loja 2','Endere�o 14', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(15,'Loja 3','Endere�o 15', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(13,'Loja 1','Endereço 13', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(14,'Loja 2','Endereço 14', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
+INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon) 
+	VALUES(15,'Loja 3','Endereço 15', '9-9999-9999', 1, '99999999999999', 'True', 'fakeEmail@gmail.com', @created, @changed)
 
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(16,'ADMINISTRATOR','Endere�o 16', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(17,'VENDOR','Endere�o 17', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(18,'CUSTOMER','Endere�o 18', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(19,'EMPLOYEE','Endere�o 19', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_createdon, contact_changedon) 
-	VALUES(20,'USER','Endere�o 20', '9-9999-9999', 1, '99999999999999', 'True', @created, @changed)
+-- ***********************************************************************************************
+-- Create table: USERS (primary key = user_name)
+-- ***********************************************************************************************
+CREATE TABLE USERS (
+	user_ID INT NOT NULL,
+	user_contactID INT NOT NULL,
+	user_role VARCHAR(50) NOT NULL,
+	user_name VARCHAR(50) NOT NULL,
+	user_password VARCHAR(50) NOT NULL,
+	user_status BIT NOT NULL,
+	user_createdon DATE NOT NULL,
+	user_changedon DATE NOT NULL,
+	PRIMARY KEY (user_name),
+	FOREIGN KEY (user_contactID) REFERENCES CONTACTS(contact_ID)
+);
+
+INSERT INTO USERS(user_ID, user_contactID, user_role, user_name, user_password, user_status, user_createdon, user_changedon)
+	VALUES(1, 10, 'ROLE_MANAGER',  'MANAGER', 'MANAGER:', 'True', @created, @changed)
+INSERT INTO USERS(user_ID, user_contactID, user_role, user_name, user_password, user_status, user_createdon, user_changedon)
+	VALUES(2, 11, 'ROLE_EMPLOYEE',  'EMPLOYEE', 'EMPLOYEE:', 'True', @created, @changed)
 
 -- ***********************************************************************************************
 -- Create table: VENDORS
@@ -192,35 +195,40 @@ INSERT INTO STORES(store_ID,  store_contactID, store_status, store_createdon, st
 CREATE TABLE PRODUCTS (
 	product_ID INT NOT NULL,
 	product_name VARCHAR (50) NOT NULL,
-	product_validity DATE NOT NULL,
 	product_ean VARCHAR (13) NOT NULL,
 	product_unity VARCHAR (3) NOT NULL,
 	product_status BIT NOT NULL,
+	product_image IMAGE,
+	product_price double precision not null,
 	product_createdon DATE NOT NULL,
 	product_changedon DATE NOT NULL,
 	PRIMARY KEY (product_ID),
 );
 
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(1, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(2, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(3, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(4, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(5, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(6, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(7, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(8, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(9, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
-INSERT INTO PRODUCTS(product_ID, product_name, product_validity, product_ean, product_unity, product_status, product_createdon, product_changedon) 
-	VALUES(10, 'Produto 1', @expiration, '123456789012', '1', 'TRUE', @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(1, 'Banana', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(2, 'Batata', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(3, 'Cenoura', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(4, 'Damasco', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(5, 'Framboesa', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+	VALUES(6, 'Maçã', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(7, 'Melância', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(8, 'Mirtilo', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(9, 'Morango', '123456789012', 'UN','TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(10, 'Pepino', '123456789012', 'UN','TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+    VALUES(11, 'Pera', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
+INSERT INTO PRODUCTS(product_ID, product_name, product_ean, product_unity, product_status, product_price, product_createdon, product_changedon) 
+ 	VALUES(12, 'Uva', '123456789012', 'UN', 'TRUE', 10, @created, @changed)
 
 -- ***********************************************************************************************
 -- Create table: STOCKS
@@ -230,6 +238,7 @@ CREATE TABLE STOCKS (
 	stock_storeID INT NOT NULL,
 	stock_productID INT NOT NULL,
 	stock_amount DECIMAL NOT NULL,
+	stock_expiration DATE NOT NULL,
 	stock_createdon DATE NOT NULL,
 	stock_changedon DATE NOT NULL,
 	PRIMARY KEY (stock_ID),
@@ -237,81 +246,103 @@ CREATE TABLE STOCKS (
 	FOREIGN KEY (stock_productID) REFERENCES PRODUCTS(product_ID),
 );
 
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(1, 1, 1, 1000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(2, 1, 2, 2000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(3, 1, 3, 3000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(4, 2, 4, 4000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(5, 2, 5, 5000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(6, 2, 6, 6000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(7, 3, 7, 7000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(8, 3, 8, 8000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(9, 3, 9, 9000, @created, @changed)
-INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_createdon, stock_changedon)
-	VALUES(10, 3, 10, 10000, @created, @changed)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(1, 1, 1, 1000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(2, 1, 2, 2000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(3, 1, 3, 3000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(4, 2, 4, 4000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(5, 2, 5, 5000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(6, 2, 6, 6000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(7, 3, 7, 7000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(8, 3, 8, 8000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(9, 3, 9, 9000, @expiration, @created, @changed)
+INSERT INTO STOCKS(stock_ID, stock_storeID, stock_productID, stock_amount, stock_expiration, stock_createdon, stock_changedon)
+	VALUES(10, 3, 10, 10000, @expiration, @created, @changed)
 
 -- ***********************************************************************************************
--- Create table: ACCOUNTS
+-- Create table: SALES (OLD ONE WITHOUT ITENS)
 -- ***********************************************************************************************
-create table ACCOUNTS
-(
-  USER_NAME VARCHAR(20) not null,
-  ACTIVE    BIT not null,
-  ENCRYTED_PASSWORD  VARCHAR(128) not null,
-  USER_ROLE VARCHAR(20) not null
-) ;
-  
-alter table ACCOUNTS
-  add primary key (USER_NAME) ;
+CREATE TABLE SALES (
+	sale_ID INT NOT NULL,
+	sale_storeID INT NOT NULL,
+	sale_customerID INT NOT NULL,
+	sale_productID INT NOT NULL,
+	sale_amount DECIMAL NOT NULL,
+	sale_createdon DATE NOT NULL,
+	sale_changedon DATE NOT NULL,
+	PRIMARY KEY (sale_ID),
+	FOREIGN KEY (sale_storeID) REFERENCES STORES(store_ID),
+	FOREIGN KEY (sale_customerID) REFERENCES CUSTOMERS(customer_ID),
+	FOREIGN KEY (sale_productID) REFERENCES PRODUCTS(product_ID),
+);
+
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(1, 1, 1, 1, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(2, 2, 2, 2, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(3, 3, 3, 3, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(4, 1, 1, 4, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(5, 2, 2, 5, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(6, 3, 3, 6, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(7, 1, 1, 7, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(8, 2, 2, 8, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(9, 3, 3, 9, 1000, @created, @changed)
+INSERT INTO SALES(sale_ID, sale_storeID, sale_customerID, sale_productID, sale_amount, sale_createdon, sale_changedon) 
+	VALUES(10, 3, 3, 10, 1000, @created, @changed)
 
 -- ***********************************************************************************************
--- Create table: PRODUCTS
+-- Create table: PURCHASES (OLD ONE WITHOUT ITENS)
 -- ***********************************************************************************************
-create table PRODUCTS
-(
-  CODE        VARCHAR(20) not null,
-  IMAGE       image,
-  NAME        VARCHAR(255) not null,
-  PRICE       double precision not null,
-  CREATE_DATE datetime not null
-) ;
-  
-alter table PRODUCTS
-  add primary key (CODE) ;
+DROP TABLE IF EXISTS PURCHASES;
+CREATE TABLE PURCHASES (
+	purchase_ID INT NOT NULL,
+	purchase_storeID INT NOT NULL,
+	purchase_vendorID INT NOT NULL,
+	purchase_productID INT NOT NULL,
+	purchase_amount DECIMAL NOT NULL,
+	purchase_createdon DATE NOT NULL,
+	purchase_changedon DATE NOT NULL,
+	PRIMARY KEY (purchase_ID),
+	FOREIGN KEY (purchase_storeID) REFERENCES STORES(store_ID),
+	FOREIGN KEY (purchase_vendorID) REFERENCES VENDORS(vendor_ID),
+	FOREIGN KEY (purchase_productID) REFERENCES PRODUCTS(product_ID),
+);
+
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(1, 1, 1, 1, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(2, 2, 2, 2, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(3, 3, 3, 3, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(4, 1, 1, 4, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(5, 2, 2, 5, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(6, 3, 3, 6, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(7, 1, 1, 7, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(8, 2, 2, 8, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(9, 3, 3, 9, 1000, @created, @changed)
+INSERT INTO PURCHASES(purchase_ID, purchase_storeID, purchase_vendorID, purchase_productID, purchase_amount, purchase_createdon, purchase_changedon) 
+	VALUES(10, 3, 3, 10, 1000, @created, @changed)
 
 -- ***********************************************************************************************
 -- Create table: SALES ORDERS
@@ -342,7 +373,7 @@ create table ORDER_DETAILS
   PRICE      double precision not null,
   QUANITY    INT not null,
   ORDER_ID   VARCHAR(50) not null,
-  PRODUCT_ID VARCHAR(20) not null
+  PRODUCT_ID INT not null
 ) ;
 --  
 alter table ORDER_DETAILS
@@ -352,41 +383,20 @@ alter table ORDER_DETAILS
   references ORDERS (ID);
 alter table ORDER_DETAILS
   add constraint ORDER_DETAIL_PROD_FK foreign key (PRODUCT_ID)
-  references PRODUCTS (CODE);
+  references PRODUCTS (product_ID);
   
--- ***********************************************************************************************
--- Create mock data: ACCOUNTS
--- ***********************************************************************************************
-insert into Accounts (USER_NAME, ACTIVE, ENCRYTED_PASSWORD, USER_ROLE)
-values ('employee1', 1,
-'$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'ROLE_EMPLOYEE');
-  
-insert into Accounts (USER_NAME, ACTIVE, ENCRYTED_PASSWORD, USER_ROLE)
-values ('manager1', 1,
-'$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'ROLE_MANAGER');
-  
--- ***********************************************************************************************
--- Create mock data: PRODUCTS
--- ***********************************************************************************************
-insert into products (CODE, NAME, PRICE, CREATE_DATE)
-values ('S001', 'Core Java', 100, CURRENT_TIMESTAMP  );
-  
-insert into products (CODE, NAME, PRICE, CREATE_DATE)
-values ('S002', 'Spring for Beginners', 50, CURRENT_TIMESTAMP  );
- 
-insert into products (CODE, NAME, PRICE, CREATE_DATE)
-values ('S003', 'Swift for Beginners', 120, CURRENT_TIMESTAMP  );
-  
-insert into products (CODE, NAME, PRICE, CREATE_DATE)
-values ('S004', 'Oracle XML Parser', 120, CURRENT_TIMESTAMP  );
-  
-insert into products (CODE, NAME, PRICE, CREATE_DATE)
-values ('S005', 'CSharp Tutorial for Beginers', 110, CURRENT_TIMESTAMP  );
-
 -- ***********************************************************************************************
 -- Print data from tables
 -- ***********************************************************************************************
-SELECT * FROM ACCOUNTS
+SELECT * FROM STORES;
+SELECT * FROM USERS;
+SELECT * FROM EMPLOYEES;
+SELECT * FROM CUSTOMERS;
+SELECT * FROM VENDORS;
+SELECT * FROM CONTACTS;
+SELECT * FROM PRODUCTS;
+SELECT * FROM STOCKS;
+SELECT * FROM SALES;
+SELECT * FROM PURCHASES;
 SELECT * FROM ORDER_DETAILS
 SELECT * FROM ORDERS
-SELECT * FROM PRODUCTS

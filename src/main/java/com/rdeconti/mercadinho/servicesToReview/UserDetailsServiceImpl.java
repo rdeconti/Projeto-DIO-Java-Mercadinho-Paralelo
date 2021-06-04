@@ -3,8 +3,8 @@ package com.rdeconti.mercadinho.servicesToReview;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rdeconti.mercadinho.dao.AccountDAO;
-import com.rdeconti.mercadinho.modelsToReview.Account;
+import com.rdeconti.mercadinho.dao.UserDAO;
+import com.rdeconti.mercadinho.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,20 +18,20 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private AccountDAO accountDAO;
+    private UserDAO userDAO;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountDAO.findAccount(username);
-        System.out.println("Account= " + account);
+        UserModel userModel = userDAO.findUser(username);
+        System.out.println("Account= " + userModel);
 
-        if (account == null) {
+        if (userModel == null) {
             throw new UsernameNotFoundException("User " //
                     + username + " was not found in the database");
         }
 
         // EMPLOYEE,MANAGER,..
-        String role = account.getUserRole();
+        String role = userModel.getUser_role();
 
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 
@@ -40,13 +40,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         grantList.add(authority);
 
-        boolean enabled = account.isActive();
+        boolean enabled = userModel.getUser_status();
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        UserDetails userDetails = (UserDetails) new User(account.getUserName(), //
-                account.getEncrytedPassword(), enabled, accountNonExpired, //
+        UserDetails userDetails = (UserDetails) new User(userModel.getUser_name(), //
+                userModel.getUser_password(), enabled, accountNonExpired, //
                 credentialsNonExpired, accountNonLocked, grantList);
 
         return userDetails;

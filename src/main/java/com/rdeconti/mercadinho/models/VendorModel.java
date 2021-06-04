@@ -1,25 +1,40 @@
 package com.rdeconti.mercadinho.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name="VENDORS")
-public class VendorModel {
+public class VendorModel implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer vendor_ID;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contact_ID")
     private Integer vendor_contactID;
+
+    @Column(name = "vendor_status", length = 1, nullable = false)
     private Boolean vendor_status;
-    private LocalDate vendor_createdOn;
-    private LocalDate vendor_changedOn;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "vendor_createdOn", nullable = false)
+    private java.util.Date vendor_createdOn;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "vendor_changedOn", nullable = false)
+    private java.util.Date vendor_changedOn;
 
     public VendorModel() {
 
     }
 
-    public VendorModel(Integer vendor_ID, Integer vendor_contactID, Boolean vendor_status, LocalDate vendor_createdOn, LocalDate vendor_changedOn) {
+    public VendorModel(Integer vendor_ID, Integer vendor_contactID, Boolean vendor_status, Date vendor_createdOn, Date vendor_changedOn) {
         super( );
         this.vendor_ID = vendor_ID;
         this.vendor_contactID = vendor_contactID;
@@ -28,7 +43,7 @@ public class VendorModel {
         this.vendor_changedOn = vendor_changedOn;
     }
 
-    public VendorModel(Integer vendor_contactID, Boolean vendor_status, LocalDate vendor_createdOn, LocalDate vendor_changedOn) {
+    public VendorModel(Integer vendor_contactID, Boolean vendor_status, Date vendor_createdOn, Date vendor_changedOn) {
         this.vendor_contactID = vendor_contactID;
         this.vendor_status = vendor_status;
         this.vendor_createdOn = vendor_createdOn;
@@ -59,19 +74,19 @@ public class VendorModel {
         this.vendor_status = vendor_status;
     }
 
-    public LocalDate getVendor_createdOn() {
+    public Date getVendor_createdOn() {
         return vendor_createdOn;
     }
 
-    public void setVendor_createdOn(LocalDate vendor_createdOn) {
+    public void setVendor_createdOn(Date vendor_createdOn) {
         this.vendor_createdOn = vendor_createdOn;
     }
 
-    public LocalDate getVendor_changedOn() {
+    public Date getVendor_changedOn() {
         return vendor_changedOn;
     }
 
-    public void setVendor_changedOn(LocalDate vendor_changedOn) {
+    public void setVendor_changedOn(Date vendor_changedOn) {
         this.vendor_changedOn = vendor_changedOn;
     }
 }

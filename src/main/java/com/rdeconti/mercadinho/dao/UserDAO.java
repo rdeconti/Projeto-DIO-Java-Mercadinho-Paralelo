@@ -1,22 +1,22 @@
 package com.rdeconti.mercadinho.dao;
 
+import com.rdeconti.mercadinho.models.UserModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import com.rdeconti.mercadinho.modelsToReview.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public class AccountDAO {
+public class UserDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Account findAccount(String userName) {
+    public UserModel findUser(String userName) {
         Session session = this.sessionFactory.getCurrentSession();
-        return session.find(Account.class, userName);
+        return session.find(UserModel.class, userName);
     }
 
 }

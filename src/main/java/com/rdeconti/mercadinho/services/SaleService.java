@@ -1,4 +1,4 @@
-package com.rdeconti.mercadinho.servicesToReview;
+package com.rdeconti.mercadinho.services;
 
 import com.rdeconti.mercadinho.models.SaleModel;
 import com.rdeconti.mercadinho.repository.SaleRepository;

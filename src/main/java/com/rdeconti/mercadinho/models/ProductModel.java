@@ -1,39 +1,77 @@
 package com.rdeconti.mercadinho.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name="PRODUCTS")
-public class ProductModel {
+public class ProductModel implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer product_ID;
-    private Integer product_storeID;
-    private Integer product_productID;
-    private Double product_amount;
-    private LocalDate product_createdOn;
-    private LocalDate product_changedOn;
+
+    @NotEmpty(message = "*Por favor informar o nome do produto")
+    @Column(name = "product_name", length = 50, nullable = false)
+    private String product_name;
+
+    @NotEmpty(message = "*Por favor informar o código EAN do produto")
+    @Column(name = "product_ean", length = 14, nullable = false)
+    private String product_ean;
+
+    @NotEmpty(message = "*Por favor informar a unidade do produto")
+    @Column(name = "product_unity", length = 3, nullable = false)
+    private String product_unity;
+
+    @Column(name = "product_status", length = 1, nullable = false)
+    private Boolean product_status;
+
+    @Lob
+    @NotEmpty(message = "*Por favor carregar a imagem do produto")
+    @Column(name = "product_image", length = Integer.MAX_VALUE, nullable = true)
+    private byte[] product_image;
+
+    @NotEmpty(message = "*Por favor informar o preço do produto")
+    @Column(name = "product_prince", nullable = false)
+    private Double product_price;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "product_createdOn", nullable = false)
+    private java.util.Date product_createdOn;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "product_changedOn", nullable = false)
+    private java.util.Date product_changedOn;
 
     public ProductModel() {
 
     }
 
-    public ProductModel(Integer product_ID, Integer product_storeID, Integer product_productID, Double product_amount, LocalDate product_createdOn, LocalDate product_changedOn) {
+    public ProductModel(Integer product_ID, String product_name, String product_ean, String product_unity, Boolean product_status, @NotEmpty(message = "*Por favor carregar a imagem do produto") byte[] product_image, Double product_price, Date product_createdOn, Date product_changedOn) {
         super( );
         this.product_ID = product_ID;
-        this.product_storeID = product_storeID;
-        this.product_productID = product_productID;
-        this.product_amount = product_amount;
+        this.product_name = product_name;
+        this.product_ean = product_ean;
+        this.product_unity = product_unity;
+        this.product_status = product_status;
+        this.product_image = product_image;
+        this.product_price = product_price;
         this.product_createdOn = product_createdOn;
         this.product_changedOn = product_changedOn;
     }
 
-    public ProductModel(Integer product_storeID, Integer product_productID, Double product_amount, LocalDate product_createdOn, LocalDate product_changedOn) {
-        this.product_storeID = product_storeID;
-        this.product_productID = product_productID;
-        this.product_amount = product_amount;
+    public ProductModel(String product_name, String product_ean, String product_unity, Boolean product_status, @NotEmpty(message = "*Por favor carregar a imagem do produto") byte[] product_image, Double product_price, Date product_createdOn, Date product_changedOn) {
+        this.product_name = product_name;
+        this.product_ean = product_ean;
+        this.product_unity = product_unity;
+        this.product_status = product_status;
+        this.product_image = product_image;
+        this.product_price = product_price;
         this.product_createdOn = product_createdOn;
         this.product_changedOn = product_changedOn;
     }
@@ -46,43 +84,67 @@ public class ProductModel {
         this.product_ID = product_ID;
     }
 
-    public Integer getProduct_storeID() {
-        return product_storeID;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public void setProduct_storeID(Integer product_storeID) {
-        this.product_storeID = product_storeID;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
-    public Integer getProduct_productID() {
-        return product_productID;
+    public String getProduct_ean() {
+        return product_ean;
     }
 
-    public void setProduct_productID(Integer product_productID) {
-        this.product_productID = product_productID;
+    public void setProduct_ean(String product_ean) {
+        this.product_ean = product_ean;
     }
 
-    public Double getProduct_amount() {
-        return product_amount;
+    public String getProduct_unity() {
+        return product_unity;
     }
 
-    public void setProduct_amount(Double product_amount) {
-        this.product_amount = product_amount;
+    public void setProduct_unity(String product_unity) {
+        this.product_unity = product_unity;
     }
 
-    public LocalDate getProduct_createdOn() {
+    public Boolean getProduct_status() {
+        return product_status;
+    }
+
+    public void setProduct_status(Boolean product_status) {
+        this.product_status = product_status;
+    }
+
+    public byte[] getProduct_image() {
+        return product_image;
+    }
+
+    public void setProduct_image(byte[] product_image) {
+        this.product_image = product_image;
+    }
+
+    public Double getProduct_price() {
+        return product_price;
+    }
+
+    public void setProduct_price(Double product_price) {
+        this.product_price = product_price;
+    }
+
+    public Date getProduct_createdOn() {
         return product_createdOn;
     }
 
-    public void setProduct_createdOn(LocalDate product_createdOn) {
+    public void setProduct_createdOn(Date product_createdOn) {
         this.product_createdOn = product_createdOn;
     }
 
-    public LocalDate getProduct_changedOn() {
+    public Date getProduct_changedOn() {
         return product_changedOn;
     }
 
-    public void setProduct_changedOn(LocalDate product_changedOn) {
+    public void setProduct_changedOn(Date product_changedOn) {
         this.product_changedOn = product_changedOn;
     }
 }

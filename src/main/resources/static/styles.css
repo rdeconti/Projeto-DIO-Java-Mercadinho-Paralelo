@@ -63,7 +63,7 @@ body {
     margin: 5px 0px;
 }
 
-.demo-container, .login-container, .account-container {
+.demo-container, .login-container, .User-container {
     padding: 5px;
     border: 1px solid #ccc;
     text-align:left;
