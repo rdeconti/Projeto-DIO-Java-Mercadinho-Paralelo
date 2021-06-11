@@ -1,14 +1,12 @@
 package com.rdeconti.mercadinho.controller;
 
-import com.rdeconti.mercadinho.model.User;
-import com.rdeconti.mercadinho.service.UserService;
+import com.rdeconti.mercadinho.models.UserModel;
+import com.rdeconti.mercadinho.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,17 +29,17 @@ public class LoginController {
     @RequestMapping(value="/registration", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        modelAndView.addObject("user", user);
+        UserModel userModel = new UserModel();
+        modelAndView.addObject("user", userModel);
         modelAndView.setViewName("registration");
         return modelAndView;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView createNewUser(@Valid UserModel userModel, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findUserByUserName(user.getUserName());
-        if (userExists != null) {
+        UserModel userModelExists = userService.findUserByUserName(userModel.getUserName());
+        if (userModelExists != null) {
             bindingResult
                     .rejectValue("userName", "error.user",
                             "Já existe um usuário com este nome de usuário. Escolha outro nome!");
@@ -49,9 +47,9 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
         } else {
-            userService.saveUser(user);
+            userService.saveUser(userModel);
             modelAndView.addObject("successMessage", "Conta cadastrada com sucesso!");
-            modelAndView.addObject("user", new User());
+            modelAndView.addObject("user", new UserModel());
             modelAndView.setViewName("registration");
 
         }
@@ -62,8 +60,8 @@ public class LoginController {
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByUserName(auth.getName());
-        modelAndView.addObject("userName", "Sinta-se em casa! " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
         modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-MANAGER");
         modelAndView.setViewName("admin/home");
         return modelAndView;

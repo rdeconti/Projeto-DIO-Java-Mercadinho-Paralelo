@@ -33,7 +33,6 @@ DROP TABLE IF EXISTS STOCKS;
 DROP TABLE IF EXISTS STORES;
 DROP TABLE IF EXISTS PRODUCTS;
 
-DROP TABLE IF EXISTS EMPLOYEES;
 DROP TABLE IF EXISTS CUSTOMERS;
 DROP TABLE IF EXISTS VENDORS;
 DROP TABLE IF EXISTS USERS;
@@ -140,7 +139,7 @@ VALUES
 	(6, 'PURCHASER', 'purchaser@gmail.com',  @password, 'Purchaser First Name', 'Purchaser Last Name', true, 6),    
 	(7, 'SELLER', 'seller@gmail.com',  @password, 'Seller First Name', 'Seller Last Name', true, 7),    
 	(8, 'STOCKHOLDER', 'stockholder@gmail.com',  @password, 'Stockholder First Name', 'Stockholder Last Name', true, 8),    
-	(9, 'USER', 'user@gmail.com',  @password, 'User First Name', 'User Last Name', true, 9);
+	(9, 'USER', 'userModel@gmail.com',  @password, 'User First Name', 'User Last Name', true, 9);
 
 -- ***********************************************************************************************
 -- Create table: VENDORS
@@ -181,26 +180,6 @@ INSERT INTO CUSTOMERS(customer_ID, customer_contactID, customer_status, customer
 	VALUES(2, 5,true, @created, @changed);
 INSERT INTO CUSTOMERS(customer_ID, customer_contactID, customer_status, customer_createdon, customer_changedon) 
 	VALUES(3, 6,true, @created, @changed);
-
--- ***********************************************************************************************
--- Create table: EMPLOYESS
--- ***********************************************************************************************
-CREATE TABLE EMPLOYEES (
-	employee_ID INT NOT NULL auto_increment,
-	employee_contactID INT NOT NULL,
-	employee_status BOOLEAN NOT NULL,
-	employee_createdon DATE NOT NULL,
-	employee_changedon DATE NOT NULL,
-	PRIMARY KEY (employee_ID),
-	FOREIGN KEY (employee_ContactID) REFERENCES CONTACTS(contact_ID)
-);
-
-INSERT INTO EMPLOYEES(employee_ID, employee_contactID, employee_status, employee_createdon, employee_changedon) 
-	VALUES(1, 7,true, @created, @changed);
-INSERT INTO EMPLOYEES(employee_ID, employee_contactID, employee_status, employee_createdon, employee_changedon) 
-	VALUES(2, 8,true, @created, @changed);
-INSERT INTO EMPLOYEES(employee_ID, employee_contactID, employee_status, employee_createdon, employee_changedon) 
-	VALUES(3, 9,true, @created, @changed);
 
 -- ***********************************************************************************************
 -- Create table: STORES
@@ -429,7 +408,6 @@ SELECT * FROM STOCKS;
 SELECT * FROM STORES;
 SELECT * FROM PRODUCTS;
 
-SELECT * FROM EMPLOYEES;
 SELECT * FROM CUSTOMERS;
 SELECT * FROM VENDORS;
 SELECT * FROM USERS;

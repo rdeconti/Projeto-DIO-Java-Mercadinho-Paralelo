@@ -1,6 +1,6 @@
 package com.rdeconti.mercadinho.configuration;
 
-import com.rdeconti.mercadinho.service.MyUserDetailsService;
+import com.rdeconti.mercadinho.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

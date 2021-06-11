@@ -9,7 +9,7 @@ USE [GroceryStore]
 GO
 
 -- ***********************************************************************************************
--- Define permissions to user mercadinho manage all tables from database
+-- Define permissions to userModel mercadinho manage all tables from database
 -- ***********************************************************************************************
 GRANT execute, select, insert, update, delete TO GroceryStore
 

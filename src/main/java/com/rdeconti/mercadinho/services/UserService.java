@@ -1,9 +1,9 @@
-package com.rdeconti.mercadinho.service;
+package com.rdeconti.mercadinho.services;
 
-import com.rdeconti.mercadinho.model.Role;
-import com.rdeconti.mercadinho.model.User;
-import com.rdeconti.mercadinho.repository.RoleRepository;
-import com.rdeconti.mercadinho.repository.UserRepository;
+import com.rdeconti.mercadinho.models.RoleModel;
+import com.rdeconti.mercadinho.models.UserModel;
+import com.rdeconti.mercadinho.repositories.RoleRepository;
+import com.rdeconti.mercadinho.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,20 +28,20 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public User findUserByEmail(String email) {
+    public UserModel findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public User findUserByUserName(String userName) {
+    public UserModel findUserByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
 
-    public void saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(true);
-        Role userRole = roleRepository.findByRole("ROLE_MANAGER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        userRepository.save(user);
+    public void saveUser(UserModel userModel) {
+        userModel.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
+        userModel.setActive(true);
+        RoleModel userRoleModel = roleRepository.findByRole("ROLE_MANAGER");
+        userModel.setRoleModels(new HashSet<RoleModel>(Arrays.asList(userRoleModel)));
+        userRepository.save(userModel);
     }
 
 }
