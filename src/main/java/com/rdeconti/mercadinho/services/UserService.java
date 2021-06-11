@@ -39,7 +39,7 @@ public class UserService {
     public void saveUser(UserModel userModel) {
         userModel.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
         userModel.setActive(true);
-        RoleModel userRoleModel = roleRepository.findByRole("ROLE_MANAGER");
+        RoleModel userRoleModel = roleRepository.findByRole("ROLE_USER");
         userModel.setRoleModels(new HashSet<RoleModel>(Arrays.asList(userRoleModel)));
         userRepository.save(userModel);
     }

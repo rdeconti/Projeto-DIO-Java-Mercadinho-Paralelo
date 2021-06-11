@@ -45,51 +45,16 @@ DROP TABLE IF EXISTS AGENDA;
 -- ***********************************************************************************************
 CREATE TABLE AGENDA (
 	agenda_ID INT NOT NULL auto_increment,
-	contact_name VARCHAR (50) NOT NULL,
-	contact_address VARCHAR (255) NOT NULL,
-	contact_phone VARCHAR (50) NOT NULL,
-	contact_type INT NOT NULL,
-	contact_document VARCHAR (14) NULL,
-	contact_status BOOLEAN NOT NULL,
-	contact_email VARCHAR (255) NOT NULL,
-	contact_createdon DATE NOT NULL,
-	contact_changedon DATE NOT NULL,
-	PRIMARY KEY (contact_ID)
+	agenda_name VARCHAR (50) NOT NULL,
+	agenda_phone VARCHAR (50) NOT NULL,  
+	agenda_email VARCHAR (255) NOT NULL,    
+	agenda_address1 VARCHAR (255) NOT NULL,
+	agenda_address2 VARCHAR (255) NOT NULL,
+	agenda_address3 VARCHAR (255) NOT NULL,
+	agenda_postalCode INT NOT NULL,
+	agenda_note VARCHAR (14) NULL,
+	PRIMARY KEY (agenda_ID)
 );
-
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(1,'Fornecedor 1','Endereço 1', '9-9999-9999', 2, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(2,'Fornecedor 2','Endereço 2', '9-9999-9999', 2, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(3,'Fornecedor 3','Endereço 3', '9-9999-9999', 2, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(4,'Cliente 1','Endereço 4', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(5,'Cliente 2','Endereço 5', '9-9999-9999', 2, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(6,'Cliente 3','Endereço 6', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(7,'Empregado 1','Endereço 7', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(8,'Empregado 2','Endereço 8', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(9,'Empregado 3','Endereço 9', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(10,'MANAGER','Endereço 10', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(11,'EMPLOYEE','Endereço 11', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(13,'Loja 1','Endereço 13', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(14,'Loja 2','Endereço 14', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_address, contact_phone, contact_type, contact_document, contact_status, contact_email, contact_createdon, contact_changedon)
-	VALUES(15,'Loja 3','Endereço 15', '9-9999-9999', 1, '99999999999999', true, 'fakeEmail@gmail.com', @created, @changed);
-
 
 -- ***********************************************************************************************
 -- Create table: CONTACTS
@@ -422,9 +387,9 @@ create table ORDERS
   ORDER_NUM        INT not null
 ) ;
 alter table ORDERS
-  add primary key (ID) ;
+  add primary key (ID);
 alter table ORDERS
-  add constraint ORDER_UK unique (ORDER_NUM) ;
+  add constraint ORDER_UK unique (ORDER_NUM);
 
 -- ***********************************************************************************************
 -- Create table: SALES ORDER DETAILS
@@ -440,7 +405,7 @@ create table ORDER_DETAILS
 ) ;
 --  
 alter table ORDER_DETAILS
-  add primary key (ID) ;
+  add primary key (ID);
 alter table ORDER_DETAILS
   add constraint ORDER_DETAIL_ORD_FK foreign key (ORDER_ID)
   references ORDERS (ID);

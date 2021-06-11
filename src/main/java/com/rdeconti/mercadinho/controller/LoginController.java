@@ -67,4 +67,102 @@ public class LoginController {
         return modelAndView;
     }
 
+    @RequestMapping(value="/manager", method = RequestMethod.GET)
+    public ModelAndView manager(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
+        modelAndView.setViewName("manager");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/customer", method = RequestMethod.GET)
+    public ModelAndView customer(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
+        modelAndView.setViewName("customer");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/vendor", method = RequestMethod.GET)
+    public ModelAndView vendor(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
+        modelAndView.setViewName("vendor");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/shipper", method = RequestMethod.GET)
+    public ModelAndView shipper(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
+        modelAndView.setViewName("shipper");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/receiver", method = RequestMethod.GET)
+    public ModelAndView receiver(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
+        modelAndView.setViewName("receiver");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/purchaser", method = RequestMethod.GET)
+    public ModelAndView purchaser(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
+        modelAndView.setViewName("purchaser");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/seller", method = RequestMethod.GET)
+    public ModelAndView seller(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-SELLER");
+        modelAndView.setViewName("seller");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/stockholder", method = RequestMethod.GET)
+    public ModelAndView stockholder(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-SELLER");
+        modelAndView.setViewName("stockholder");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/user", method = RequestMethod.GET)
+    public ModelAndView user(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-SELLER");
+        modelAndView.setViewName("user");
+        return modelAndView;
+    }
 }

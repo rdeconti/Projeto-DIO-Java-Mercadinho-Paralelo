@@ -32,10 +32,24 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests()
+                // Our private endpoints
+                .antMatchers("/manager").hasAuthority("ROLE_MANAGER")
+                .antMatchers("/customer").hasAuthority("ROLE_CUSTOMER")
+                .antMatchers("/vendor").hasAuthority("ROLE_VENDOR")
+                .antMatchers("/shipper").hasAuthority("ROLE_SHIPPER")
+                .antMatchers("/receiver").hasAuthority("ROLE_RECEIVER")
+                .antMatchers("/purchaser").hasAuthority("ROLE_PURCHASER")
+                .antMatchers("/seller").hasAuthority("ROLE_SELLER")
+                .antMatchers("/stockholder").hasAuthority("ROLE_STOCKHOLDER")
+                .antMatchers("/user").hasAuthority("ROLE_USER")
+                // .antMatchers("/admin/**").hasAuthority("ROLE_MANAGER")
+
+                // Our public endpoints
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ROLE_MANAGER").anyRequest()
+
+                .anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
                 .defaultSuccessUrl("/admin/home")
