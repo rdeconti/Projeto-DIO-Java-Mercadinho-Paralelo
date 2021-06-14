@@ -198,7 +198,7 @@ public class LoginController {
 
 
         ////// ////// modelAndView.setViewName("purchaser/purchaser");
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("purchase-index");
 
         return modelAndView;
     }

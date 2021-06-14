@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>View Contact</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>View Contact</h1>
+<a th:href="@{/purchase/agendas}">Back to Contact List</a>
+<br/><br/>
+<div th:if="${agenda}">
+  <table border="0">
+    <tr>
+      <td>ID</td>
+      <td>:</td>
+      <td th:utext="${agenda.id}">...</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>:</td>
+      <td th:utext="${agenda.name}">...</td>
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td>:</td>
+      <td th:utext="${agenda.phone}">...</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>:</td>
+      <td th:utext="${agenda.email}">...</td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>:</td>
+      <td th:utext="${agenda.address1}">...</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td th:utext="${agenda.address2}">...</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td th:utext="${agenda.address3}">...</td>
+    </tr>
+    <tr>
+      <td>Postal Code</td>
+      <td>:</td>
+      <td th:utext="${agenda.postalCode}">...</td>
+    </tr>
+    <tr>
+      <td>Notes</td>
+      <td>:</td>
+      <td th:utext="${agenda.note}">...</td>
+    </tr>
+  </table>
+  <br/><br/>
+  <div th:if="not ${allowDelete}">
+    <a th:href="@{/purchase/agendas/{agendaId}/edit(agendaId=${agenda.id})}">Edit</a> |
+    <a th:href="@{/purchase/agendas/{agendaId}/delete(agendaId=${agenda.id})}">Delete</a>
+  </div>
+  <form th:if="${allowDelete}" th:action="@{/purchase/agendas/{agendaId}/delete(agendaId=${agenda.id})}" method="POST">
+    Delete this agenda? <input type="submit" th:value="Yes" />
+  </form>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>
