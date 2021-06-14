@@ -56,6 +56,22 @@ CREATE TABLE AGENDA (
 	PRIMARY KEY (agenda_ID)
 );
 
+INSERT INTO AGENDA(agenda_ID, agenda_name, agenda_phone, agenda_email, agenda_address1, agenda_address2, agenda_address3,  agenda_postalCode, agenda_note) 
+VALUES
+	(1, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(2, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(3, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(4, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(5, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(6, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(7, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(8, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(9, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(10, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(11, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),
+	(12, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla'),		
+	(13, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', 0999-99, 'blablabla');
+
 -- ***********************************************************************************************
 -- Create table: CONTACTS
 -- ***********************************************************************************************

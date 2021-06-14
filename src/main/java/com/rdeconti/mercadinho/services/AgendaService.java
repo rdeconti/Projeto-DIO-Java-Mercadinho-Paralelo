@@ -19,54 +19,54 @@ import java.util.List;
 public class AgendaService {
 
     @Autowired
-    private AgendaRepository agendaRepository;
+    private AgendaRepository contactRepository;
 
     private boolean existsById(Long id) {
-        return agendaRepository.existsById(id);
+        return contactRepository.existsById(id);
     }
 
     public AgendaModel findById(Long id) throws ResourceNotFoundException {
-        AgendaModel agendaModel = agendaRepository.findById(id).orElse(null);
-        if (agendaModel ==null) {
-            throw new ResourceNotFoundException("Cannot find Contact with id: " + id);
+        AgendaModel contact = contactRepository.findById(id).orElse(null);
+        if (contact==null) {
+            throw new ResourceNotFoundException("Cannot find AgendaModel with id: " + id);
         }
-        else return agendaModel;
+        else return contact;
     }
 
     public List<AgendaModel> findAll(int pageNumber, int rowPerPage) {
-        List<AgendaModel> agendaModels = new ArrayList<>();
+        List<AgendaModel> contacts = new ArrayList<>();
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
-        agendaRepository.findAll(sortedByIdAsc).forEach(agendaModels::add);
-        return agendaModels;
+        contactRepository.findAll(sortedByIdAsc).forEach(contacts::add);
+        return contacts;
     }
 
-    public AgendaModel save(AgendaModel agendaModel) throws BadResourceException, ResourceAlreadyExistsException {
-        if (!StringUtils.isEmpty(agendaModel.getName())) {
-            if (agendaModel.getId() != null && existsById(agendaModel.getId())) {
-                throw new ResourceAlreadyExistsException("Contact with id: " + agendaModel.getId() +
+    public AgendaModel save(AgendaModel contact) throws BadResourceException, ResourceAlreadyExistsException {
+        if (!StringUtils.isEmpty(contact.getName())) {
+            if (contact.getId() != null && existsById(contact.getId())) {
+                throw new ResourceAlreadyExistsException("AgendaModel with id: " + contact.getId() +
                         " already exists");
             }
-            return agendaRepository.save(agendaModel);
+            return contactRepository.save(contact);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save contact");
-            exc.addErrorMessage("Contact is null or empty");
+            exc.addErrorMessage("AgendaModel is null or empty");
             throw exc;
         }
     }
 
-    public void update(AgendaModel agendaModel)
+    public void update(AgendaModel contact)
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.isEmpty(agendaModel.getName())) {
-            if (!existsById(agendaModel.getId())) {
-                throw new ResourceNotFoundException("Cannot find Contact with id: " + agendaModel.getId());
+        if (!StringUtils.isEmpty(contact.getName())) {
+            if (!existsById(contact.getId())) {
+                throw new ResourceNotFoundException("Cannot find AgendaModel with id: " + contact.getId());
             }
-            agendaRepository.save(agendaModel);
+            contactRepository.save(contact);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save contact");
-            exc.addErrorMessage("Contact is null or empty");
+            exc.addErrorMessage("AgendaModel is null or empty");
             throw exc;
         }
     }
@@ -76,11 +76,11 @@ public class AgendaService {
             throw new ResourceNotFoundException("Cannot find contact with id: " + id);
         }
         else {
-            agendaRepository.deleteById(id);
+            contactRepository.deleteById(id);
         }
     }
 
     public Long count() {
-        return agendaRepository.count();
+        return contactRepository.count();
     }
 }

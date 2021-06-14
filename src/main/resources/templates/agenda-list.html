@@ -10,7 +10,7 @@
 
 <div>
   <nobr>
-    <a th:href="@{/agendaModels/add}">Add Contact</a> |
+    <a th:href="@{/agendas/add}">Add Contact</a> |
     <a th:href="@{/}">Back to Index</a>
   </nobr>
 </div>
@@ -24,20 +24,20 @@
       <th>Email</th>
       <th>Edit</th>
     </tr>
-    <tr th:each ="agendaModel : ${agendaModels}">
-      <td><a th:href="@{/agendaModels/{contactId}(contactId=${agendaModel.id})}" th:utext="${agendaModel.id}">...</a></td>
-      <td><a th:href="@{/agendaModels/{contactId}(contactId=${agendaModel.id})}" th:utext="${agendaModel.name}">...</a></td>
-      <td th:utext="${agendaModel.phone}">...</td>
-      <td th:utext="${agendaModel.email}">...</td>
-      <td><a th:href="@{/agendaModels/{contactId}/edit(contactId=${agendaModel.id})}">Edit</a></td>
+    <tr th:each ="agenda : ${agendas}">
+      <td><a th:href="@{/agendas/{agendaId}(agendaId=${agenda.id})}" th:utext="${agenda.id}">...</a></td>
+      <td><a th:href="@{/agendas/{agendaId}(agendaId=${agenda.id})}" th:utext="${agenda.name}">...</a></td>
+      <td th:utext="${agenda.phone}">...</td>
+      <td th:utext="${agenda.email}">...</td>
+      <td><a th:href="@{/agendas/{agendaId}/edit(agendaId=${agenda.id})}">Edit</a></td>
     </tr>
   </table>
 </div>
 <br/><br/>
 <div>
   <nobr>
-    <span th:if="${hasPrev}"><a th:href="@{/agendaModels?page={prev}(prev=${prev})}">Prev</a>&nbsp;&nbsp;&nbsp;</span>
-    <span th:if="${hasNext}"><a th:href="@{/agendaModels?page={next}(next=${next})}">Next</a></span>
+    <span th:if="${hasPrev}"><a th:href="@{/agendas?page={prev}(prev=${prev})}">Prev</a>&nbsp;&nbsp;&nbsp;</span>
+    <span th:if="${hasNext}"><a th:href="@{/agendas?page={next}(next=${next})}">Next</a></span>
   </nobr>
 </div>
 </body>

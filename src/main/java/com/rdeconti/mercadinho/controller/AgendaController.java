@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(description = "Endpoints for Creating, Retrieving, Updating and Deleting of Contacts.",
-        tags = {"agenda"})
-
 @Controller
 public class AgendaController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private final int ROW_PER_PAGE = 5;
 
     @Autowired
@@ -29,71 +27,56 @@ public class AgendaController {
     @Value("${msg.title}")
     private String title;
 
-    @GetMapping(value = {"/agenda", "/index"})
+    ////// @GetMapping(value = {"/", "/index"})
+    @GetMapping(value = {"/index"})
     public String index(Model model) {
         model.addAttribute("title", title);
         return "index";
     }
 
-    @ApiOperation(value = "Find Contacts by name", notes = "Name search by %name% format", tags = { "agenda" })
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation", response=List.class )  })
-
-    @GetMapping(value = "/agenda")
-    public String getContacts(Model model, @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
-
-        List<AgendaModel> agendaModels = agendaService.findAll(pageNumber, ROW_PER_PAGE);
+    @GetMapping(value = "/agendas")
+    public String getAgendaModels(Model model,
+                              @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
+        List<AgendaModel> agendas = agendaService.findAll(pageNumber, ROW_PER_PAGE);
 
         long count = agendaService.count();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
-        model.addAttribute("contacts", agendaModels);
+        model.addAttribute("agendas", agendas);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("next", pageNumber + 1);
-        return "contact-list";
+        return "agenda-list";
     }
 
-    @ApiOperation(value = "Find contact by ID", notes = "Returns a single contact", tags = { "agenda" })
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation", response= AgendaModel.class),
-            @ApiResponse(code = 404, message = "Contact not found") })
-
-    @GetMapping(value = "/agenda/{agendaId}")
-    public String getContactById(Model model, @PathVariable long contactId) {
-        AgendaModel agendaModel = null;
+    @GetMapping(value = "/agendas/{agendaId}")
+    public String getAgendaModelById(Model model, @PathVariable long agendaId) {
+        AgendaModel agenda = null;
         try {
-            agendaModel = agendaService.findById(contactId);
+            agenda = agendaService.findById(agendaId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Contact not found");
+            model.addAttribute("errorMessage", "AgendaModel not found");
         }
-        model.addAttribute("contact", agendaModel);
-        return "contact";
+        model.addAttribute("agenda", agenda);
+        return "agenda";
     }
 
-    @GetMapping(value = {"/agenda/add"})
-    public String showAddContact(Model model) {
-        AgendaModel agendaModel = new AgendaModel();
+    @GetMapping(value = {"/agendas/add"})
+    public String showAddAgendaModel(Model model) {
+        AgendaModel agenda = new AgendaModel();
         model.addAttribute("add", true);
-        model.addAttribute("contact", agendaModel);
+        model.addAttribute("agenda", agenda);
 
-        return "contact-edit";
+        return "agenda-edit";
     }
 
-    @ApiOperation(value = "Add a new contact", tags = { "agenda" })
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Contact created"),
-            @ApiResponse(code = 400, message = "Invalid input"),
-            @ApiResponse(code = 409, message = "Contact already exists") })
-
-    @PostMapping(value = "/agenda/add")
-    public String addContact(Model model,
-                             @ApiParam("Contact to add. Cannot null or empty.")
-                             @ModelAttribute("contact") AgendaModel agendaModel) {
+    @PostMapping(value = "/agendas/add")
+    public String addAgendaModel(Model model,
+                             @ModelAttribute("agenda") AgendaModel agenda) {
         try {
-            AgendaModel newAgendaModel = agendaService.save(agendaModel);
-            return "redirect:/agenda/" + String.valueOf(newAgendaModel.getId());
+            AgendaModel newAgendaModel = agendaService.save(agenda);
+            return "redirect:/agendas/" + String.valueOf(newAgendaModel.getId());
         } catch (Exception ex) {
             // log exception first,
             // then show error
@@ -101,51 +84,33 @@ public class AgendaController {
             logger.error(errorMessage);
             model.addAttribute("errorMessage", errorMessage);
 
-            //model.addAttribute("contact", contact);
+            //model.addAttribute("agenda", agenda);
             model.addAttribute("add", true);
-            return "contact-edit";
+            return "agenda-edit";
         }
     }
 
-    @ApiOperation(value = "Update an existing contact", tags = { "agenda" })
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation"),
-            @ApiResponse(code = 400, message = "Invalid ID supplied"),
-            @ApiResponse(code = 404, message = "Contact not found"),
-            @ApiResponse(code = 405, message = "Validation exception") })
-
-    @GetMapping(value = {"/agenda/{agendaId}/edit"})
-    public String showEditContact(Model model,
-                                  @ApiParam("Id of the contact to be update. Cannot be empty.")
-                                  @PathVariable long contactId) {
-        AgendaModel agendaModel = null;
+    @GetMapping(value = {"/agendas/{agendaId}/edit"})
+    public String showEditAgendaModel(Model model, @PathVariable long agendaId) {
+        AgendaModel agenda = null;
         try {
-            agendaModel = agendaService.findById(contactId);
+            agenda = agendaService.findById(agendaId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Contact not found");
+            model.addAttribute("errorMessage", "AgendaModel not found");
         }
         model.addAttribute("add", false);
-        model.addAttribute("contact", agendaModel);
-        return "contact-edit";
+        model.addAttribute("agenda", agenda);
+        return "agenda-edit";
     }
 
-    @ApiOperation(value = "Update an existing contact", tags = { "agenda" })
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation"),
-            @ApiResponse(code = 400, message = "Invalid ID supplied"),
-            @ApiResponse(code = 404, message = "Contact not found"),
-            @ApiResponse(code = 405, message = "Validation exception") })
-
-    @PostMapping(value = {"/agenda/{agendaId}/edit"})
-    public String updateContact(Model model,
-                                @ApiParam("Id of the contact to be update. Cannot be empty.")
-                                @PathVariable long contactId,
-                                @ApiParam("Contact to update. Cannot null or empty.")
-                                @ModelAttribute("contact") AgendaModel agendaModel) {
+    @PostMapping(value = {"/agendas/{agendaId}/edit"})
+    public String updateAgendaModel(Model model,
+                                @PathVariable long agendaId,
+                                @ModelAttribute("agenda") AgendaModel agenda) {
         try {
-            agendaModel.setId(contactId);
-            agendaService.update(agendaModel);
-            return "redirect:/agenda/" + String.valueOf(agendaModel.getId());
+            agenda.setId(agendaId);
+            agendaService.update(agenda);
+            return "redirect:/agendas/" + String.valueOf(agenda.getId());
         } catch (Exception ex) {
             // log exception first,
             // then show error
@@ -154,47 +119,35 @@ public class AgendaController {
             model.addAttribute("errorMessage", errorMessage);
 
             model.addAttribute("add", false);
-            return "contact-edit";
+            return "agenda-edit";
         }
     }
 
-    @ApiOperation(value = "Deletes a contact", tags = { "agenda" })
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation"),
-            @ApiResponse(code = 404, message = "Contact not found") })
-
-    @GetMapping(value = {"/agenda/{agendaId}/delete"})
-    public String showDeleteContactById(
-            @ApiParam("Id of the contact to be delete. Cannot be empty.")
-            Model model, @PathVariable long contactId) {
-        AgendaModel agendaModel = null;
+    @GetMapping(value = {"/agendas/{agendaId}/delete"})
+    public String showDeleteAgendaModelById(
+            Model model, @PathVariable long agendaId) {
+        AgendaModel agenda = null;
         try {
-            agendaModel = agendaService.findById(contactId);
+            agenda = agendaService.findById(agendaId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Contact not found");
+            model.addAttribute("errorMessage", "AgendaModel not found");
         }
         model.addAttribute("allowDelete", true);
-        model.addAttribute("contact", agendaModel);
-        return "contact";
+        model.addAttribute("agenda", agenda);
+        return "agenda";
     }
 
-    @ApiOperation(value = "Deletes a contact", tags = { "agenda" })
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation"),
-            @ApiResponse(code = 404, message = "Contact not found") })
-
-    @PostMapping(value = {"/agenda/{agendaId}/delete"})
-    public String deleteContactById(
-            @ApiParam("Id of the contact to be delete. Cannot be empty.")
-            Model model, @PathVariable long contactId) {
+    @PostMapping(value = {"/agendas/{agendaId}/delete"})
+    public String deleteAgendaModelById(
+            Model model, @PathVariable long agendaId) {
         try {
-            agendaService.deleteById(contactId);
-            return "redirect:/agenda";
+            agendaService.deleteById(agendaId);
+            return "redirect:/agendas";
         } catch (ResourceNotFoundException ex) {
             String errorMessage = ex.getMessage();
             logger.error(errorMessage);
             model.addAttribute("errorMessage", errorMessage);
-            return "contact";
+            return "agenda";
         }
     }
 }
