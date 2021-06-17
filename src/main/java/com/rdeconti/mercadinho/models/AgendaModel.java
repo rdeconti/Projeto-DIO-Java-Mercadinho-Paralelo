@@ -32,12 +32,12 @@ public class AgendaModel implements Serializable {
     @Column(name = "agenda_name", nullable = false)
     private String name;
 
-    @Pattern(regexp ="^\\+?[0-9. ()-]{7,25}$", message = "Phone number")
+    @Pattern(regexp ="^\\+?[0-9. ()-]{7,25}$", message = "Número de telefone")
     @Size(max = 25)
     @Column(name = "agenda_phone", nullable = false)
     private String phone;
 
-    @Email(message = "Email Address")
+    @Email(message = "Endereço de e-mail")
     @Size(max = 100)
     @Column(name = "agenda_email", nullable = false)
     private String email;

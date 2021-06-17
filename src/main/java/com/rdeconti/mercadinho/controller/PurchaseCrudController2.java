@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/purchases")
-public class PurchaseController {
+public class PurchaseCrudController2 {
 
     @Autowired
     private PurchaseService purchaseService;

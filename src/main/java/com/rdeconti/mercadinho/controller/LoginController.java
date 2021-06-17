@@ -195,11 +195,7 @@ public class LoginController {
         UserModel userModel = userService.findUserByUserName(auth.getName());
         modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getName() + " " + userModel.getLastName() + " (" + userModel.getEmail() + ")");
         modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
-
-
-        ////// ////// modelAndView.setViewName("purchaser/purchaser");
-        modelAndView.setViewName("purchase-index");
-
+        modelAndView.setViewName("purchaser/purchaser-index");
         return modelAndView;
     }
 

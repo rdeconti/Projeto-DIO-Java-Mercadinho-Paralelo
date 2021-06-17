@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+    <!-- Include HEAD -->
+    <th:block th:include="/fragments/_head"> </th:block>
+
+    <body>
+
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
+
+        <!-- start MAIN -->
+        <main>
+
+            <h1>Lista de Fornecedores</h1>
+
+            <div align="center">
+                <a class="btn btn-primary" th:href="@{/purchaser/agendas/add}">Incluir fornecedor</a>
+            </div>
+
+            <br>
+
+            <div class="container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Alterar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="agenda : ${agendas}">
+                            <td><a th:href="@{/purchaser/agendas/{agendaId}(agendaId=${agenda.id})}" th:utext="${agenda.id}">...</a></td>
+                            <td><a th:href="@{/purchaser/agendas/{agendaId}(agendaId=${agenda.id})}" th:utext="${agenda.name}">...</a></td>
+                            <td th:utext="${agenda.phone}">...</td>
+                            <td th:utext="${agenda.email}">...</td>
+                            <td><a th:href="@{/purchaser/agendas/{agendaId}/edit(agendaId=${agenda.id})}">Alterar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div align="center">
+                <span th:if="${hasPrev}"><a class="btn btn-primary"th:href="@{/purchaser/agendas?page={prev}(prev=${prev})}">Anterior</a></span>
+                <span th:if="${hasNext}"><a class="btn btn-primary"th:href="@{/purchaser/agendas?page={next}(next=${next})}">Próximo</a></span>
+            </div>
+
+        </main>
+
+        <!-- Include FOOTER -->
+        <th:block th:include="/fragments/_footer"> </th:block>
+
+    </body>
+
+</html>

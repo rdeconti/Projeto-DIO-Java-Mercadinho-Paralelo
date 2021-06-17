@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+  <!-- Include HEAD -->
+  <th:block th:include="/fragments/_head"> </th:block>
+
+  <body>
+
+    <!-- Include HEADER -->
+    <th:block th:include="/fragments/_header"> </th:block>
+
+    <!-- start MAIN -->
+    <main>
+
+      <div class="container" align="center">
+
+          <h1 th:text="${add} ? 'Incluir dados do fornecedor' : 'Alterar dados do fornecedor'"></h1>
+
+          <a class="btn btn-primary" th:href="@{/purchaser/agendas}">Listar Fornecedores</a>
+
+            <form th:action="${add} ? @{/purchaser/agendas/add} : @{/purchaser/agendas/{agendaId}/edit(agendaId=${agenda.id})}" th:object="${agenda}" method="POST">
+
+            <table border="0">
+
+              <tr th:if="${agenda.id}">
+                <td class="table-title">Código</td>
+                <td></td>
+                <td th:utext="${agenda.id}">...</td>
+              </tr>
+
+              <tr>
+                <td class="table-title">Nome</td>
+                <td></td>
+                <td><input type="text" th:field="*{name}" /></td>
+              </tr>
+
+              <tr>
+                <td class="table-title">Telefone</td>
+                <td></td>
+                <td><input type="text" th:field="*{phone}" /></td>
+              </tr>
+
+              <tr>
+                <<td class="table-title">Email</td>
+                <td></td>
+                <td><input type="text" th:field="*{email}" /></td>
+              </tr>
+
+              <tr>
+                <td class="table-title">Endereço</td>
+                <td></td>
+                <td><input type="text" th:field="*{address1}" size="50" /></td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td></td>
+                <td><input type="text" th:field="*{address2}" size="50" /></td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td></td>
+                <td><input type="text" th:field="*{address3}" size="50" /></td>
+              </tr>
+
+              <tr>
+                <td class="table-title">Código postal</td>
+                <td></td>
+                <td><input type="number" th:field="*{postalCode}" /></td>
+              </tr>
+
+              <tr>
+                <td class="table-title">Observações</td>
+                <td></td>
+                <td><textarea th:field="*{note}" rows="4" cols="50"></textarea></td>
+              </tr>
+
+            </table>
+
+            <input class="btn btn-primary" type="submit" th:value="${add} ? 'Incluir' : 'Alterar'" />
+
+          </form>
+
+          <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>
+
+      </div>
+
+    </main>
+
+    <!-- Include FOOTER -->
+    <th:block th:include="/fragments/_footer"> </th:block>
+
+  </body>
+
+</html>
