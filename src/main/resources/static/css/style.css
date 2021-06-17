@@ -1,5 +1,31 @@
-h1, h2 {
-    color:#ff4f57;
+h1, h2, h3 {
+    text-align: center;
+    font-weight: bold;
+    color: red;
+    padding: 10px;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: white;
+    font-family: Arial;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: yellow;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: white;
+}
+
+.card {
+    min-height: 200px;
 }
 
 a {
@@ -10,11 +36,35 @@ table {
     border-collapse: collapse;
 }
 
-table th, table td {
-    padding: 5px;
+.table-title {
+    font-weight: bold;
+}
+
+table, th, td {
+  padding: 10px;
 }
 
 .error {
+    font-size: 32px;
+    padding: 10px;
+    background-color:white;
     color: red;
-    font-style: italic;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.header-container {
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    background: blue;
+    color: white;
+}
+
+.footer-container {
+    background-color: black;
+    text-align: center;
+    margin-top: 10px;
+    padding: 5px 0px 0px 0px;
+    border-top: 1px solid #ccc;
 }

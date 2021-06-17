@@ -1,3 +1,12 @@
+.login-background {
+  background-image: url("/images/background-1.jpg");
+  background-color: black;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .wrapper {
     margin-top: 80px;
     margin-bottom: 20px;

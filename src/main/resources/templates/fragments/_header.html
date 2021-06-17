@@ -1,0 +1,35 @@
+<div class="header-container"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.thymeleaf.org ">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+        <a class="navbar-brand" href="#">
+            <img alt="logo" style="width:160px; height:80px;" th:src="@{/images/mercadinho.jpg}">
+        </a>
+
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/purchaser/index}">Início</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/purchaser/agendas}">Fornecedores</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/purchaser/agendas}">Compras</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/purchaser/agendas}">Sair</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</div>
