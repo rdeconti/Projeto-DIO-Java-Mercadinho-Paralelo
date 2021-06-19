@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class PurchaseCrudListController {
+public class PurchaseController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -27,19 +27,21 @@ public class PurchaseCrudListController {
     @Value("${msg.title}")
     private String title;
 
+    //------------------------------------------------------------------------------------------------------------------
     @GetMapping(value = {"/purchaser/index"})
-    public ModelAndView index(Model model) {
+    public ModelAndView purchaseIndex(Model model) {
 
         model.addAttribute("title", title);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaser/purchaser-index");
+        modelAndView.setViewName("purchaser/purchase-index");
         return modelAndView;
 
     }
 
-    @GetMapping(value = "/purchaser/agendas")
-    public ModelAndView getAgendaModels(Model model,
+    //------------------------------------------------------------------------------------------------------------------
+    @GetMapping(value = "/purchaser/purchase-list")
+    public ModelAndView purchaseListAll(Model model,
                               @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         List<AgendaModel> agendas = agendaService.findAll(pageNumber, ROW_PER_PAGE);
@@ -55,13 +57,14 @@ public class PurchaseCrudListController {
         model.addAttribute("next", pageNumber + 1);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaser/purchaser-list");
+        modelAndView.setViewName("purchaser/purchase-list");
         return modelAndView;
 
     }
 
-    @GetMapping(value = "/purchaser/agendas/{agendaId}")
-    public ModelAndView getAgendaModelById(Model model,
+    //------------------------------------------------------------------------------------------------------------------
+    @GetMapping(value = "/purchaser/purchase-list/{agendaId}")
+    public ModelAndView purchaseListById(Model model,
                                  @PathVariable long agendaId) {
 
         AgendaModel agenda = null;
@@ -77,13 +80,14 @@ public class PurchaseCrudListController {
         model.addAttribute("agenda", agenda);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaser/purchaser");
+        modelAndView.setViewName("purchaser/purchase-list");
         return modelAndView;
 
     }
 
-    @GetMapping(value = {"/purchaser/agendas/add"})
-    public ModelAndView showAddAgendaModel(Model model) {
+    //------------------------------------------------------------------------------------------------------------------
+    @GetMapping(value = {"/purchaser/purchase/create"})
+    public ModelAndView purchaseCreateGet(Model model) {
 
         AgendaModel agenda = new AgendaModel();
 
@@ -91,12 +95,13 @@ public class PurchaseCrudListController {
         model.addAttribute("agenda", agenda);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaser/purchaser-edit");
+        modelAndView.setViewName("purchaser/purchase-create");
         return modelAndView;
     }
 
-    @PostMapping(value = "/purchaser/agendas/add")
-    public ModelAndView addAgendaModel(Model model,
+    //------------------------------------------------------------------------------------------------------------------
+    @PostMapping(value = "/purchaser/purchase/create")
+    public ModelAndView purchaseCreatePost(Model model,
                                    @ModelAttribute("agenda") AgendaModel agenda) {
 
         try {
@@ -104,7 +109,8 @@ public class PurchaseCrudListController {
             AgendaModel newAgendaModel = agendaService.save(agenda);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaser/agendas/" + String.valueOf(newAgendaModel.getId())) ;
+            //modelAndView.setViewName("redirect:/purchaser/purchase-list/" + String.valueOf(newAgendaModel.getId()));
+            modelAndView.setViewName("redirect:/purchaser/purchase-list");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -116,14 +122,15 @@ public class PurchaseCrudListController {
             model.addAttribute("add", true);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaser/purchaser-edit");
+            modelAndView.setViewName("purchaser/purchase-update");
             return modelAndView;
 
         }
     }
 
-    @GetMapping(value = {"/purchaser/agendas/{agendaId}/edit"})
-    public ModelAndView showEditAgendaModel(Model model,
+    //------------------------------------------------------------------------------------------------------------------
+    @GetMapping(value = {"/purchaser/purchase-update/{agendaId}"})
+    public ModelAndView purchaseUpdateGet(Model model,
                                         @PathVariable long agendaId) {
 
         AgendaModel agenda = null;
@@ -139,12 +146,13 @@ public class PurchaseCrudListController {
         model.addAttribute("agenda", agenda);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaser/purchaser-edit");
+        modelAndView.setViewName("purchaser/purchase-update");
         return modelAndView;
     }
 
-    @PostMapping(value = {"/purchaser/agendas/{agendaId}/edit"})
-    public ModelAndView updateAgendaModel(Model model,
+    //------------------------------------------------------------------------------------------------------------------
+    @PostMapping(value = {"/purchaser/purchase-update/{agendaId}"})
+    public ModelAndView purchaseUpdatePost(Model model,
                                         @PathVariable long agendaId,
                                         @ModelAttribute("agenda") AgendaModel agenda) {
 
@@ -154,7 +162,7 @@ public class PurchaseCrudListController {
             agendaService.update(agenda);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaser/agendas/" + String.valueOf(agenda.getId())) ;
+            modelAndView.setViewName("redirect:/purchaser/purchase-list/" + String.valueOf(agenda.getId())) ;
             return modelAndView;
 
         } catch (Exception ex) {
@@ -166,14 +174,15 @@ public class PurchaseCrudListController {
             model.addAttribute("add", false);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaser/purchaser-edit");
+            modelAndView.setViewName("purchaser/purchase-update");
             return modelAndView;
 
         }
     }
 
-    @GetMapping(value = {"/purchaser/agendas/{agendaId}/delete"})
-    public ModelAndView showDeleteAgendaModelById(Model model,
+    //------------------------------------------------------------------------------------------------------------------
+    @GetMapping(value = {"/purchaser/purchase-delete/{agendaId}"})
+    public ModelAndView purchaseDeleteGet(Model model,
                                         @PathVariable long agendaId) {
 
         AgendaModel agenda = null;
@@ -190,12 +199,13 @@ public class PurchaseCrudListController {
         model.addAttribute("agenda", agenda);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaser/purchaser");
+        modelAndView.setViewName("purchaser/purchase-delete");
         return modelAndView;
     }
 
-    @PostMapping(value = {"/purchaser/agendas/{agendaId}/delete"})
-    public ModelAndView deleteAgendaModelById(Model model,
+    //------------------------------------------------------------------------------------------------------------------
+    @PostMapping(value = {"/purchaser/purchase-delete/{agendaId}"})
+    public ModelAndView purchaseDeletePost(Model model,
                                     @PathVariable long agendaId) {
 
         try {
@@ -203,7 +213,7 @@ public class PurchaseCrudListController {
             agendaService.deleteById(agendaId);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaser/agendas") ;
+            modelAndView.setViewName("redirect:/purchaser/purchase-list") ;
             return modelAndView;
 
 
@@ -215,7 +225,7 @@ public class PurchaseCrudListController {
             model.addAttribute("errorMessage", errorMessage);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaser/purchaser");
+            modelAndView.setViewName("purchaser/purchase-delete");
             return modelAndView;
 
         }

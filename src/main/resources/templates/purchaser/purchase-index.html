@@ -18,21 +18,18 @@
             <div class="container" align="center">
 
                 <h1>Você tem autorização para funções do processo de COMPRAS</h1>
+                <br/>
 
-                <div class="row align-self-center">
+                <div class="row">
 
                     <div class="col-xl bg-primary text-white text-center">
                         <p>Aqui você realiza a manutenção do cadastro de fornecedores</p>
-                        <br>
-                        <a class="btn btn-primary" th:href="@{/purchaser/agendas}">Fornecedores</a>
-                        <br>
+                        <a class="btn btn-info" th:href="@{/purchaser/purchase-list}">Listar Fornecedores</a>
                     </div>
 
                     <div class="col-xl bg-primary text-white text-center offset-2">
                         <p>Aqui você cria e acompanha os pedidos de compras</p>
-                        <br>
-                        <a class="btn btn-primary" th:href="@{/purchaser/agendas}">Compras</a>
-                        <br>
+                        <a class="btn btn-info" th:href="@{/purchaser/purchase-list}">Listar Compras</a>
                     </div>
 
                 </div>

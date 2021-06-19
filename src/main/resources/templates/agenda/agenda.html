@@ -8,7 +8,7 @@
 <body>
 <h1>View Contact</h1>
 <a th:href="@{/agendas}">Back to Contact List</a>
-<br/><br/>
+<br/>
 <div th:if="${agenda}">
   <table border="0">
     <tr>
@@ -57,7 +57,7 @@
       <td th:utext="${agenda.note}">...</td>
     </tr>
   </table>
-  <br/><br/>
+  <br/>
   <div th:if="not ${allowDelete}">
     <a th:href="@{/agendas/{agendaId}/edit(agendaId=${agenda.id})}">Edit</a> |
     <a th:href="@{/agendas/{agendaId}/delete(agendaId=${agenda.id})}">Delete</a>

@@ -8,7 +8,7 @@
 <body>
 <h1 th:text="${add} ? 'Create a Contact:' : 'Edit a Contact:'" />
 <a th:href="@{/agendas}">Back to Contact List</a>
-<br/><br/>
+<br/>
 <form th:action="${add} ? @{/agendas/add} : @{/agendas/{agendaId}/edit(agendaId=${agenda.id})}"
       th:object="${agenda}" method="POST">
   <table border="0">

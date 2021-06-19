@@ -17,15 +17,14 @@
         <!-- start MAIN -->
         <main>
 
-            <h1>Lista de Fornecedores</h1>
+            <div class="container" align="center">
 
-            <div align="center">
-                <a class="btn btn-primary" th:href="@{/purchaser/agendas/add}">Incluir fornecedor</a>
-            </div>
+                <h1>Lista de Fornecedores</h1>
+                <br/>
 
-            <br>
+                <a class="btn btn-primary" th:href="@{/purchaser/purchase/create}">Incluir Fornecedor</a>
+                <br/>
 
-            <div class="container">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -34,23 +33,25 @@
                             <th>Telefone</th>
                             <th>Email</th>
                             <th>Alterar</th>
+                            <th>Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="agenda : ${agendas}">
-                            <td><a th:href="@{/purchaser/agendas/{agendaId}(agendaId=${agenda.id})}" th:utext="${agenda.id}">...</a></td>
-                            <td><a th:href="@{/purchaser/agendas/{agendaId}(agendaId=${agenda.id})}" th:utext="${agenda.name}">...</a></td>
-                            <td th:utext="${agenda.phone}">...</td>
-                            <td th:utext="${agenda.email}">...</td>
-                            <td><a th:href="@{/purchaser/agendas/{agendaId}/edit(agendaId=${agenda.id})}">Alterar</a></td>
+                            <td th:utext="${agenda.id}"></td>
+                            <td th:utext="${agenda.name}"></td>
+                            <td th:utext="${agenda.phone}"></td>
+                            <td th:utext="${agenda.email}"></td>
+                            <td><a th:href="@{/purchaser/purchase-update/{agendaId}(agendaId=${agenda.id})}">Alterar</a></td>
+                            <td><a th:href="@{/purchaser/purchase-delete/{agendaId}(agendaId=${agenda.id})}">Excluir</a></td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
 
-            <div align="center">
-                <span th:if="${hasPrev}"><a class="btn btn-primary"th:href="@{/purchaser/agendas?page={prev}(prev=${prev})}">Anterior</a></span>
-                <span th:if="${hasNext}"><a class="btn btn-primary"th:href="@{/purchaser/agendas?page={next}(next=${next})}">Próximo</a></span>
+                <br/>
+                <span th:if="${hasPrev}"><a class="btn btn-primary"th:href="@{/purchaser/purchase-list?page={prev}(prev=${prev})}">Anterior</a></span>
+                <span th:if="${hasNext}"><a class="btn btn-primary"th:href="@{/purchaser/purchase-list?page={next}(next=${next})}">Próximo</a></span>
+
             </div>
 
         </main>
