@@ -24,13 +24,10 @@ public class AgendaController {
     @Autowired
     private AgendaService agendaService;
 
-    @Value("${msg.title}")
-    private String title;
-
     ////// @GetMapping(value = {"/", "/index"})
     @GetMapping(value = {"/index"})
     public String index(Model model) {
-        model.addAttribute("title", title);
+        ///model.addAttribute("title", title);
         return "index";
     }
 

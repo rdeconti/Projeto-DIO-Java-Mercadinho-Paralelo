@@ -22,9 +22,7 @@
           <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Listar Fornecedores</a>
           <br/>
 
-          <form
-              th:action="${add} ? @{/purchaser/purchase/create} : @{/purchaser/purchase-update/{agendaId}/(agendaId=${agenda.id})}"
-              th:object="${agenda}" method="POST">
+          <form th:action="@{/purchaser/purchase/create}" th:object="${agenda}" method="POST">
 
               <table>
 

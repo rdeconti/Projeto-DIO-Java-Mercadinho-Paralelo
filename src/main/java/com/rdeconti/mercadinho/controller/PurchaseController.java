@@ -3,10 +3,10 @@ package com.rdeconti.mercadinho.controller;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.AgendaModel;
 import com.rdeconti.mercadinho.services.AgendaService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,21 +17,14 @@ import java.util.List;
 @Controller
 public class PurchaseController {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    private final int ROW_PER_PAGE = 5;
+    private static final Logger log = Logger.getLogger(PurchaseController.class.getName());
 
     @Autowired
     private AgendaService agendaService;
 
-    @Value("${msg.title}")
-    private String title;
-
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping(value = {"/purchaser/index"})
     public ModelAndView purchaseIndex(Model model) {
-
-        model.addAttribute("title", title);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaser/purchase-index");
@@ -44,6 +37,7 @@ public class PurchaseController {
     public ModelAndView purchaseListAll(Model model,
                               @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
+        int ROW_PER_PAGE = 5;
         List<AgendaModel> agendas = agendaService.findAll(pageNumber, ROW_PER_PAGE);
 
         long count = agendaService.count();
@@ -116,7 +110,7 @@ public class PurchaseController {
         } catch (Exception exception) {
 
             String errorMessage = exception.getMessage();
-            logger.error(errorMessage);
+            log.info(errorMessage);
 
             model.addAttribute("errorMessage", errorMessage);
             model.addAttribute("add", true);
@@ -162,13 +156,13 @@ public class PurchaseController {
             agendaService.update(agenda);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaser/purchase-list/" + String.valueOf(agenda.getId())) ;
+            modelAndView.setViewName("redirect:/purchaser/purchase-list") ;
             return modelAndView;
 
         } catch (Exception ex) {
 
             String errorMessage = ex.getMessage();
-            logger.error(errorMessage);
+            log.info(errorMessage);
 
             model.addAttribute("errorMessage", errorMessage);
             model.addAttribute("add", false);
@@ -220,7 +214,7 @@ public class PurchaseController {
         } catch (ResourceNotFoundException exception) {
 
             String errorMessage = exception.getMessage();
-            logger.error(errorMessage);
+            log.info(errorMessage);
 
             model.addAttribute("errorMessage", errorMessage);
 
