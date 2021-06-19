@@ -1,13 +1,12 @@
-<div class="header-container"
-     xmlns:th="http://www.thymeleaf.org"
-     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://www.thymeleaf.org ">
+<div class="header-container" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <!-- Include HEAD -->
+    <th:block th:include="/fragments/_head"> </th:block>
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
-        <a class="navbar-brand" href="#">
-            <img alt="logo" style="width:160px; height:80px;" th:src="@{/images/mercadinho.jpg}">
+        <a class="navbar-brand" th:href="@{/purchaser/index}">
+            <img alt="logo" style="width:160px; height:50px;" th:src="@{/images/mercadinho.jpg}">
         </a>
 
         <ul class="navbar-nav">
@@ -17,11 +16,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/purchaser/agendas}">Fornecedores</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/purchaser/agendas}">Compras</a>
+                <a class="nav-link" th:href="@{/agendas}">Agenda</a>
             </li>
 
             <li class="nav-item">

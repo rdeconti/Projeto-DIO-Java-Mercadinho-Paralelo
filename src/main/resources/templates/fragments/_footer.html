@@ -1,8 +1,12 @@
-<div class="footer-container"
-     xmlns:th="http://www.thymeleaf.org"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://www.thymeleaf.org ">
+<div class="header-container" xmlns:th="http://www.w3.org/1999/xhtml">
 
-       <p>by Rosemeire Deconti - 2021</p>
+       <!-- Include HEAD -->
+       <th:block th:include="/fragments/_head"> </th:block>
+
+       <div class="footer-container" align="center">
+
+              <p>by Rosemeire Deconti - 2021</p>
+
+       </div>
 
 </div>

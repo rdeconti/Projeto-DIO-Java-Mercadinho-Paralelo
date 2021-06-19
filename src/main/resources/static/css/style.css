@@ -1,47 +1,65 @@
+* {
+    font-family: Arial;
+    background-color: white;
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+}
+
+body, main {
+    background-color: white;
+    margin: 0px;
+    padding: 0px;
+}
+
 h1, h2, h3 {
     text-align: center;
     font-weight: bold;
-    color: red;
-    padding: 10px;
+    font-size: 32px;
+    color: black;
+    padding: 3px;
+}
+
+p {
+    background-color:transparent;
 }
 
 .navbar {
+    background-color: black;
     overflow: hidden;
-    background-color: white;
-    font-family: Arial;
 }
 
 .navbar a {
-    float: left;
-    font-size: 16px;
-    color: yellow;
-    text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
+    background-color: black;
+    text-color: white;
+    float: left;
+    padding: 5px;;
 }
 
 .navbar a:hover {
-    background-color: white;
+    text-decoration: none;
+    background-color: gray;
+    text-color: white;
 }
 
-.card {
-    min-height: 200px;
+.nav-link {
+    padding: 3px;
+    margin: 10px;
 }
 
-a {
-    color: #ff4f57;
+.row {
+    padding: 10px;
+    margin: 10px;
 }
 
 table {
-    border-collapse: collapse;
+    background-color: white;
 }
 
-.table-title {
+tr {
     font-weight: bold;
-}
-
-table, th, td {
-  padding: 10px;
+    font-color: black;
 }
 
 .error {
@@ -54,17 +72,22 @@ table, th, td {
 }
 
 .header-container {
-    text-align: left;
-    border-bottom: 1px solid #ccc;
     position: relative;
-    background: blue;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: black;
     color: white;
 }
 
 .footer-container {
-    background-color: black;
-    text-align: center;
-    margin-top: 10px;
-    padding: 5px 0px 0px 0px;
-    border-top: 1px solid #ccc;
+   position: fixed;
+   width: 100%;
+   left: 0;
+   bottom: 0;
+   background-color: black;
+   color: white;
+   text-align: center;
+   font-weight: bold;
+   padding: 10px;
 }
