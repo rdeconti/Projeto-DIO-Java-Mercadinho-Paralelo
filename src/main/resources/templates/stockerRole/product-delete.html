@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+  <!-- Include HEAD -->
+  <th:block th:include="/fragments/_head"> </th:block>
+
+  <body>
+
+    <!-- Include HEADER -->
+    <th:block th:include="/fragments/_header"> </th:block>
+
+    <main>
+
+      <div class="container" align="center">
+
+        <h1>Excluir Produto</h1>
+        <br/>
+
+        <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Listar Produtos</a>
+        <br/>
+
+        <div th:if="${object}">
+
+          <table>
+
+            <tr>
+              <td class="table-title">Nome</td>
+              <td></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.name}">...</td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Telefone</td>
+              <td></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.phone}">...</td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Email</td>
+              <td></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.email}">...</td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Endereço</td>
+              <td></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.address1}">...</td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.address2}">...</td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.address3}">...</td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Código postal</td>
+              <td></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.postalCode}">...</td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Observações</td>
+              <td></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.note}">...</td>
+            </tr>
+
+          </table>
+
+          <br/>
+
+          <div th:if="not ${allowDelete}">
+            <a class="btn btn-primary" th:href="@{/purchaser/purchase-update/{objectId}(objectId=${object.id})}">Alterar</a> |
+            <a class="btn btn-primary" th:href="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}">Excluir</a>
+          </div>
+
+          <br/>
+          <form th:if="${allowDelete}" th:action="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}" method="POST">
+            Confirma exclusão? <input class="btn btn-primary" type="submit" th:value="Sim" />
+          </form>
+
+        </div>
+
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>
+
+      </div>
+
+    </main>
+
+    <!-- Include FOOTER -->
+    <th:block th:include="/fragments/_footer"> </th:block>
+
+  </body>
+
+</html>

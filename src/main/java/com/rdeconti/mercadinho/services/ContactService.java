@@ -1,9 +1,19 @@
 package com.rdeconti.mercadinho.services;
 
+import com.rdeconti.mercadinho.exception.BadResourceException;
+import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
+import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.ContactModel;
 import com.rdeconti.mercadinho.repositories.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ContactService {
@@ -11,28 +21,86 @@ public class ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
-    public Iterable<ContactModel> findAll(){
-        return contactRepository.findAll( );
+    private boolean existsById(Long id) {
+        return contactRepository.existsById(id);
     }
 
-    public ContactModel findById(Integer ID) {
-        return contactRepository.findByCodigo( ID );
+    public ContactModel findById(Long id) throws ResourceNotFoundException {
+
+        ContactModel contact = contactRepository.findById(id).orElse(null);
+
+        if (contact==null) {
+            throw new ResourceNotFoundException("Registro não encontrado com este ID " + id);
+        }
+
+        else return contact;
     }
 
-    public void create(ContactModel contact){
-        contactRepository.save( contact );
-        System.out.println("CREATION DONE WITH SUCCESS: " + contact);
+    public List<ContactModel> findAll(int pageNumber, int rowPerPage) {
+
+        List<ContactModel> contacts = new ArrayList<>();
+
+        Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
+                Sort.by("id").ascending());
+
+        contactRepository.findAll(sortedByIdAsc).forEach(contacts::add);
+
+        return contacts;
     }
 
-    public void update(ContactModel contact){
-        contactRepository.save( contact );
-        System.out.println("UPDATE DONE WITH SUCCESS " + contact);
+    public ContactModel save(ContactModel contact) throws BadResourceException, ResourceAlreadyExistsException {
+
+        if (!ObjectUtils.isEmpty(contact.getId())) {
+
+            if (contact.getId() != null && existsById(contact.getId())) {
+
+                throw new ResourceAlreadyExistsException("Registro com este ID: " + contact.getId() +
+                        " já existe");
+            }
+
+            return contactRepository.save(contact);
+        }
+
+        else {
+
+            BadResourceException badResourceException = new BadResourceException("Falhou ao salvar registro");
+            badResourceException.addErrorMessage("Registro não está vazia ou nula");
+            throw badResourceException;
+        }
     }
 
-    public void delete(Integer contact_ID){
-        ContactModel contact = contactRepository.findByCodigo( contact_ID );
-        contactRepository.delete( contact );
-        System.out.println("DELETE DONE WITH SUCCESS " + contact);
+    public void update(ContactModel contact)
+            throws BadResourceException, ResourceNotFoundException {
+
+        if (!ObjectUtils.isEmpty(contact.getId())) {
+
+            if (!existsById(contact.getId())) {
+                throw new ResourceNotFoundException("Registro não encontrado com este ID " + contact.getId());
+            }
+
+            contactRepository.save(contact);
+        }
+
+        else {
+
+            BadResourceException badResourceException = new BadResourceException("Falhou ao salvar informação");
+            badResourceException.addErrorMessage("Informação não está vazia ou nula");
+            throw badResourceException;
+        }
     }
 
+    public void deleteById(Long id) throws ResourceNotFoundException {
+
+        if (!existsById(id)) {
+            throw new ResourceNotFoundException("Registro não encontrado com este ID " + id);
+        }
+
+        else {
+            contactRepository.deleteById(id);
+        }
+    }
+
+    public Long count() {
+        return contactRepository.count();
+    }
 }

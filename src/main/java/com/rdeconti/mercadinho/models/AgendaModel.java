@@ -24,7 +24,7 @@ public class AgendaModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "agenda_id", nullable = false)
+    @Column(name = "agenda_ID", nullable = false)
     private Long id;
 
     @NotBlank

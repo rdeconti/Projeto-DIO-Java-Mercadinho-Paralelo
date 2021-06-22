@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+    <!-- Include HEAD -->
+    <th:block th:include="/fragments/_head"> </th:block>
+
+    <body>
+
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
+
+        <!-- start MAIN -->
+        <main>
+
+            <div class="container" align="center">
+
+                <h1>Lista de Clientes</h1>
+                <br/>
+
+                <a class="btn btn-primary" th:href="@{/purchaser/purchase/create}">Incluir Cliente</a>
+                <br/>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Alterar</th>
+                            <th>Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="object : ${objects}">
+                            <td th:utext="${object.id}"></td>
+                            <td th:utext="${object.name}"></td>
+                            <td th:utext="${object.phone}"></td>
+                            <td th:utext="${object.email}"></td>
+                            <td><a th:href="@{/purchaser/purchase-update/{objectId}(objectId=${object.id})}">Alterar</a></td>
+                            <td><a th:href="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}">Excluir</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br/>
+                <span th:if="${hasPrev}"><a class="btn btn-primary"th:href="@{/purchaser/purchase-list?page={prev}(prev=${prev})}">Anterior</a></span>
+                <span th:if="${hasNext}"><a class="btn btn-primary"th:href="@{/purchaser/purchase-list?page={next}(next=${next})}">Próximo</a></span>
+
+            </div>
+
+        </main>
+
+        <!-- Include FOOTER -->
+        <th:block th:include="/fragments/_footer"> </th:block>
+
+    </body>
+
+</html>

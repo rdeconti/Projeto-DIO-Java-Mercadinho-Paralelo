@@ -31,45 +31,38 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        String loginPage = "/login";
-        String logoutPage = "/logout";
-
         http
             .csrf()
             .disable()
             .authorizeRequests()
-                .antMatchers("/manager").hasAuthority("ROLE_MANAGER")
-                .antMatchers("/customer").hasAuthority("ROLE_CUSTOMER")
-                .antMatchers("/vendor").hasAuthority("ROLE_VENDOR")
-                .antMatchers("/shipper").hasAuthority("ROLE_SHIPPER")
-                .antMatchers("/receiver").hasAuthority("ROLE_RECEIVER")
-                .antMatchers("/purchaser").hasAuthority("ROLE_PURCHASER")
-                .antMatchers("/seller").hasAuthority("ROLE_SELLER")
-                .antMatchers("/stockholder").hasAuthority("ROLE_STOCKHOLDER")
-                .antMatchers("/user").hasAuthority("ROLE_USER")
+                .antMatchers("/role/manager").hasAuthority("ROLE_MANAGER")
+                .antMatchers("/role/purchaser").hasAuthority("ROLE_PURCHASER")
+                .antMatchers("/role/seller").hasAuthority("ROLE_SELLER")
+                .antMatchers("/role/stocker").hasAuthority("ROLE_STOCKER")
+                .antMatchers("/role/user").hasAuthority("ROLE_USER")
                 .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/registration").permitAll()
+                .antMatchers("/authorization/login").permitAll()
+                .antMatchers("/authorization/registration").permitAll()
 
                 .anyRequest()
                 .authenticated()
 
                 .and()
                     .formLogin()
-                    .loginPage("/login")
-                    .failureUrl("/login?error=true")
-                    .defaultSuccessUrl("/defaultAfterLogin")
-                    .usernameParameter("user_name")
+                    .loginPage("/authorization/login")
+                    .failureUrl("/authorization/login?error=true")
+                    .defaultSuccessUrl("/role/defaultAfterLogin")
+                    .usernameParameter("userName")
                     .passwordParameter("password")
 
                 .and()
                     .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login")
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/authorization/logout"))
+                    .logoutSuccessUrl("/authorization/login")
 
                 .and()
                     .exceptionHandling()
-                    .accessDeniedPage("/noAccess");
+                    .accessDeniedPage("/authorization/authorization-noAccess");
     }
 
     @Override

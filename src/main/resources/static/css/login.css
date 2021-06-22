@@ -1,10 +1,24 @@
 .login-background {
-  background-image: url("/images/background-1.jpg");
-  background-color: black;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-image: url("/images/background-1.jpg");
+    background-color: black;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.access-denied {
+    background-image: url("/images/background-1.jpg");
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.image-center {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrapper {
