@@ -26,7 +26,7 @@ public class PurchaseController {
     public ModelAndView purchaseIndex(Model model) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/purchase-index");
+        modelAndView.setViewName("purchaserRole/purchaser-index");
         return modelAndView;
 
     }
@@ -64,7 +64,7 @@ public class PurchaseController {
             purchaseModel = purchaseService.findById(purchaseId);
 
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "PurchaseModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
@@ -126,7 +126,7 @@ public class PurchaseController {
             purchaseModel = purchaseService.findById(purchaseId);
 
         } catch (ResourceNotFoundException exception) {
-            model.addAttribute("errorMessage", "PurchaseModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
         }
 
         model.addAttribute("add", false);

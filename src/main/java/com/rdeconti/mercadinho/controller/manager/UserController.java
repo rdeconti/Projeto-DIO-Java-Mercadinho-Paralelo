@@ -32,7 +32,7 @@ public class UserController {
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("users", users);
+        model.addAttribute("objects", users);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -54,11 +54,11 @@ public class UserController {
             user = userService.findById(userId);
 
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "ContactModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
-        model.addAttribute("user", user);
+        model.addAttribute("object", user);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("managerRole/user-list");
@@ -66,20 +66,20 @@ public class UserController {
 
     }
 
-    @GetMapping(value = {"/user/user/create"})
+    @GetMapping(value = {"/user/user-create"})
     public ModelAndView userCreateGet(Model model) {
 
         ContactModel user = new ContactModel();
 
         model.addAttribute("add", true);
-        model.addAttribute("user", user);
+        model.addAttribute("object", user);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("managerRole/user-create");
         return modelAndView;
     }
 
-    @PostMapping(value = "/user/user/create")
+    @PostMapping(value = "/user/user-create")
     public ModelAndView userCreatePost(Model model,
                                          @ModelAttribute("user") ContactModel user) {
 
@@ -116,11 +116,11 @@ public class UserController {
             user = userService.findById(userId);
 
         } catch (ResourceNotFoundException exception) {
-            model.addAttribute("errorMessage", "ContactModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("user", user);
+        model.addAttribute("object", user);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("managerRole/user-update");
@@ -171,7 +171,7 @@ public class UserController {
         }
 
         model.addAttribute("allowDelete", true);
-        model.addAttribute("user", user);
+        model.addAttribute("object", user);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("managerRole/user-delete");

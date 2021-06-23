@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 @Controller
 public class VendorController {
 
-    private static final Logger log = Logger.getLogger(PurchaseController.class.getName());
+    private static final Logger log = Logger.getLogger(VendorController.class.getName());
 
     @Autowired
     private VendorService vendorService;
@@ -25,13 +25,13 @@ public class VendorController {
                                         @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         int ROW_PER_PAGE = 5;
-        List<VendorModel> vendors = vendorService.findAll(pageNumber, ROW_PER_PAGE);
+        List<VendorModel> vendorModelList = vendorService.findAll(pageNumber, ROW_PER_PAGE);
 
         long count = vendorService.count();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("objects", vendors);
+        model.addAttribute("objects", vendorModelList);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -47,17 +47,17 @@ public class VendorController {
     public ModelAndView vendorListById(Model model,
                                          @PathVariable long vendorId) {
 
-        VendorModel vendor = null;
+        VendorModel vendorModel = null;
 
         try {
-            vendor = vendorService.findById(vendorId);
+            vendorModel = vendorService.findById(vendorId);
 
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "VendorModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
-        model.addAttribute("object", vendor);
+        model.addAttribute("object", vendorModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaserRole/vendor-list");
@@ -68,10 +68,10 @@ public class VendorController {
     @GetMapping(value = {"/purchaser/vendor-create"})
     public ModelAndView vendorCreateGet(Model model) {
 
-        VendorModel vendor = new VendorModel();
+        VendorModel vendorModel = new VendorModel();
 
         model.addAttribute("add", true);
-        model.addAttribute("object", vendor);
+        model.addAttribute("object", vendorModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaserRole/vendor-create");
@@ -80,11 +80,11 @@ public class VendorController {
 
     @PostMapping(value = "/purchaser/vendor-create")
     public ModelAndView vendorCreatePost(Model model,
-                                           @ModelAttribute("vendor") VendorModel vendor) {
+                                           @ModelAttribute("vendor") VendorModel vendorModel) {
 
         try {
 
-            VendorModel newVendorModel = vendorService.save(vendor);
+            VendorModel newVendorModel = vendorService.save(vendorModel);
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/purchaserRole/vendor-list");
@@ -109,17 +109,17 @@ public class VendorController {
     public ModelAndView vendorUpdateGet(Model model,
                                           @PathVariable long vendorId) {
 
-        VendorModel vendor = null;
+        VendorModel vendorModel = null;
 
         try {
-            vendor = vendorService.findById(vendorId);
+            vendorModel = vendorService.findById(vendorId);
 
         } catch (ResourceNotFoundException exception) {
-            model.addAttribute("errorMessage", "VendorModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("object", vendor);
+        model.addAttribute("object", vendorModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaserRole/vendor-update");
@@ -129,12 +129,12 @@ public class VendorController {
     @PostMapping(value = {"/purchaser/vendor-update/{vendorId}"})
     public ModelAndView vendorUpdatePost(Model model,
                                            @PathVariable long vendorId,
-                                           @ModelAttribute("vendor") VendorModel vendor) {
+                                           @ModelAttribute("vendor") VendorModel vendorModel) {
 
         try {
 
-            vendor.setId(vendorId);
-            vendorService.update(vendor);
+            vendorModel.setId(vendorId);
+            vendorService.update(vendorModel);
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/purchaserRole/vendor-list") ;
@@ -159,10 +159,10 @@ public class VendorController {
     public ModelAndView vendorDeleteGet(Model model,
                                           @PathVariable long vendorId) {
 
-        VendorModel vendor = null;
+        VendorModel vendorModel = null;
 
         try {
-            vendor = vendorService.findById(vendorId);
+            vendorModel = vendorService.findById(vendorId);
 
         } catch (ResourceNotFoundException ex) {
             model.addAttribute("errorMessage", "Registro não encontrado");
@@ -170,7 +170,7 @@ public class VendorController {
         }
 
         model.addAttribute("allowDelete", true);
-        model.addAttribute("object", vendor);
+        model.addAttribute("object", vendorModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaserRole/vendor-delete");

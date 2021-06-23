@@ -38,7 +38,7 @@
                         <tr th:each="object : ${objects}">
                             <td th:utext="${object.id}"></td>
                             <td th:utext="${object.contactID}"></td>
-                             <td><a th:href="@{/purchaser/vendor-update/{objectId}(objectId=${object.id})}">Alterar</a></td>
+                            <td><a th:href="@{/purchaser/vendor-update/{objectId}(objectId=${object.id})}">Alterar</a></td>
                             <td><a th:href="@{/purchaser/vendor-delete/{objectId}(objectId=${object.id})}">Excluir</a></td>
                         </tr>
                     </tbody>

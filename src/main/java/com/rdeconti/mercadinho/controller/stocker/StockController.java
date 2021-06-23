@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Controller
 public class StockController {
 
-    private static final Logger log = Logger.getLogger(PurchaseController.class.getName());
+    private static final Logger log = Logger.getLogger(StockController.class.getName());
 
     @Autowired
     private StockService stockService;
@@ -41,7 +41,7 @@ public class StockController {
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("stocks", stocks);
+        model.addAttribute("objects", stocks);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -67,7 +67,7 @@ public class StockController {
 
         }
 
-        model.addAttribute("stock", stock);
+        model.addAttribute("object", stock);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/stock-list");
@@ -75,20 +75,20 @@ public class StockController {
 
     }
 
-    @GetMapping(value = {"/stock/stock/create"})
+    @GetMapping(value = {"/stock/stock-create"})
     public ModelAndView stockCreateGet(Model model) {
 
         StockModel stock = new StockModel();
 
         model.addAttribute("add", true);
-        model.addAttribute("stock", stock);
+        model.addAttribute("object", stock);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/stock-create");
         return modelAndView;
     }
 
-    @PostMapping(value = "/stock/stock/create")
+    @PostMapping(value = "/stock/stock-create")
     public ModelAndView stockCreatePost(Model model,
                                          @ModelAttribute("stock") StockModel stock) {
 
@@ -129,7 +129,7 @@ public class StockController {
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("stock", stock);
+        model.addAttribute("object", stock);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/stock-update");
@@ -180,7 +180,7 @@ public class StockController {
         }
 
         model.addAttribute("allowDelete", true);
-        model.addAttribute("stock", stock);
+        model.addAttribute("object", stock);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/stock-delete");

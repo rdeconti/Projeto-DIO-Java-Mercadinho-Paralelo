@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Controller
 public class CustomerController {
 
-    private static final Logger log = Logger.getLogger(PurchaseController.class.getName());
+    private static final Logger log = Logger.getLogger(CustomerController.class.getName());
 
     @Autowired
     private CustomerService customerService;
@@ -26,13 +26,13 @@ public class CustomerController {
                                       @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         int ROW_PER_PAGE = 5;
-        List<CustomerModel> customers = customerService.findAll(pageNumber, ROW_PER_PAGE);
+        List<CustomerModel> customerModelList = customerService.findAll(pageNumber, ROW_PER_PAGE);
 
         long count = customerService.count();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("customers", customers);
+        model.addAttribute("objects", customerModelList);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -48,17 +48,17 @@ public class CustomerController {
     public ModelAndView customerListById(Model model,
                                        @PathVariable long customerId) {
 
-        CustomerModel customer = null;
+        CustomerModel customerModel = null;
 
         try {
-            customer = customerService.findById(customerId);
+            customerModel = customerService.findById(customerId);
 
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "CustomerModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
-        model.addAttribute("customer", customer);
+        model.addAttribute("object", customerModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sellerRole/customer-list");
@@ -66,20 +66,20 @@ public class CustomerController {
 
     }
 
-    @GetMapping(value = {"/customer/customer/create"})
+    @GetMapping(value = {"/customer/customer-create"})
     public ModelAndView customerCreateGet(Model model) {
 
-        CustomerModel customer = new CustomerModel();
+        CustomerModel customerModel = new CustomerModel();
 
         model.addAttribute("add", true);
-        model.addAttribute("customer", customer);
+        model.addAttribute("object", customerModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sellerRole/customer-create");
         return modelAndView;
     }
 
-    @PostMapping(value = "/customer/customer/create")
+    @PostMapping(value = "/customer/customer-create")
     public ModelAndView customerCreatePost(Model model,
                                          @ModelAttribute("customer") CustomerModel customer) {
 
@@ -110,17 +110,17 @@ public class CustomerController {
     public ModelAndView customerUpdateGet(Model model,
                                         @PathVariable long customerId) {
 
-        CustomerModel customer = null;
+        CustomerModel customerModel = null;
 
         try {
-            customer = customerService.findById(customerId);
+            customerModel = customerService.findById(customerId);
 
         } catch (ResourceNotFoundException exception) {
             model.addAttribute("errorMessage", "Registro não encontrado");
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("customer", customer);
+        model.addAttribute("object", customerModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sellerRole/customer-update");
@@ -165,13 +165,13 @@ public class CustomerController {
         try {
             customer = customerService.findById(customerId);
 
-        } catch (ResourceNotFoundException ex) {
+        } catch (ResourceNotFoundException exception) {
             model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
         model.addAttribute("allowDelete", true);
-        model.addAttribute("customer", customer);
+        model.addAttribute("object", customer);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sellerRole/customer-delete");

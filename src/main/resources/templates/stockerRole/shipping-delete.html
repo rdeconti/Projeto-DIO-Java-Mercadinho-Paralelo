@@ -21,7 +21,7 @@
         <h1>Excluir Saída</h1>
         <br/>
 
-        <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Listar Saídas</a>
+        <a class="btn btn-primary" th:href="@{/stocker/shipping-list}">Listar Saídas</a>
         <br/>
 
         <div th:if="${object}">
@@ -89,12 +89,12 @@
           <br/>
 
           <div th:if="not ${allowDelete}">
-            <a class="btn btn-primary" th:href="@{/purchaser/purchase-update/{objectId}(objectId=${object.id})}">Alterar</a> |
-            <a class="btn btn-primary" th:href="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}">Excluir</a>
+            <a class="btn btn-primary" th:href="@{/stocker/shipping-update/{objectId}(objectId=${object.id})}">Alterar</a> |
+            <a class="btn btn-primary" th:href="@{/stocker/shipping-delete/{objectId}(objectId=${object.id})}">Excluir</a>
           </div>
 
           <br/>
-          <form th:if="${allowDelete}" th:action="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}" method="POST">
+          <form th:if="${allowDelete}" th:action="@{/stocker/shipping-delete/{objectId}(objectId=${object.id})}" method="POST">
             Confirma exclusão? <input class="btn btn-primary" type="submit" th:value="Sim" />
           </form>
 

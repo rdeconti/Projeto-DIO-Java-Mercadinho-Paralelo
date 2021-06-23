@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 @Controller
 public class ContactController {
 
-    private static final Logger log = Logger.getLogger(PurchaseController.class.getName());
+    private static final Logger log = Logger.getLogger(ContactController.class.getName());
 
     @Autowired
     private ContactService contactService;
@@ -42,7 +42,7 @@ public class ContactController {
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("contacts", contacts);
+        model.addAttribute("objects", contacts);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -64,11 +64,11 @@ public class ContactController {
             contact = contactService.findById(contactId);
 
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "ContactModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
-        model.addAttribute("contact", contact);
+        model.addAttribute("object", contact);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaserRole/contact-list");
@@ -76,20 +76,20 @@ public class ContactController {
 
     }
 
-    @GetMapping(value = {"/contact/contact/create"})
+    @GetMapping(value = {"/contact/contact-create"})
     public ModelAndView contactCreateGet(Model model) {
 
         ContactModel contact = new ContactModel();
 
         model.addAttribute("add", true);
-        model.addAttribute("contact", contact);
+        model.addAttribute("object", contact);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaserRole/contact-create");
         return modelAndView;
     }
 
-    @PostMapping(value = "/contact/contact/create")
+    @PostMapping(value = "/contact/contact-create")
     public ModelAndView contactCreatePost(Model model,
                                          @ModelAttribute("contact") ContactModel contact) {
 
@@ -126,11 +126,11 @@ public class ContactController {
             contact = contactService.findById(contactId);
 
         } catch (ResourceNotFoundException exception) {
-            model.addAttribute("errorMessage", "ContactModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("contact", contact);
+        model.addAttribute("object", contact);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaserRole/contact-update");
@@ -181,7 +181,7 @@ public class ContactController {
         }
 
         model.addAttribute("allowDelete", true);
-        model.addAttribute("contact", contact);
+        model.addAttribute("object", contact);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("purchaserRole/contact-delete");

@@ -21,7 +21,7 @@
         <h1>Excluir Fornecedor</h1>
         <br/>
 
-        <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Listar Fornecedores</a>
+        <a class="btn btn-primary" th:href="@{/purchaser/vendor-list}">Listar Fornecedores</a>
         <br/>
 
         <div th:if="${object}">
@@ -29,45 +29,31 @@
           <table>
 
             <tr>
-              <td class="table-title">Loja</td>
-              <td></td>
-              <td><input class="form-control" type="text" th:field="*{storeID}" size="50" /></td>
-            </tr>
-
-            <tr>
               <td class="table-title">Fornecedor</td>
               <td></td>
-              <td><input class="form-control" type="text" th:field="*{vendorID}" size="50" /></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.id}">...</td>
             </tr>
 
             <tr>
-              <<td class="table-title">Produto</td>
+              <td class="table-title">Contato</td>
               <td></td>
-              <td><input class="form-control" type="text" th:field="*{productID}" size="50" /></td>
-            </tr>
-
-            <tr>
-              <td class="table-title">Quantidade</td>
               <td></td>
-              <td><input class="form-control" type="text" th:field="*{amount}" size="50" /></td>
-            </tr>
-
-            <tr>
-              <td class="table-title">Preço</td>
-              <td></td>
-              <td><input class="form-control" type="text" th:field="*{price}" size="50" /></td>
+              <td class="form-control" th:utext="${object.contactID.name}">...</td>
             </tr>
 
             <tr>
               <td class="table-title">Data de criação</td>
               <td></td>
-              <td><input class="form-control" type="text" th:field="*{created}" size="50" /></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.created}">...</td>
             </tr>
 
             <tr>
               <td class="table-title">Data de alteração</td>
               <td></td>
-              <td><input class="form-control" type="number" th:field="*{changed}" size="50" /></td>
+              <td></td>
+              <td class="form-control" th:utext="${object.changed}">...</td>
             </tr>
 
           </table>
@@ -75,8 +61,8 @@
           <br/>
 
           <div th:if="not ${allowDelete}">
-            <a class="btn btn-primary" th:href="@{/purchaser/purchase-update/{objectId}(objectId=${object.id})}">Alterar</a> |
-            <a class="btn btn-primary" th:href="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}">Excluir</a>
+            <a class="btn btn-primary" th:href="@{/purchaser/vendor-update/{objectId}(objectId=${object.id})}">Alterar</a> |
+            <a class="btn btn-primary" th:href="@{/purchaser/vendor-delete/{objectId}(objectId=${object.id})}">Excluir</a>
           </div>
 
           <br/>

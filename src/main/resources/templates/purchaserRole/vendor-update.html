@@ -22,41 +22,23 @@
           <h1>Alterar Fornecedor</h1>
           <br/>
 
-          <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Lista de Fornecedores</a>
+          <a class="btn btn-primary" th:href="@{/purchaser/vendor-list}">Lista de Fornecedores</a>
           <br/>
 
-          <form th:action="@{/purchaser/purchase-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
+          <form th:action="@{/purchaser/vendor-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
 
             <table>
 
               <tr>
-                <td class="table-title">Loja</td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{storeID}" size="50" /></td>
-              </tr>
-
-              <tr>
                 <td class="table-title">Fornecedor</td>
                 <td></td>
-                <td><input class="form-control" type="text" th:field="*{vendorID}" size="50" /></td>
+                <td><input class="form-control" type="text" th:field="*{id}" size="50" /></td>
               </tr>
 
               <tr>
-                <<td class="table-title">Produto</td>
+                <td class="table-title">Nome</td>
                 <td></td>
-                <td><input class="form-control" type="text" th:field="*{productID}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td class="table-title">Quantidade</td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{amount}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td class="table-title">Preço</td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{price}" size="50" /></td>
+                <td><input class="form-control" type="text" th:field="*{contactID}" size="50" /></td>
               </tr>
 
               <tr>

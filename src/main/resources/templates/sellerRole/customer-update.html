@@ -22,59 +22,35 @@
           <h1>Alterar Cliente</h1>
           <br/>
 
-          <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Lista de Clientes</a>
+          <a class="btn btn-primary" th:href="@{/customer/customer-list}">Lista de Clientes</a>
           <br/>
 
-          <form th:action="@{/purchaser/purchase-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
+          <form th:action="@{/customer/customer-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
 
             <table>
 
               <tr>
+                <td class="table-title">Cliente</td>
+                <td></td>
+                <td><input class="form-control" type="text" th:field="*{id}" size="50" /></td>
+              </tr>
+
+              <tr>
                 <td class="table-title">Nome</td>
                 <td></td>
-                <td><input class="form-control" type="text" th:field="*{name}" size="50" /></td>
+                <td><input class="form-control" type="text" th:field="*{contactID}" size="50" /></td>
               </tr>
 
               <tr>
-                <td class="table-title">Telefone</td>
+                <td class="table-title">Data de criação</td>
                 <td></td>
-                <td><input class="form-control" type="text" th:field="*{phone}" size="50" /></td>
+                <td><input class="form-control" type="text" th:field="*{created}" size="50" /></td>
               </tr>
 
               <tr>
-                <<td class="table-title">Email</td>
+                <td class="table-title">Data de alteração</td>
                 <td></td>
-                <td><input class="form-control" type="text" th:field="*{email}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td class="table-title">Endereço</td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{address1}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td></td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{address2}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td></td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{address3}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td class="table-title">Código postal</td>
-                <td></td>
-                <td><input class="form-control" type="number" th:field="*{postalCode}" /></td>
-              </tr>
-
-              <tr>
-                <td class="table-title">Observações</td>
-                <td></td>
-                <td><textarea class="form-control" th:field="*{note}" rows="4" cols="50"></textarea></td>
+                <td><input class="form-control" type="number" th:field="*{changed}" size="50" /></td>
               </tr>
 
             </table>

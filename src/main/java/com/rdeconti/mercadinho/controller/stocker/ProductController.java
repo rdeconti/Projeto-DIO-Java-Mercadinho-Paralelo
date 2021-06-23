@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Controller
 public class ProductController {
 
-    private static final Logger log = Logger.getLogger(PurchaseController.class.getName());
+    private static final Logger log = Logger.getLogger(ProductController.class.getName());
 
     @Autowired
     private ProductService productService;
@@ -26,13 +26,13 @@ public class ProductController {
                                       @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         int ROW_PER_PAGE = 5;
-        List<ProductModel> products = productService.findAll(pageNumber, ROW_PER_PAGE);
+        List<ProductModel> productModelList = productService.findAll(pageNumber, ROW_PER_PAGE);
 
         long count = productService.count();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("static/products", products);
+        model.addAttribute("objects", productModelList);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -48,17 +48,17 @@ public class ProductController {
     public ModelAndView productListById(Model model,
                                        @PathVariable long productId) {
 
-        ProductModel product = null;
+        ProductModel productModel = null;
 
         try {
-            product = productService.findById(productId);
+            productModel = productService.findById(productId);
 
         } catch (ResourceNotFoundException ex) {
             model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
-        model.addAttribute("product", product);
+        model.addAttribute("object", productModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/product-list");
@@ -66,26 +66,26 @@ public class ProductController {
 
     }
 
-    @GetMapping(value = {"/product/product/create"})
+    @GetMapping(value = {"/product/product-create"})
     public ModelAndView productCreateGet(Model model) {
 
-        ProductModel product = new ProductModel();
+        ProductModel productModel = new ProductModel();
 
         model.addAttribute("add", true);
-        model.addAttribute("product", product);
+        model.addAttribute("object", productModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/product-create");
         return modelAndView;
     }
 
-    @PostMapping(value = "/product/product/create")
+    @PostMapping(value = "/product/product-create")
     public ModelAndView productCreatePost(Model model,
-                                         @ModelAttribute("product") ProductModel product) {
+                                         @ModelAttribute("product") ProductModel productModel) {
 
         try {
 
-            ProductModel newProductModel = productService.save(product);
+            ProductModel newProductModel = productService.save(productModel);
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/stockerRole/product-list");
@@ -110,17 +110,17 @@ public class ProductController {
     public ModelAndView productUpdateGet(Model model,
                                         @PathVariable long productId) {
 
-        ProductModel product = null;
+        ProductModel productModel = null;
 
         try {
-            product = productService.findById(productId);
+            productModel = productService.findById(productId);
 
         } catch (ResourceNotFoundException exception) {
             model.addAttribute("errorMessage", "Registro não encontrado");
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("product", product);
+        model.addAttribute("object", productModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/product-update");
@@ -130,20 +130,20 @@ public class ProductController {
     @PostMapping(value = {"/product/product-update/{productId}"})
     public ModelAndView productUpdatePost(Model model,
                                          @PathVariable long productId,
-                                         @ModelAttribute("product") ProductModel product) {
+                                         @ModelAttribute("product") ProductModel productModel) {
 
         try {
 
-            product.setId(productId);
-            productService.update(product);
+            productModel.setId(productId);
+            productService.update(productModel);
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/stockerRole/product-list") ;
             return modelAndView;
 
-        } catch (Exception ex) {
+        } catch (Exception exception) {
 
-            String errorMessage = ex.getMessage();
+            String errorMessage = exception.getMessage();
             log.info(errorMessage);
 
             model.addAttribute("errorMessage", errorMessage);
@@ -160,18 +160,18 @@ public class ProductController {
     public ModelAndView productDeleteGet(Model model,
                                         @PathVariable long productId) {
 
-        ProductModel product = null;
+        ProductModel productModel = null;
 
         try {
-            product = productService.findById(productId);
+            productModel = productService.findById(productId);
 
-        } catch (ResourceNotFoundException ex) {
+        } catch (ResourceNotFoundException exception) {
             model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
         model.addAttribute("allowDelete", true);
-        model.addAttribute("product", product);
+        model.addAttribute("object", productModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/product-delete");

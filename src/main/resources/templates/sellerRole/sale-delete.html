@@ -21,7 +21,7 @@
         <h1>Excluir Venda</h1>
         <br/>
 
-        <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Listar Vendas</a>
+        <a class="btn btn-primary" th:href="@{/seller/sale-list}">Listar Vendas</a>
         <br/>
 
         <div th:if="${object}">
@@ -29,59 +29,52 @@
           <table>
 
             <tr>
-              <td class="table-title">Nome</td>
+              <td class="table-title">Loja</td>
               <td></td>
               <td></td>
-              <td class="form-control" th:utext="${object.name}">...</td>
+              <td class="form-control" th:utext="${object.storeID}">...</td>
             </tr>
 
             <tr>
-              <td class="table-title">Telefone</td>
+              <td class="table-title">Cliente</td>
               <td></td>
               <td></td>
-              <td class="form-control" th:utext="${object.phone}">...</td>
+              <td class="form-control" th:utext="${object.customerID}">...</td>
             </tr>
 
             <tr>
-              <td class="table-title">Email</td>
+              <td class="table-title">Produto</td>
               <td></td>
               <td></td>
-              <td class="form-control" th:utext="${object.email}">...</td>
+              <td class="form-control" th:utext="${object.productID}">...</td>
             </tr>
 
             <tr>
-              <td class="table-title">Endereço</td>
+              <td class="table-title">Quantidade</td>
               <td></td>
               <td></td>
-              <td class="form-control" th:utext="${object.address1}">...</td>
+              <td class="form-control" th:utext="${object.amount}">...</td>
             </tr>
 
             <tr>
+              <td class="table-title">Preço</td>
               <td></td>
               <td></td>
-              <td></td>
-              <td class="form-control" th:utext="${object.address2}">...</td>
+              <td class="form-control" th:utext="${object.price}">...</td>
             </tr>
 
             <tr>
+              <td class="table-title">Data de criação</td>
               <td></td>
               <td></td>
-              <td></td>
-              <td class="form-control" th:utext="${object.address3}">...</td>
+              <td class="form-control" th:utext="${object.created}">...</td>
             </tr>
 
             <tr>
-              <td class="table-title">Código postal</td>
+              <td class="table-title">Data de alteração</td>
               <td></td>
               <td></td>
-              <td class="form-control" th:utext="${object.postalCode}">...</td>
-            </tr>
-
-            <tr>
-              <td class="table-title">Observações</td>
-              <td></td>
-              <td></td>
-              <td class="form-control" th:utext="${object.note}">...</td>
+              <td class="form-control" th:utext="${object.changed}">...</td>
             </tr>
 
           </table>
@@ -89,12 +82,12 @@
           <br/>
 
           <div th:if="not ${allowDelete}">
-            <a class="btn btn-primary" th:href="@{/purchaser/purchase-update/{objectId}(objectId=${object.id})}">Alterar</a> |
-            <a class="btn btn-primary" th:href="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}">Excluir</a>
+            <a class="btn btn-primary" th:href="@{/seller/sale-update/{objectId}(objectId=${object.id})}">Alterar</a> |
+            <a class="btn btn-primary" th:href="@{/seller/sale-delete/{objectId}(objectId=${object.id})}">Excluir</a>
           </div>
 
           <br/>
-          <form th:if="${allowDelete}" th:action="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}" method="POST">
+          <form th:if="${allowDelete}" th:action="@{/seller/sale-delete/{objectId}(objectId=${object.id})}" method="POST">
             Confirma exclusão? <input class="btn btn-primary" type="submit" th:value="Sim" />
           </form>
 

@@ -22,7 +22,7 @@
                 <h1>Lista de Produtos</h1>
                 <br/>
 
-                <a class="btn btn-primary" th:href="@{/purchaser/purchase/create}">Incluir Produto</a>
+                <a class="btn btn-primary" th:href="@{/stocker/product-create}">Incluir Produto</a>
                 <br/>
 
                 <table class="table table-hover">
@@ -42,15 +42,15 @@
                             <td th:utext="${object.name}"></td>
                             <td th:utext="${object.phone}"></td>
                             <td th:utext="${object.email}"></td>
-                            <td><a th:href="@{/purchaser/purchase-update/{objectId}(objectId=${object.id})}">Alterar</a></td>
-                            <td><a th:href="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}">Excluir</a></td>
+                            <td><a th:href="@{/stocker/product-update/{objectId}(objectId=${object.id})}">Alterar</a></td>
+                            <td><a th:href="@{/stocker/product-delete/{objectId}(objectId=${object.id})}">Excluir</a></td>
                         </tr>
                     </tbody>
                 </table>
 
                 <br/>
-                <span th:if="${hasPrev}"><a class="btn btn-primary"th:href="@{/purchaser/purchase-list?page={prev}(prev=${prev})}">Anterior</a></span>
-                <span th:if="${hasNext}"><a class="btn btn-primary"th:href="@{/purchaser/purchase-list?page={next}(next=${next})}">Próximo</a></span>
+                <span th:if="${hasPrev}"><a class="btn btn-primary"th:href="@{/stocker/product-list?page={prev}(prev=${prev})}">Anterior</a></span>
+                <span th:if="${hasNext}"><a class="btn btn-primary"th:href="@{/stocker/product-list?page={next}(next=${next})}">Próximo</a></span>
 
             </div>
 

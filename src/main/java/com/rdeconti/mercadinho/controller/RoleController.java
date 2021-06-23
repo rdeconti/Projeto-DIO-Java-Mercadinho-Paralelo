@@ -75,7 +75,7 @@ public class RoleController {
 
         modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + " / " + userModel.getUserName() + " " + userModel.getUserName() + " ( " + userModel.getEmail() + " )");
         modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
-        modelAndView.setViewName("purchaserRole/purchase-index");
+        modelAndView.setViewName("purchaserRole/purchaser-index");
 
         return modelAndView;
     }

@@ -1,11 +1,10 @@
-package com.rdeconti.mercadinho.services.purchaser;
+package com.rdeconti.mercadinho.services.receivinger;
 
 import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.purchaser.VendorModel;
-import com.rdeconti.mercadinho.repositories.purchaser.VendorRepository;
-
+import com.rdeconti.mercadinho.models.receivinger.ReceivingModel;
+import com.rdeconti.mercadinho.repositories.receivinger.ReceivingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,49 +16,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class VendorService {
+public class ReceivingService {
 
     @Autowired
-    private VendorRepository vendorRepository;
+    private ReceivingRepository receivingRepository;
 
     private boolean existsById(Long id) {
-        return vendorRepository.existsById(id);
+        return receivingRepository.existsById(id);
     }
 
-    public VendorModel findById(Long id) throws ResourceNotFoundException {
+    public ReceivingModel findById(Long id) throws ResourceNotFoundException {
 
-        VendorModel vendorModel = vendorRepository.findById(id).orElse(null);
+        ReceivingModel receiving = receivingRepository.findById(id).orElse(null);
 
-        if (vendorModel==null) {
+        if (receiving==null) {
             throw new ResourceNotFoundException("Registro não encontrado com este ID " + id);
         }
 
-        else return vendorModel;
+        else return receiving;
     }
 
-    public List<VendorModel> findAll(int pageNumber, int rowPerPage) {
+    public List<ReceivingModel> findAll(int pageNumber, int rowPerPage) {
 
-        List<VendorModel> vendorModelList = new ArrayList<>();
+        List<ReceivingModel> receivings = new ArrayList<>();
 
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
 
-        vendorRepository.findAll(sortedByIdAsc).forEach(vendorModelList::add);
+        receivingRepository.findAll(sortedByIdAsc).forEach(receivings::add);
 
-        return vendorModelList;
+        return receivings;
     }
 
-    public VendorModel save(VendorModel vendor) throws BadResourceException, ResourceAlreadyExistsException {
+    public ReceivingModel save(ReceivingModel receiving) throws BadResourceException, ResourceAlreadyExistsException {
 
-        if (!ObjectUtils.isEmpty(vendor.getCreated())) {
+        if (!ObjectUtils.isEmpty(receiving.getId())) {
 
-            if (vendor.getId() != null && existsById(vendor.getId())) {
+            if (receiving.getId() != null && existsById(receiving.getId())) {
 
-                throw new ResourceAlreadyExistsException("Registro com este ID: " + vendor.getId() +
+                throw new ResourceAlreadyExistsException("Registro com este ID: " + receiving.getId() +
                         " já existe");
             }
 
-            return vendorRepository.save(vendor);
+            return receivingRepository.save(receiving);
         }
 
         else {
@@ -70,16 +69,16 @@ public class VendorService {
         }
     }
 
-    public void update(VendorModel vendor)
+    public void update(ReceivingModel receiving)
             throws BadResourceException, ResourceNotFoundException {
 
-        if (!ObjectUtils.isEmpty(vendor.getCreated())) {
+        if (!ObjectUtils.isEmpty(receiving.getId())) {
 
-            if (!existsById(vendor.getId())) {
-                throw new ResourceNotFoundException("Registro não encontrado com este ID " + vendor.getId());
+            if (!existsById(receiving.getId())) {
+                throw new ResourceNotFoundException("Registro não encontrado com este ID " + receiving.getId());
             }
 
-            vendorRepository.save(vendor);
+            receivingRepository.save(receiving);
         }
 
         else {
@@ -97,11 +96,11 @@ public class VendorService {
         }
 
         else {
-            vendorRepository.deleteById(id);
+            receivingRepository.deleteById(id);
         }
     }
 
     public Long count() {
-        return vendorRepository.count();
+        return receivingRepository.count();
     }
 }

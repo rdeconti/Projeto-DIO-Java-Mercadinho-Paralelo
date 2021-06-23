@@ -22,16 +22,18 @@
                 <h1>Lista de Vendas</h1>
                 <br/>
 
-                <a class="btn btn-primary" th:href="@{/purchaser/purchase/create}">Incluir Venda</a>
+                <a class="btn btn-primary" th:href="@{/seller/sale-create}">Incluir Venda</a>
                 <br/>
 
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>Código</th>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th>Email</th>
+                            <th>Loja</th>
+                            <th>Cliente</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
                             <th>Alterar</th>
                             <th>Excluir</th>
                         </tr>
@@ -39,18 +41,20 @@
                     <tbody>
                         <tr th:each="object : ${objects}">
                             <td th:utext="${object.id}"></td>
-                            <td th:utext="${object.name}"></td>
-                            <td th:utext="${object.phone}"></td>
-                            <td th:utext="${object.email}"></td>
-                            <td><a th:href="@{/purchaser/purchase-update/{objectId}(objectId=${object.id})}">Alterar</a></td>
-                            <td><a th:href="@{/purchaser/purchase-delete/{objectId}(objectId=${object.id})}">Excluir</a></td>
+                            <td th:utext="${object.storeID}"></td>
+                            <td th:utext="${object.customerID}"></td>
+                            <td th:utext="${object.productID}"></td>
+                            <td th:utext="${object.amount}"></td>
+                            <td th:utext="${object.price}"></td>
+                            <td><a th:href="@{/seller/sale-update/{objectId}(objectId=${object.id})}">Alterar</a></td>
+                            <td><a th:href="@{/seller/sale-delete/{objectId}(objectId=${object.id})}">Excluir</a></td>
                         </tr>
                     </tbody>
                 </table>
 
                 <br/>
-                <span th:if="${hasPrev}"><a class="btn btn-primary"th:href="@{/purchaser/purchase-list?page={prev}(prev=${prev})}">Anterior</a></span>
-                <span th:if="${hasNext}"><a class="btn btn-primary"th:href="@{/purchaser/purchase-list?page={next}(next=${next})}">Próximo</a></span>
+                <span th:if="${hasPrev}"><a class="btn btn-primary"th:href="@{/seller/sale-list?page={prev}(prev=${prev})}">Anterior</a></span>
+                <span th:if="${hasNext}"><a class="btn btn-primary"th:href="@{/seller/sale-list?page={next}(next=${next})}">Próximo</a></span>
 
             </div>
 

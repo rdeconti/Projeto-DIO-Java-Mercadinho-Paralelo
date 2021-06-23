@@ -16,12 +16,12 @@ import java.util.logging.Logger;
 @Controller
 public class SaleController {
 
-    private static final Logger log = Logger.getLogger(PurchaseController.class.getName());
+    private static final Logger log = Logger.getLogger(SaleController.class.getName());
 
     @Autowired
     private SaleService saleService;
 
-    @GetMapping(value = {"/sale/index"})
+    @GetMapping(value = {"/seller/index"})
     public ModelAndView saleIndex(Model model) {
 
         ModelAndView modelAndView = new ModelAndView();
@@ -30,7 +30,7 @@ public class SaleController {
 
     }
 
-    @GetMapping(value = "/sale/sale-list")
+    @GetMapping(value = "/seller/sale-list")
     public ModelAndView saleListAll(Model model,
                                       @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
@@ -41,7 +41,7 @@ public class SaleController {
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("sales", saleModelList);
+        model.addAttribute("objects", saleModelList);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -53,7 +53,7 @@ public class SaleController {
 
     }
 
-    @GetMapping(value = "/sale/sale-list/{saleId}")
+    @GetMapping(value = "/seller/sale-list/{saleId}")
     public ModelAndView saleListById(Model model,
                                        @PathVariable long saleId) {
 
@@ -67,7 +67,7 @@ public class SaleController {
 
         }
 
-        model.addAttribute("sale", saleModel);
+        model.addAttribute("object", saleModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sellerRole/sale-list");
@@ -75,20 +75,20 @@ public class SaleController {
 
     }
 
-    @GetMapping(value = {"/sale/sale/create"})
+    @GetMapping(value = {"/seller/sale-create"})
     public ModelAndView saleCreateGet(Model model) {
 
         SaleModel saleModel = new SaleModel();
 
         model.addAttribute("add", true);
-        model.addAttribute("sale", saleModel);
+        model.addAttribute("object", saleModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sellerRole/sale-create");
         return modelAndView;
     }
 
-    @PostMapping(value = "/sale/sale/create")
+    @PostMapping(value = "/seller/sale-create")
     public ModelAndView saleCreatePost(Model model,
                                          @ModelAttribute("sale") SaleModel sale) {
 
@@ -97,7 +97,7 @@ public class SaleController {
             SaleModel newSaleModel = saleService.save(sale);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/sellerrRole/sale-list");
+            modelAndView.setViewName("redirect:/sellerRole/sale-list");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -115,7 +115,7 @@ public class SaleController {
         }
     }
 
-    @GetMapping(value = {"/sale/sale-update/{saleId}"})
+    @GetMapping(value = {"/seller/sale-update/{saleId}"})
     public ModelAndView saleUpdateGet(Model model,
                                         @PathVariable long saleId) {
 
@@ -129,22 +129,22 @@ public class SaleController {
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("sale", saleModel);
+        model.addAttribute("object", saleModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sellerRole/sale-update");
         return modelAndView;
     }
 
-    @PostMapping(value = {"/sale/sale-update/{saleId}"})
+    @PostMapping(value = {"/seller/sale-update/{saleId}"})
     public ModelAndView saleUpdatePost(Model model,
                                          @PathVariable long saleId,
-                                         @ModelAttribute("sale") SaleModel sale) {
+                                         @ModelAttribute("sale") SaleModel saleModel) {
 
         try {
 
-            sale.setId(saleId);
-            saleService.update(sale);
+            saleModel.setId(saleId);
+            saleService.update(saleModel);
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/sellerRole/sale-list") ;
@@ -165,7 +165,7 @@ public class SaleController {
         }
     }
 
-    @GetMapping(value = {"/sale/sale-delete/{saleId}"})
+    @GetMapping(value = {"/seller/sale-delete/{saleId}"})
     public ModelAndView saleDeleteGet(Model model,
                                         @PathVariable long saleId) {
 
@@ -174,20 +174,20 @@ public class SaleController {
         try {
             saleModel = saleService.findById(saleId);
 
-        } catch (ResourceNotFoundException ex) {
+        } catch (ResourceNotFoundException exception) {
             model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
         model.addAttribute("allowDelete", true);
-        model.addAttribute("sale", saleModel);
+        model.addAttribute("object", saleModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sellerRole/sale-delete");
         return modelAndView;
     }
 
-    @PostMapping(value = {"/sale/sale-delete/{saleId}"})
+    @PostMapping(value = {"/seller/sale-delete/{saleId}"})
     public ModelAndView saleDeletePost(Model model,
                                          @PathVariable long saleId) {
 

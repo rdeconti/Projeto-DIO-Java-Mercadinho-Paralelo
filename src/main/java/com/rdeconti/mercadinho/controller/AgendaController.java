@@ -37,7 +37,7 @@ public class AgendaController {
         long count = agendaService.count();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
-        model.addAttribute("agendas", agendas);
+        model.addAttribute("objects", agendas);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -51,9 +51,9 @@ public class AgendaController {
         try {
             agenda = agendaService.findById(agendaId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "AgendaModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
         }
-        model.addAttribute("agenda", agenda);
+        model.addAttribute("object", agenda);
         return "agenda";
     }
 
@@ -61,7 +61,7 @@ public class AgendaController {
     public String showAddAgendaModel(Model model) {
         AgendaModel agenda = new AgendaModel();
         model.addAttribute("add", true);
-        model.addAttribute("agenda", agenda);
+        model.addAttribute("object", agenda);
 
         return "agenda-edit";
     }
@@ -91,10 +91,10 @@ public class AgendaController {
         try {
             agenda = agendaService.findById(agendaId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "AgendaModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
         }
         model.addAttribute("add", false);
-        model.addAttribute("agenda", agenda);
+        model.addAttribute("object", agenda);
         return "agenda-edit";
     }
 
@@ -125,10 +125,10 @@ public class AgendaController {
         try {
             agenda = agendaService.findById(agendaId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "AgendaModel not found");
+            model.addAttribute("errorMessage", "Registro não encontrado");
         }
         model.addAttribute("allowDelete", true);
-        model.addAttribute("agenda", agenda);
+        model.addAttribute("object", agenda);
         return "agenda";
     }
 

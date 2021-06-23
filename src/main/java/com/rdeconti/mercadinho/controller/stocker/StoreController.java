@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Controller
 public class StoreController {
 
-    private static final Logger log = Logger.getLogger(PurchaseController.class.getName());
+    private static final Logger log = Logger.getLogger(StoreController.class.getName());
 
     @Autowired
     private StoreService storeService;
@@ -35,13 +35,13 @@ public class StoreController {
                                       @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         int ROW_PER_PAGE = 5;
-        List<StoreModel> stores = storeService.findAll(pageNumber, ROW_PER_PAGE);
+        List<StoreModel> storeModelList = storeService.findAll(pageNumber, ROW_PER_PAGE);
 
         long count = storeService.count();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("stores", stores);
+        model.addAttribute("object", storeModelList);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
@@ -57,17 +57,17 @@ public class StoreController {
     public ModelAndView storeListById(Model model,
                                        @PathVariable long storeId) {
 
-        StoreModel store = null;
+        StoreModel storeModel = null;
 
         try {
-            store = storeService.findById(storeId);
+            storeModel = storeService.findById(storeId);
 
-        } catch (ResourceNotFoundException ex) {
+        } catch (ResourceNotFoundException exception) {
             model.addAttribute("errorMessage", "Registro não encontrado");
 
         }
 
-        model.addAttribute("store", store);
+        model.addAttribute("object", storeModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/store-list");
@@ -75,26 +75,26 @@ public class StoreController {
 
     }
 
-    @GetMapping(value = {"/store/store/create"})
+    @GetMapping(value = {"/store/store-create"})
     public ModelAndView storeCreateGet(Model model) {
 
-        StoreModel store = new StoreModel();
+        StoreModel storeModel = new StoreModel();
 
         model.addAttribute("add", true);
-        model.addAttribute("store", store);
+        model.addAttribute("object", storeModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/store-create");
         return modelAndView;
     }
 
-    @PostMapping(value = "/store/store/create")
+    @PostMapping(value = "/store/store-create")
     public ModelAndView storeCreatePost(Model model,
-                                         @ModelAttribute("store") StoreModel store) {
+                                         @ModelAttribute("store") StoreModel storeModel) {
 
         try {
 
-            StoreModel newStoreModel = storeService.save(store);
+            StoreModel newStoreModel = storeService.save(storeModel);
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/stockerRole/store-list");
@@ -119,17 +119,17 @@ public class StoreController {
     public ModelAndView storeUpdateGet(Model model,
                                         @PathVariable long storeId) {
 
-        StoreModel store = null;
+        StoreModel storeModel = null;
 
         try {
-            store = storeService.findById(storeId);
+            storeModel = storeService.findById(storeId);
 
         } catch (ResourceNotFoundException exception) {
             model.addAttribute("errorMessage", "Registro não encontrado");
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("store", store);
+        model.addAttribute("object", storeModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/store-update");
@@ -139,20 +139,20 @@ public class StoreController {
     @PostMapping(value = {"/store/store-update/{storeId}"})
     public ModelAndView storeUpdatePost(Model model,
                                          @PathVariable long storeId,
-                                         @ModelAttribute("store") StoreModel store) {
+                                         @ModelAttribute("store") StoreModel storeModel) {
 
         try {
 
-            store.setId(storeId);
-            storeService.update(store);
+            storeModel.setId(storeId);
+            storeService.update(storeModel);
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/stockerRole/store-list") ;
             return modelAndView;
 
-        } catch (Exception ex) {
+        } catch (Exception exception) {
 
-            String errorMessage = ex.getMessage();
+            String errorMessage = exception.getMessage();
             log.info(errorMessage);
 
             model.addAttribute("errorMessage", errorMessage);
@@ -169,10 +169,10 @@ public class StoreController {
     public ModelAndView storeDeleteGet(Model model,
                                         @PathVariable long storeId) {
 
-        StoreModel store = null;
+        StoreModel storeModel = null;
 
         try {
-            store = storeService.findById(storeId);
+            storeModel = storeService.findById(storeId);
 
         } catch (ResourceNotFoundException ex) {
             model.addAttribute("errorMessage", "Registro não encontrado");
@@ -180,7 +180,7 @@ public class StoreController {
         }
 
         model.addAttribute("allowDelete", true);
-        model.addAttribute("store", store);
+        model.addAttribute("object", storeModel);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stockerRole/store-delete");

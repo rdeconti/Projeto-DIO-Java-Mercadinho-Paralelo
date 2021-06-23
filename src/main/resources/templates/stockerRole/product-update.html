@@ -22,10 +22,10 @@
           <h1>Alterar Produto</h1>
           <br/>
 
-          <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Lista de Produtos</a>
+          <a class="btn btn-primary" th:href="@{/stocker/product-list}">Lista de Produtos</a>
           <br/>
 
-          <form th:action="@{/purchaser/purchase-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
+          <form th:action="@{/stocker/product-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
 
             <table>
 

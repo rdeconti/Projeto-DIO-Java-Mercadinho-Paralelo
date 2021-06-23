@@ -1,11 +1,10 @@
-package com.rdeconti.mercadinho.services.purchaser;
+package com.rdeconti.mercadinho.services.stocker;
 
 import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.purchaser.VendorModel;
-import com.rdeconti.mercadinho.repositories.purchaser.VendorRepository;
-
+import com.rdeconti.mercadinho.models.stocker.StockModel;
+import com.rdeconti.mercadinho.repositories.stocker.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,49 +16,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class VendorService {
+public class ShippingService {
 
     @Autowired
-    private VendorRepository vendorRepository;
+    private StockRepository stockRepository;
 
     private boolean existsById(Long id) {
-        return vendorRepository.existsById(id);
+        return stockRepository.existsById(id);
     }
 
-    public VendorModel findById(Long id) throws ResourceNotFoundException {
+    public StockModel findById(Long id) throws ResourceNotFoundException {
 
-        VendorModel vendorModel = vendorRepository.findById(id).orElse(null);
+        StockModel stock = stockRepository.findById(id).orElse(null);
 
-        if (vendorModel==null) {
+        if (stock==null) {
             throw new ResourceNotFoundException("Registro não encontrado com este ID " + id);
         }
 
-        else return vendorModel;
+        else return stock;
     }
 
-    public List<VendorModel> findAll(int pageNumber, int rowPerPage) {
+    public List<StockModel> findAll(int pageNumber, int rowPerPage) {
 
-        List<VendorModel> vendorModelList = new ArrayList<>();
+        List<StockModel> stocks = new ArrayList<>();
 
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
 
-        vendorRepository.findAll(sortedByIdAsc).forEach(vendorModelList::add);
+        stockRepository.findAll(sortedByIdAsc).forEach(stocks::add);
 
-        return vendorModelList;
+        return stocks;
     }
 
-    public VendorModel save(VendorModel vendor) throws BadResourceException, ResourceAlreadyExistsException {
+    public StockModel save(StockModel stock) throws BadResourceException, ResourceAlreadyExistsException {
 
-        if (!ObjectUtils.isEmpty(vendor.getCreated())) {
+        if (!ObjectUtils.isEmpty(stock.getId())) {
 
-            if (vendor.getId() != null && existsById(vendor.getId())) {
+            if (stock.getId() != null && existsById(stock.getId())) {
 
-                throw new ResourceAlreadyExistsException("Registro com este ID: " + vendor.getId() +
+                throw new ResourceAlreadyExistsException("Registro com este ID: " + stock.getId() +
                         " já existe");
             }
 
-            return vendorRepository.save(vendor);
+            return stockRepository.save(stock);
         }
 
         else {
@@ -70,16 +69,16 @@ public class VendorService {
         }
     }
 
-    public void update(VendorModel vendor)
+    public void update(StockModel stock)
             throws BadResourceException, ResourceNotFoundException {
 
-        if (!ObjectUtils.isEmpty(vendor.getCreated())) {
+        if (!ObjectUtils.isEmpty(stock.getId())) {
 
-            if (!existsById(vendor.getId())) {
-                throw new ResourceNotFoundException("Registro não encontrado com este ID " + vendor.getId());
+            if (!existsById(stock.getId())) {
+                throw new ResourceNotFoundException("Registro não encontrado com este ID " + stock.getId());
             }
 
-            vendorRepository.save(vendor);
+            stockRepository.save(stock);
         }
 
         else {
@@ -97,11 +96,11 @@ public class VendorService {
         }
 
         else {
-            vendorRepository.deleteById(id);
+            stockRepository.deleteById(id);
         }
     }
 
     public Long count() {
-        return vendorRepository.count();
+        return stockRepository.count();
     }
 }

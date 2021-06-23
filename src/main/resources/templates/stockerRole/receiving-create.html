@@ -19,10 +19,10 @@
 
         <h1>Incluir Recebimento</h1>
 
-        <a class="btn btn-primary" th:href="@{/purchaser/purchase-list}">Listar Recebimento</a>
+        <a class="btn btn-primary" th:href="@{/stocker/receiving-list}">Listar Recebimento</a>
         <br/>
 
-        <form th:action="@{/purchaser/purchase/create}" th:object="${object}" method="POST">
+        <form th:action="@{/stocker/receiving-create}" th:object="${object}" method="POST">
 
               <table>
 

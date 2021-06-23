@@ -42,11 +42,12 @@ public class SaleModel implements Serializable {
     private ProductModel productID;
 
     @PositiveOrZero
+    @Column(name = "sale_amount")
     @NotEmpty(message = "*Por favor informar a quantidade a ser vendida")
     private Double amount;
 
     @PositiveOrZero
-    @Column(name = "sales_price")
+    @Column(name = "sale_price")
     @NotEmpty(message = "*Por favor informar o preço de venda")
     private Double price;
 
