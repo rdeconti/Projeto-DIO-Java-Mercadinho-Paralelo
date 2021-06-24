@@ -3,8 +3,8 @@ package com.rdeconti.mercadinho.services.stocker;
 import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.stocker.StockModel;
-import com.rdeconti.mercadinho.repositories.stocker.StockRepository;
+import com.rdeconti.mercadinho.models.stocker.ShippingModel;
+import com.rdeconti.mercadinho.repositories.stocker.ShippingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,36 +19,36 @@ import java.util.List;
 public class ShippingService {
 
     @Autowired
-    private StockRepository stockRepository;
+    private ShippingRepository shippingRepository;
 
     private boolean existsById(Long id) {
-        return stockRepository.existsById(id);
+        return shippingRepository.existsById(id);
     }
 
-    public StockModel findById(Long id) throws ResourceNotFoundException {
+    public ShippingModel findById(Long id) throws ResourceNotFoundException {
 
-        StockModel stock = stockRepository.findById(id).orElse(null);
+        ShippingModel shippingModel = shippingRepository.findById(id).orElse(null);
 
-        if (stock==null) {
+        if (shippingModel==null) {
             throw new ResourceNotFoundException("Registro não encontrado com este ID " + id);
         }
 
-        else return stock;
+        else return shippingModel;
     }
 
-    public List<StockModel> findAll(int pageNumber, int rowPerPage) {
+    public List<ShippingModel> findAll(int pageNumber, int rowPerPage) {
 
-        List<StockModel> stocks = new ArrayList<>();
+        List<ShippingModel> stocks = new ArrayList<>();
 
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
 
-        stockRepository.findAll(sortedByIdAsc).forEach(stocks::add);
+        shippingRepository.findAll(sortedByIdAsc).forEach(stocks::add);
 
         return stocks;
     }
 
-    public StockModel save(StockModel stock) throws BadResourceException, ResourceAlreadyExistsException {
+    public ShippingModel save(ShippingModel stock) throws BadResourceException, ResourceAlreadyExistsException {
 
         if (!ObjectUtils.isEmpty(stock.getId())) {
 
@@ -58,7 +58,7 @@ public class ShippingService {
                         " já existe");
             }
 
-            return stockRepository.save(stock);
+            return shippingRepository.save(stock);
         }
 
         else {
@@ -69,7 +69,7 @@ public class ShippingService {
         }
     }
 
-    public void update(StockModel stock)
+    public void update(ShippingModel stock)
             throws BadResourceException, ResourceNotFoundException {
 
         if (!ObjectUtils.isEmpty(stock.getId())) {
@@ -78,7 +78,7 @@ public class ShippingService {
                 throw new ResourceNotFoundException("Registro não encontrado com este ID " + stock.getId());
             }
 
-            stockRepository.save(stock);
+            shippingRepository.save(stock);
         }
 
         else {
@@ -96,11 +96,11 @@ public class ShippingService {
         }
 
         else {
-            stockRepository.deleteById(id);
+            shippingRepository.deleteById(id);
         }
     }
 
     public Long count() {
-        return stockRepository.count();
+        return shippingRepository.count();
     }
 }

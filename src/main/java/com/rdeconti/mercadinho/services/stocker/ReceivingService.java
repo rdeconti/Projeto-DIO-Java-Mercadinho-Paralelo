@@ -1,10 +1,10 @@
-package com.rdeconti.mercadinho.services.receivinger;
+package com.rdeconti.mercadinho.services.stocker;
 
 import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.receivinger.ReceivingModel;
-import com.rdeconti.mercadinho.repositories.receivinger.ReceivingRepository;
+import com.rdeconti.mercadinho.models.stocker.ReceivingModel;
+import com.rdeconti.mercadinho.repositories.stocker.ReceivingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

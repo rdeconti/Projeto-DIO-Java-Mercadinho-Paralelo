@@ -29,7 +29,15 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value={"/", "/authorization/login"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/"}, method = RequestMethod.GET)
+    public ModelAndView landingPage(){
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/landingPage");
+        return modelAndView;
+    }
+
+    @RequestMapping(value={"/authorization/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
 
         ModelAndView modelAndView = new ModelAndView();

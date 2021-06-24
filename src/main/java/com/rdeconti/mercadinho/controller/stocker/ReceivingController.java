@@ -1,7 +1,7 @@
 package com.rdeconti.mercadinho.controller.stocker;
 
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.stocker.ProductModel;
+import com.rdeconti.mercadinho.models.stocker.ReceivingModel;
 import com.rdeconti.mercadinho.services.stocker.ReceivingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,14 +18,14 @@ public class ReceivingController {
     private static final Logger log = Logger.getLogger(ReceivingController.class.getName());
 
     @Autowired
-    private ProductService receivingService;
+    private ReceivingService receivingService;
 
     @GetMapping(value = "/receiving/receiving-list")
     public ModelAndView receivingListAll(Model model,
                                       @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         int ROW_PER_PAGE = 5;
-        List<ProductModel> receivings = receivingService.findAll(pageNumber, ROW_PER_PAGE);
+        List<ReceivingModel> receivings = receivingService.findAll(pageNumber, ROW_PER_PAGE);
 
         long count = receivingService.count();
         boolean hasPrev = pageNumber > 1;
@@ -47,7 +47,7 @@ public class ReceivingController {
     public ModelAndView receivingListById(Model model,
                                        @PathVariable long receivingId) {
 
-        ProductModel receiving = null;
+        ReceivingModel receiving = null;
 
         try {
             receiving = receivingService.findById(receivingId);
@@ -68,7 +68,7 @@ public class ReceivingController {
     @GetMapping(value = {"/receiving/receiving-create"})
     public ModelAndView receivingCreateGet(Model model) {
 
-        ProductModel receiving = new ProductModel();
+        ReceivingModel receiving = new ReceivingModel();
 
         model.addAttribute("add", true);
         model.addAttribute("object", receiving);
@@ -80,11 +80,11 @@ public class ReceivingController {
 
     @PostMapping(value = "/receiving/receiving-create")
     public ModelAndView receivingCreatePost(Model model,
-                                         @ModelAttribute("receiving") ProductModel receiving) {
+                                         @ModelAttribute("receiving") ReceivingModel receiving) {
 
         try {
 
-            ProductModel newProductModel = receivingService.save(receiving);
+            ReceivingModel newReceivingModel = receivingService.save(receiving);
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/stockerRole/receiving-list");
@@ -109,7 +109,7 @@ public class ReceivingController {
     public ModelAndView receivingUpdateGet(Model model,
                                         @PathVariable long receivingId) {
 
-        ProductModel receiving = null;
+        ReceivingModel receiving = null;
 
         try {
             receiving = receivingService.findById(receivingId);
@@ -129,7 +129,7 @@ public class ReceivingController {
     @PostMapping(value = {"/receiving/receiving-update/{receivingId}"})
     public ModelAndView receivingUpdatePost(Model model,
                                          @PathVariable long receivingId,
-                                         @ModelAttribute("receiving") ProductModel receiving) {
+                                         @ModelAttribute("receiving") ReceivingModel receiving) {
 
         try {
 
@@ -159,7 +159,7 @@ public class ReceivingController {
     public ModelAndView receivingDeleteGet(Model model,
                                         @PathVariable long receivingId) {
 
-        ProductModel receiving = null;
+        ReceivingModel receiving = null;
 
         try {
             receiving = receivingService.findById(receivingId);
