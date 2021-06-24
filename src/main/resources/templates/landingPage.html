@@ -45,8 +45,19 @@
               <li><a href="#portfolio">PORTFÓLIO</a></li>
               <li><a href="#pricing">PREÇOS</a></li>
               <li><a href="#contact">CONTATO</a></li>
-              <li><a href="#">COMPRAS</a></li>
-              <li><a href="#">ENTRAR</a></li>
+              <li>
+                <form th:action="@{/authorization/login}" method="get">
+                  <br/>
+                  <button class="btn btn-sm btn-danger btn-block" type="Submit">COMPRAR</button>
+                </form>
+              </li>
+              <Li></Li>
+              <li>
+                <form th:action="@{/authorization/login}" method="get">
+                  <br/>
+                  <button class="btn btn-sm btn-danger btn-block" type="Submit">ENTRAR</button>
+                </form>
+              </li>
             </ul>
           </div>
         </div>
