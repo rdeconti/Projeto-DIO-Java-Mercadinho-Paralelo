@@ -64,7 +64,7 @@ A aplicação controla alguns processos de um mercadinho e tem as seguintes func
   Usuários: USERS;
   Contatos: CONTACTS (são os endereços das lojas, clientes, fornecedores e usuários);
   Imagens: IMAGES (são as fotos dos produtos armazenadas no Github e acessadas por URL para realizar os testes);
-- Diagrama:
+- Diagrama: https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/sql/model.pdf
 
 
 
