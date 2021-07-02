@@ -706,3 +706,108 @@ SELECT * FROM USERS;
 SELECT * FROM CONTACTS;
 SELECT * FROM IMAGES;
 SELECT * FROM AGENDAS;
+
+--  -----------------------------------------------------------------------------------------------------------------------------
+--  ----------------------------------------------------------------------------------------------------------------------------
+--  ----------------------------------------------------------------------------------------------------------------------------
+--  ----------------------------------------------------------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS ORDER_DETAILS;
+DROP TABLE IF EXISTS ORDERS;
+DROP TABLE IF EXISTS ACCOUNTS;
+DROP TABLE IF EXISTS PRODUCTS1;
+
+-- ***********************************************************************************************
+-- Create table: PRODUCTS
+-- ***********************************************************************************************
+CREATE TABLE PRODUCTS1 (
+	product_code INT NOT NULL,
+	product_name VARCHAR (50) NOT NULL,
+	product_price double precision not null,
+	product_image BLOB,
+    product_date datetime,
+	PRIMARY KEY (product_code)
+);
+
+INSERT INTO PRODUCTS1(product_code, product_name, product_price) 
+VALUES
+ 	(1, 'Banana', 10),
+ 	(2, 'Batata', 10),
+ 	(3, 'Cenoura', 10),
+ 	(4, 'Damasco', 10),
+ 	(5, 'Framboesa', 10),
+	(6, 'Maçã', 10),
+ 	(7, 'Melância', 10),
+ 	(8, 'Mirtilo', 10),
+ 	(9, 'Morango', 10),
+ 	(10, 'Pepino', 10),
+    (11, 'Pera', 10),
+ 	(12, 'Uva', 10);
+
+-- ***********************************************************************************************
+-- Create table: SALES ORDERS
+-- ***********************************************************************************************
+create table ORDERS
+(
+  ID               VARCHAR(50) not null,
+  AMOUNT           double precision not null,
+  CUSTOMER_ADDRESS VARCHAR(255) not null,
+  CUSTOMER_EMAIL   VARCHAR(128) not null,
+  CUSTOMER_NAME    VARCHAR(255) not null,
+  CUSTOMER_PHONE   VARCHAR(128) not null,
+  ORDER_DATE       datetime not null,
+  ORDER_NUM        INT not null
+) ;
+alter table ORDERS
+  add primary key (ID) ;
+alter table ORDERS
+  add constraint ORDER_UK unique (ORDER_NUM) ;
+
+-- ***********************************************************************************************
+-- Create table: SALES ORDER DETAILS
+-- ***********************************************************************************************
+create table ORDER_DETAILS
+(
+  ID         VARCHAR(50) not null,
+  AMOUNT     double precision not null,
+  PRICE      double precision not null,
+  QUANITY    INT not null,
+  ORDER_ID   VARCHAR(50) not null,
+  PRODUCT_ID INT not null
+) ;
+--  
+alter table ORDER_DETAILS
+  add primary key (ID) ;
+alter table ORDER_DETAILS
+  add constraint ORDER_DETAIL_ORD_FK foreign key (ORDER_ID)
+  references ORDERS (ID);
+alter table ORDER_DETAILS
+  add constraint ORDER_DETAIL_PROD_FK foreign key (PRODUCT_ID)
+  references PRODUCTS1 (product_code);
+  
+-- ***********************************************************************************************
+-- Create table: ACCOUNTS
+-- ***********************************************************************************************
+create table ACCOUNTS
+(
+  USER_NAME VARCHAR(20) not null,
+  ACTIVE	BOOLEAN NOT NULL,
+  ENCRYTED_PASSWORD  VARCHAR(128) not null,
+  USER_ROLE VARCHAR(20) not null
+) ;
+ 
+alter table ACCOUNTS
+  add primary key (USER_NAME) ;
+  
+insert into Accounts (USER_NAME, ACTIVE, ENCRYTED_PASSWORD, USER_ROLE)
+values ('employee1', true,
+'$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'ROLE_EMPLOYEE');
+ 
+insert into Accounts (USER_NAME, ACTIVE, ENCRYTED_PASSWORD, USER_ROLE)
+values ('manager1', true,
+'$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'ROLE_MANAGER');
+
+SELECT * FROM ORDER_DETAILS;
+SELECT * FROM ORDERS;
+SELECT * FROM ACCOUNTS;
+SELECT * FROM PRODUCTS1;

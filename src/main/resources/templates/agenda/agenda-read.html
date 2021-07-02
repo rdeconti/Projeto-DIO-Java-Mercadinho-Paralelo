@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+      <!-- Include HEAD -->
+      <th:block th:include="/fragments/_head"> </th:block>
+
+      <body>
+
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
+
+        <!-- start MAIN -->
+
+        <main>
+
+          <div class="container" align="center">
+
+            <h1>Visualizar Contato</h1>
+
+            <a class="btn btn-primary" th:href="@{/contacts}">Listar Contatos</a>
+
+            <br/><br/>
+
+            <div th:if="${contact}">
+
+              <table class="table table-hover">
+
+                <tr>
+                  <td>Número</td>
+                  <td>:</td>
+                  <td th:utext="${contact.id}">...</td>
+                </tr>
+
+                <tr>
+                  <td>Nome</td>
+                  <td>:</td>
+                  <td th:utext="${contact.name}">...</td>
+                </tr>
+
+                <tr>
+                  <td>Telefone</td>
+                  <td>:</td>
+                  <td th:utext="${contact.phone}">...</td>
+                </tr>
+
+                <tr>
+                  <td>Email</td>
+                  <td>:</td>
+                  <td th:utext="${contact.email}">...</td>
+                </tr>
+
+                <tr>
+                  <td>Endereço</td>
+                  <td>:</td>
+                  <td th:utext="${contact.address1}">...</td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td th:utext="${contact.address2}">...</td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td th:utext="${contact.address3}">...</td>
+                </tr>
+
+                <tr>
+                  <td>Código postal</td>
+                  <td>:</td>
+                  <td th:utext="${contact.postalCode}">...</td>
+                </tr>
+
+                <tr>
+                  <td>Observações</td>
+                  <td>:</td>
+                  <td th:utext="${contact.note}">...</td>
+                </tr>
+
+              </table>
+
+              <br/><br/>
+
+              <div th:if="not ${allowDelete}">
+                <a class="btn btn-primary" th:href="@{/contacts/{contactId}/edit(contactId=${contact.id})}">Alterar</a> |
+                <a class="btn btn-primary" th:href="@{/contacts/{contactId}/delete(contactId=${contact.id})}">Excluir</a>
+              </div>
+
+              <form th:if="${allowDelete}" th:action="@{/contacts/{contactId}/delete(contactId=${contact.id})}" method="POST">
+                Excluir este contato? <input type="submit" th:value="Sim" />
+              </form>
+
+            </div>
+
+            <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+
+          </div>
+
+        </main>
+
+        <!-- Include FOOTER -->
+        <th:block th:include="/fragments/_footer"> </th:block>
+
+      </body>
+
+</html>
