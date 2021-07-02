@@ -1,6 +1,5 @@
 package com.rdeconti.mercadinho.controller.seller;
 
-import com.rdeconti.mercadinho.controller.purchaser.PurchaseController;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.seller.CustomerModel;
 import com.rdeconti.mercadinho.services.seller.CustomerService;
@@ -46,7 +45,7 @@ public class CustomerController {
 
     @GetMapping(value = "/customer/customer-list/{customerId}")
     public ModelAndView customerListById(Model model,
-                                       @PathVariable long customerId) {
+                                       @PathVariable Long customerId) {
 
         CustomerModel customerModel = null;
 
@@ -108,7 +107,7 @@ public class CustomerController {
 
     @GetMapping(value = {"/customer/customer-update/{customerId}"})
     public ModelAndView customerUpdateGet(Model model,
-                                        @PathVariable long customerId) {
+                                        @PathVariable Long customerId) {
 
         CustomerModel customerModel = null;
 
@@ -129,7 +128,7 @@ public class CustomerController {
 
     @PostMapping(value = {"/customer/customer-update/{customerId}"})
     public ModelAndView customerUpdatePost(Model model,
-                                         @PathVariable long customerId,
+                                         @PathVariable Long customerId,
                                          @ModelAttribute("customer") CustomerModel customer) {
 
         try {
@@ -158,7 +157,7 @@ public class CustomerController {
 
     @GetMapping(value = {"/customer/customer-delete/{customerId}"})
     public ModelAndView customerDeleteGet(Model model,
-                                        @PathVariable long customerId) {
+                                        @PathVariable Long customerId) {
 
         CustomerModel customer = null;
 
@@ -180,7 +179,7 @@ public class CustomerController {
 
     @PostMapping(value = {"/customer/customer-delete/{customerId}"})
     public ModelAndView customerDeletePost(Model model,
-                                         @PathVariable long customerId) {
+                                         @PathVariable Long customerId) {
 
         try {
 

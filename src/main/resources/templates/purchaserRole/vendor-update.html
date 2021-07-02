@@ -19,48 +19,95 @@
 
       <div class="container" align="center">
 
-          <h1>Alterar Fornecedor</h1>
-          <br/>
+        <h1>Alterar Fornecedor</h1>
+        <br/>
 
-          <a class="btn btn-primary" th:href="@{/purchaser/vendor-list}">Lista de Fornecedores</a>
-          <br/>
+        <a class="btn btn-primary" th:href="@{/purchaser/vendor-list}">Lista de Fornecedores</a>
+        <br/>
 
-          <form th:action="@{/purchaser/vendor-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
+        <!-- TODO CHECK THIS FEATURE
+        <select name="color">
+          <option th:each="colorOpt : ${T(com.rdeconti.mercadinho.models.enumColor).values()}"
+                  th:value="${colorOpt}" th:text="${colorOpt.displayValue}"></option>
+        </select>
+        -->
 
-            <table>
+        <!--
+        <form th:action="@{/purchaser/vendor-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
+        -->
+        <form th:action="@{/purchaser/vendor-update/{objectId}/edit(objectId=${object.id})}" th:object="${object}" method="POST">
 
-              <tr>
-                <td class="table-title">Fornecedor</td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{id}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td class="table-title">Nome</td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{contactID}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td class="table-title">Data de criação</td>
-                <td></td>
-                <td><input class="form-control" type="text" th:field="*{created}" size="50" /></td>
-              </tr>
-
-              <tr>
-                <td class="table-title">Data de alteração</td>
-                <td></td>
-                <td><input class="form-control" type="number" th:field="*{changed}" size="50" /></td>
-              </tr>
-
-            </table>
+          <!--
+          <form th:action=="@{/contact/contact-update/{objectId}/(objectId=${contactID.id})} th:object="${object}" method="GET">
 
             <br/>
-            <input class="btn btn-primary" type="submit" th:value="Alterar" />
+            <input class="btn btn-primary" type="submit" th:value="Alterar Contato" />
 
           </form>
+          -->
 
-          <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>
+          <table>
+
+            <!--
+            <td><a th:href="@{/contact/contact-update/{objectId}/(objectId=${object.contactID})}">Alterar Contato</a></td>
+            -->
+
+            <tr>
+              <td class="table-title">Fornecedor</td>
+              <td></td>
+              <td><input class="form-control" type="number" th:field="*{id}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Contato</td>
+              <td></td>
+              <td><input class="form-control" type="number" th:field="*{contactID.id}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Nome</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{contactID.name}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Situação</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{status}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Data de criação</td>
+              <td></td>
+              <td><input class="form-control" type="date" th:field="*{created_at}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Criado por</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{created_by}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Data de alteração</td>
+              <td></td>
+              <td><input class="form-control" type="date" th:field="*{changed_at}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Alterado por</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{changed_by}" size="50" /></td>
+            </tr>
+
+          </table>
+
+          <br/>
+          <input class="btn btn-primary" type="submit" th:value="Alterar" />
+
+        </form>
+
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>
 
       </div>
 

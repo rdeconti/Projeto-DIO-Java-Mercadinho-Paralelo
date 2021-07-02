@@ -45,7 +45,7 @@ public class ShippingController {
 
     @GetMapping(value = "/shipping/shipping-list/{shippingId}")
     public ModelAndView shippingListById(Model model,
-                                       @PathVariable long shippingId) {
+                                       @PathVariable Long shippingId) {
 
         ShippingModel shippingModel = null;
 
@@ -107,7 +107,7 @@ public class ShippingController {
 
     @GetMapping(value = {"/shipping/shipping-update/{shippingId}"})
     public ModelAndView shippingUpdateGet(Model model,
-                                        @PathVariable long shippingId) {
+                                        @PathVariable Long shippingId) {
 
         ShippingModel shippingModel = null;
 
@@ -128,7 +128,7 @@ public class ShippingController {
 
     @PostMapping(value = {"/shipping/shipping-update/{shippingId}"})
     public ModelAndView shippingUpdatePost(Model model,
-                                         @PathVariable long shippingId,
+                                         @PathVariable Long shippingId,
                                          @ModelAttribute("shipping") ShippingModel shippingModel) {
 
         try {
@@ -157,7 +157,7 @@ public class ShippingController {
 
     @GetMapping(value = {"/shipping/shipping-delete/{shippingId}"})
     public ModelAndView shippingDeleteGet(Model model,
-                                        @PathVariable long shippingId) {
+                                        @PathVariable Long shippingId) {
 
         ShippingModel shipping = null;
 
@@ -179,7 +179,7 @@ public class ShippingController {
 
     @PostMapping(value = {"/shipping/shipping-delete/{shippingId}"})
     public ModelAndView shippingDeletePost(Model model,
-                                         @PathVariable long shippingId) {
+                                         @PathVariable Long shippingId) {
 
         try {
 

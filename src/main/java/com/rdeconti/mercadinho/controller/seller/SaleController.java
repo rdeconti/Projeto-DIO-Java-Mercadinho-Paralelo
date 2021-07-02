@@ -1,6 +1,5 @@
 package com.rdeconti.mercadinho.controller.seller;
 
-import com.rdeconti.mercadinho.controller.purchaser.PurchaseController;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.seller.SaleModel;
 import com.rdeconti.mercadinho.services.seller.SaleService;
@@ -55,7 +54,7 @@ public class SaleController {
 
     @GetMapping(value = "/seller/sale-list/{saleId}")
     public ModelAndView saleListById(Model model,
-                                       @PathVariable long saleId) {
+                                       @PathVariable Long saleId) {
 
         SaleModel saleModel = null;
 
@@ -117,7 +116,7 @@ public class SaleController {
 
     @GetMapping(value = {"/seller/sale-update/{saleId}"})
     public ModelAndView saleUpdateGet(Model model,
-                                        @PathVariable long saleId) {
+                                        @PathVariable Long saleId) {
 
         SaleModel saleModel = null;
 
@@ -138,7 +137,7 @@ public class SaleController {
 
     @PostMapping(value = {"/seller/sale-update/{saleId}"})
     public ModelAndView saleUpdatePost(Model model,
-                                         @PathVariable long saleId,
+                                         @PathVariable Long saleId,
                                          @ModelAttribute("sale") SaleModel saleModel) {
 
         try {
@@ -167,7 +166,7 @@ public class SaleController {
 
     @GetMapping(value = {"/seller/sale-delete/{saleId}"})
     public ModelAndView saleDeleteGet(Model model,
-                                        @PathVariable long saleId) {
+                                        @PathVariable Long saleId) {
 
         SaleModel saleModel = null;
 
@@ -189,7 +188,7 @@ public class SaleController {
 
     @PostMapping(value = {"/seller/sale-delete/{saleId}"})
     public ModelAndView saleDeletePost(Model model,
-                                         @PathVariable long saleId) {
+                                         @PathVariable Long saleId) {
 
         try {
 

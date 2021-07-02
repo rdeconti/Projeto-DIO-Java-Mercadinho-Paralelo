@@ -50,7 +50,7 @@ public class CustomerService {
 
     public CustomerModel save(CustomerModel customer) throws BadResourceException, ResourceAlreadyExistsException {
 
-        if (!ObjectUtils.isEmpty(customer.getCreated())) {
+        if (!ObjectUtils.isEmpty(customer.getCreated_at())) {
 
             if (customer.getId() != null && existsById(customer.getId())) {
 
@@ -72,7 +72,7 @@ public class CustomerService {
     public void update(CustomerModel customer)
             throws BadResourceException, ResourceNotFoundException {
 
-        if (!ObjectUtils.isEmpty(customer.getCreated())) {
+        if (!ObjectUtils.isEmpty(customer.getCreated_at())) {
 
             if (!existsById(customer.getId())) {
                 throw new ResourceNotFoundException("Registro não encontrado com este ID " + customer.getId());

@@ -3,7 +3,7 @@ package com.rdeconti.mercadinho.services.stocker;
 import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.stocker.ProductModel;
+import com.rdeconti.mercadinho.models.purchaser.ProductModel;
 import com.rdeconti.mercadinho.repositories.stocker.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

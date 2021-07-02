@@ -1,7 +1,6 @@
 package com.rdeconti.mercadinho.models.seller;
 
-import com.rdeconti.mercadinho.models.stocker.ProductModel;
-import com.rdeconti.mercadinho.models.stocker.StockModel;
+import com.rdeconti.mercadinho.models.seller.CustomerModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,33 +29,43 @@ public class SaleModel implements Serializable {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="sale_ID", referencedColumnName = "stock_ID", nullable=false)
-    private StockModel storeID;
-
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="sale_ID", referencedColumnName = "customer_ID", nullable=false)
     private CustomerModel customerID;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="sale_ID", referencedColumnName = "product_ID", nullable=false)
-    private ProductModel productID;
-
-    @PositiveOrZero
-    @Column(name = "sale_amount")
-    @NotEmpty(message = "*Por favor informar a quantidade a ser vendida")
-    private Double amount;
-
     @PositiveOrZero
     @Column(name = "sale_price")
-    @NotEmpty(message = "*Por favor informar o preço de venda")
+    @NotEmpty(message = "*Por favor informar o preço de compra")
     private Double price;
 
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "sale_created")
-    private Date created = new Date();
+    @NotEmpty(message = "*Por favor informar o estágio do processo")
+    @Column(name = "sale_stage")
+    private Integer stage;
 
+    @NotEmpty(message = "*Por favor informar a situação")
+    @Column(name = "sale_status")
+    private Boolean status = true;
+
+    @NotEmpty(message = "*Por favor informar comentários sobre a informação")
+    @Column(name = "sale_comments")
+    private String comments;
+
+    @NotEmpty(message = "*Por favor informar a data de criação")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "sale_changed")
-    private Date changed = new Date();
+    @Column(name = "sale_created_at")
+    private Date created_at = new Date();
+
+    @NotEmpty(message = "*Por favor informar a data de alteração")
+    @DateTimeFormat(pattern="dd-MMM-yyyy")
+    @Column(name = "sale_changed_at")
+    private Date changed_at = new Date();
+
+    @NotEmpty(message = "*Por favor informar o responsável pela criação")
+    @Column(name = "sale_created_by")
+    private String created_by;
+
+    @NotEmpty(message = "*Por favor informar o responsável pela alteração")
+    @DateTimeFormat(pattern="dd-MMM-yyyy")
+    @Column(name = "sale_changed_by")
+    private String changed_by;
 
 }

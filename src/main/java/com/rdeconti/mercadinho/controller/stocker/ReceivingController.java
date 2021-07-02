@@ -45,7 +45,7 @@ public class ReceivingController {
 
     @GetMapping(value = "/receiving/receiving-list/{receivingId}")
     public ModelAndView receivingListById(Model model,
-                                       @PathVariable long receivingId) {
+                                       @PathVariable Long receivingId) {
 
         ReceivingModel receiving = null;
 
@@ -107,7 +107,7 @@ public class ReceivingController {
 
     @GetMapping(value = {"/receiving/receiving-update/{receivingId}"})
     public ModelAndView receivingUpdateGet(Model model,
-                                        @PathVariable long receivingId) {
+                                        @PathVariable Long receivingId) {
 
         ReceivingModel receiving = null;
 
@@ -128,7 +128,7 @@ public class ReceivingController {
 
     @PostMapping(value = {"/receiving/receiving-update/{receivingId}"})
     public ModelAndView receivingUpdatePost(Model model,
-                                         @PathVariable long receivingId,
+                                         @PathVariable Long receivingId,
                                          @ModelAttribute("receiving") ReceivingModel receiving) {
 
         try {
@@ -157,7 +157,7 @@ public class ReceivingController {
 
     @GetMapping(value = {"/receiving/receiving-delete/{receivingId}"})
     public ModelAndView receivingDeleteGet(Model model,
-                                        @PathVariable long receivingId) {
+                                        @PathVariable Long receivingId) {
 
         ReceivingModel receiving = null;
 
@@ -179,7 +179,7 @@ public class ReceivingController {
 
     @PostMapping(value = {"/receiving/receiving-delete/{receivingId}"})
     public ModelAndView receivingDeletePost(Model model,
-                                         @PathVariable long receivingId) {
+                                         @PathVariable Long receivingId) {
 
         try {
 

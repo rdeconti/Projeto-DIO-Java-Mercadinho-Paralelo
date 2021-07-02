@@ -1,6 +1,5 @@
 package com.rdeconti.mercadinho.services;
 
-import com.rdeconti.mercadinho.models.manager.RoleModel;
 import com.rdeconti.mercadinho.models.manager.UserModel;
 import com.rdeconti.mercadinho.services.manager.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +42,6 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserDetails buildUserForAuthentication(UserModel userModel, List<GrantedAuthority> authorities) {
 
         return new org.springframework.security.core.userdetails.User(userModel.getUserName(), userModel.getPassword(),
-                userModel.getActive(), true, true, true, authorities);
+                userModel.getStatus(), true, true, true, authorities);
     }
 }

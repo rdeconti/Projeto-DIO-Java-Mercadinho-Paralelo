@@ -7,12 +7,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
@@ -58,7 +56,7 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getUserName() + " " + userModel.getUserName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getFullName()  + " (" + userModel.getEmail() + ")");
         modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-MANAGER");
         modelAndView.setViewName("managerRole/manager-index");
 
@@ -73,7 +71,7 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + " / " + userModel.getUserName() + " " + userModel.getUserName() + " ( " + userModel.getEmail() + " )");
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getFullName()  + " (" + userModel.getEmail() + ")");
         modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
         modelAndView.setViewName("purchaserRole/purchaser-index");
 
@@ -88,7 +86,7 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getUserName() + " " + userModel.getUserName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getFullName() + "/" + userModel.getFullName()  + " (" + userModel.getEmail() + ")");
         modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-SELLER");
         modelAndView.setViewName("sellerRole/seller-index");
 
@@ -103,7 +101,7 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getUserName() + " " + userModel.getUserName() + " (" + userModel.getEmail() + ")");
+        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getFullName() + "/" + userModel.getFullName()  + " (" + userModel.getEmail() + ")");
         modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-STOCKER");
         modelAndView.setViewName("stockerRole/stocker-index");
 

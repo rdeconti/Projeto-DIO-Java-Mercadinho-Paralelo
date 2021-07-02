@@ -45,7 +45,7 @@ public class VendorController {
 
     @GetMapping(value = "/purchaser/vendor-list/{vendorId}")
     public ModelAndView vendorListById(Model model,
-                                         @PathVariable long vendorId) {
+                                         @PathVariable Long vendorId) {
 
         VendorModel vendorModel = null;
 
@@ -99,15 +99,15 @@ public class VendorController {
             model.addAttribute("add", true);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaserRole/vendor-update");
+            ///// modelAndView.setViewName("purchaserRole/vendor-update");
+            modelAndView.setViewName("redirect:/purchaserRole/vendor-list");
             return modelAndView;
-
         }
     }
 
-    @GetMapping(value = {"/purchaser/vendor-update/{vendorId}"})
+    @GetMapping(value = {"/purchaser/vendor-update/{vendorId}/edit"})
     public ModelAndView vendorUpdateGet(Model model,
-                                          @PathVariable long vendorId) {
+                                          @PathVariable Long vendorId) {
 
         VendorModel vendorModel = null;
 
@@ -126,9 +126,9 @@ public class VendorController {
         return modelAndView;
     }
 
-    @PostMapping(value = {"/purchaser/vendor-update/{vendorId}"})
+    @PostMapping(value = {"/purchaser/vendor-update/{vendorId}/edit"})
     public ModelAndView vendorUpdatePost(Model model,
-                                           @PathVariable long vendorId,
+                                           @PathVariable Long vendorId,
                                            @ModelAttribute("vendor") VendorModel vendorModel) {
 
         try {
@@ -140,9 +140,9 @@ public class VendorController {
             modelAndView.setViewName("redirect:/purchaserRole/vendor-list") ;
             return modelAndView;
 
-        } catch (Exception ex) {
+        } catch (Exception exception) {
 
-            String errorMessage = ex.getMessage();
+            String errorMessage = exception.getMessage();
             log.info(errorMessage);
 
             model.addAttribute("errorMessage", errorMessage);
@@ -157,7 +157,7 @@ public class VendorController {
 
     @GetMapping(value = {"/purchaser/vendor-delete/{vendorId}"})
     public ModelAndView vendorDeleteGet(Model model,
-                                          @PathVariable long vendorId) {
+                                          @PathVariable Long vendorId) {
 
         VendorModel vendorModel = null;
 
@@ -179,7 +179,7 @@ public class VendorController {
 
     @PostMapping(value = {"/purchaser/vendor-delete/{vendorId}"})
     public ModelAndView vendorDeletePost(Model model,
-                                           @PathVariable long vendorId) {
+                                           @PathVariable Long vendorId) {
 
         try {
 

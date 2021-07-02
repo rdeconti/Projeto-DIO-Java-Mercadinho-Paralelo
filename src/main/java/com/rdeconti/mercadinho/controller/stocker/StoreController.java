@@ -1,6 +1,5 @@
 package com.rdeconti.mercadinho.controller.stocker;
 
-import com.rdeconti.mercadinho.controller.purchaser.PurchaseController;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.stocker.StoreModel;
 import com.rdeconti.mercadinho.services.stocker.StoreService;
@@ -55,7 +54,7 @@ public class StoreController {
 
     @GetMapping(value = "/store/store-list/{storeId}")
     public ModelAndView storeListById(Model model,
-                                       @PathVariable long storeId) {
+                                       @PathVariable Long storeId) {
 
         StoreModel storeModel = null;
 
@@ -117,7 +116,7 @@ public class StoreController {
 
     @GetMapping(value = {"/store/store-update/{storeId}"})
     public ModelAndView storeUpdateGet(Model model,
-                                        @PathVariable long storeId) {
+                                        @PathVariable Long storeId) {
 
         StoreModel storeModel = null;
 
@@ -138,7 +137,7 @@ public class StoreController {
 
     @PostMapping(value = {"/store/store-update/{storeId}"})
     public ModelAndView storeUpdatePost(Model model,
-                                         @PathVariable long storeId,
+                                         @PathVariable Long storeId,
                                          @ModelAttribute("store") StoreModel storeModel) {
 
         try {
@@ -167,7 +166,7 @@ public class StoreController {
 
     @GetMapping(value = {"/store/store-delete/{storeId}"})
     public ModelAndView storeDeleteGet(Model model,
-                                        @PathVariable long storeId) {
+                                        @PathVariable Long storeId) {
 
         StoreModel storeModel = null;
 
@@ -189,7 +188,7 @@ public class StoreController {
 
     @PostMapping(value = {"/store/store-delete/{storeId}"})
     public ModelAndView storeDeletePost(Model model,
-                                         @PathVariable long storeId) {
+                                         @PathVariable Long storeId) {
 
         try {
 

@@ -19,16 +19,16 @@ import java.util.List;
 public class AgendaService {
 
     @Autowired
-    private AgendaRepository contactRepository;
+    private AgendaRepository agendaRepository;
 
     private boolean existsById(Long id) {
-        return contactRepository.existsById(id);
+        return agendaRepository.existsById(id);
     }
 
     public AgendaModel findById(Long id) throws ResourceNotFoundException {
-        AgendaModel contact = contactRepository.findById(id).orElse(null);
+        AgendaModel contact = agendaRepository.findById(id).orElse(null);
         if (contact==null) {
-            throw new ResourceNotFoundException("Cannot find AgendaModel with id: " + id);
+            throw new ResourceNotFoundException("Cannot find Contact with id: " + id);
         }
         else return contact;
     }
@@ -37,21 +37,21 @@ public class AgendaService {
         List<AgendaModel> contacts = new ArrayList<>();
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
-        contactRepository.findAll(sortedByIdAsc).forEach(contacts::add);
+        agendaRepository.findAll(sortedByIdAsc).forEach(contacts::add);
         return contacts;
     }
 
     public AgendaModel save(AgendaModel contact) throws BadResourceException, ResourceAlreadyExistsException {
         if (!StringUtils.isEmpty(contact.getName())) {
             if (contact.getId() != null && existsById(contact.getId())) {
-                throw new ResourceAlreadyExistsException("AgendaModel with id: " + contact.getId() +
+                throw new ResourceAlreadyExistsException("Contact with id: " + contact.getId() +
                         " already exists");
             }
-            return contactRepository.save(contact);
+            return agendaRepository.save(contact);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save contact");
-            exc.addErrorMessage("AgendaModel is null or empty");
+            exc.addErrorMessage("Contact is null or empty");
             throw exc;
         }
     }
@@ -60,13 +60,13 @@ public class AgendaService {
             throws BadResourceException, ResourceNotFoundException {
         if (!StringUtils.isEmpty(contact.getName())) {
             if (!existsById(contact.getId())) {
-                throw new ResourceNotFoundException("Cannot find AgendaModel with id: " + contact.getId());
+                throw new ResourceNotFoundException("Cannot find Contact with id: " + contact.getId());
             }
-            contactRepository.save(contact);
+            agendaRepository.save(contact);
         }
         else {
             BadResourceException exc = new BadResourceException("Failed to save contact");
-            exc.addErrorMessage("AgendaModel is null or empty");
+            exc.addErrorMessage("Contact is null or empty");
             throw exc;
         }
     }
@@ -76,11 +76,11 @@ public class AgendaService {
             throw new ResourceNotFoundException("Cannot find contact with id: " + id);
         }
         else {
-            contactRepository.deleteById(id);
+            agendaRepository.deleteById(id);
         }
     }
 
     public Long count() {
-        return contactRepository.count();
+        return agendaRepository.count();
     }
 }

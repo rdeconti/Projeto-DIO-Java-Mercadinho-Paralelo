@@ -1,12 +1,9 @@
 package com.rdeconti.mercadinho.models.purchaser;
 
-import com.rdeconti.mercadinho.models.stocker.ProductModel;
-import com.rdeconti.mercadinho.models.stocker.StockModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,35 +28,43 @@ public class PurchaseModel implements Serializable {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="purchase_ID", referencedColumnName = "stock_ID", nullable=false)
-    private StockModel storeID;
-
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="purchase_ID", referencedColumnName = "vendor_ID", nullable=false)
     private VendorModel vendorID;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="purchase_ID", referencedColumnName = "product_ID", nullable=false)
-    private ProductModel productID;
-
-    @PositiveOrZero
-    @Column(name = "purchase_amount")
-    @NotEmpty(message = "*Por favor informar a quantidade a ser comprada")
-    private Double amount;
 
     @PositiveOrZero
     @Column(name = "purchase_price")
     @NotEmpty(message = "*Por favor informar o preço de compra")
     private Double price;
 
+    @NotEmpty(message = "*Por favor informar o estágio do processo")
+    @Column(name = "purchase_stage")
+    private Integer stage;
+
+    @NotEmpty(message = "*Por favor informar a situação")
+    @Column(name = "purchase_status")
+    private Boolean status = true;
+
+    @NotEmpty(message = "*Por favor informar comentários sobre a informação")
+    @Column(name = "purchase_comments")
+    private String comments;
+
     @NotEmpty(message = "*Por favor informar a data de criação")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "purchase_created")
-    private Date created = new Date();
+    @Column(name = "purchase_created_at")
+    private Date created_at = new Date();
 
     @NotEmpty(message = "*Por favor informar a data de alteração")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "purchase_changed")
-    private Date changed = new Date();
+    @Column(name = "purchase_changed_at")
+    private Date changed_at = new Date();
+
+    @NotEmpty(message = "*Por favor informar o responsável pela criação")
+    @Column(name = "purchase_created_by")
+    private String created_by;
+
+    @NotEmpty(message = "*Por favor informar o responsável pela alteração")
+    @DateTimeFormat(pattern="dd-MMM-yyyy")
+    @Column(name = "purchase_changed_by")
+    private String changed_by;
 
 }

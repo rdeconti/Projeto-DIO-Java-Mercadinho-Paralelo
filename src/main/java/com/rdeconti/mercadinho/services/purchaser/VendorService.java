@@ -49,17 +49,23 @@ public class VendorService {
         return vendorModelList;
     }
 
-    public VendorModel save(VendorModel vendor) throws BadResourceException, ResourceAlreadyExistsException {
+    public VendorModel save(VendorModel vendorModel) throws BadResourceException, ResourceAlreadyExistsException {
 
-        if (!ObjectUtils.isEmpty(vendor.getCreated())) {
+        if (!ObjectUtils.isEmpty(vendorModel.getId())) {
 
-            if (vendor.getId() != null && existsById(vendor.getId())) {
+            return vendorRepository.save(vendorModel);
 
-                throw new ResourceAlreadyExistsException("Registro com este ID: " + vendor.getId() +
+        }
+
+        if (!ObjectUtils.isEmpty(vendorModel.getId())) {
+
+            if (vendorModel.getId() != null && existsById(vendorModel.getId())) {
+
+                throw new ResourceAlreadyExistsException("Registro com este ID: " + vendorModel.getId() +
                         " já existe");
             }
 
-            return vendorRepository.save(vendor);
+            return vendorRepository.save(vendorModel);
         }
 
         else {
@@ -70,16 +76,16 @@ public class VendorService {
         }
     }
 
-    public void update(VendorModel vendor)
+    public void update(VendorModel vendorModel)
             throws BadResourceException, ResourceNotFoundException {
 
-        if (!ObjectUtils.isEmpty(vendor.getCreated())) {
+        if (!ObjectUtils.isEmpty(vendorModel.getId())) {
 
-            if (!existsById(vendor.getId())) {
-                throw new ResourceNotFoundException("Registro não encontrado com este ID " + vendor.getId());
+            if (!existsById(vendorModel.getId())) {
+                throw new ResourceNotFoundException("Registro não encontrado com este ID " + vendorModel.getId());
             }
 
-            vendorRepository.save(vendor);
+            vendorRepository.save(vendorModel);
         }
 
         else {

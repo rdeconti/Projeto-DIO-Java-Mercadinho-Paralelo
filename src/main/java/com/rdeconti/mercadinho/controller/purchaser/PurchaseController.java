@@ -56,7 +56,7 @@ public class PurchaseController {
 
     @GetMapping(value = "/purchaser/purchase-list/{purchaseId}")
     public ModelAndView purchaseListById(Model model,
-                                 @PathVariable long purchaseId) {
+                                 @PathVariable Long purchaseId) {
 
         PurchaseModel purchaseModel = null;
 
@@ -118,7 +118,7 @@ public class PurchaseController {
 
     @GetMapping(value = {"/purchaser/purchase-update/{purchaseId}"})
     public ModelAndView purchaseUpdateGet(Model model,
-                                        @PathVariable long purchaseId) {
+                                        @PathVariable Long purchaseId) {
 
         PurchaseModel purchaseModel = null;
 
@@ -139,7 +139,7 @@ public class PurchaseController {
 
     @PostMapping(value = {"/purchaser/purchase-update/{purchaseId}"})
     public ModelAndView purchaseUpdatePost(Model model,
-                                        @PathVariable long purchaseId,
+                                        @PathVariable Long purchaseId,
                                         @ModelAttribute("purchase") PurchaseModel purchaseModel) {
 
         try {
@@ -168,7 +168,7 @@ public class PurchaseController {
 
     @GetMapping(value = {"/purchaser/purchase-delete/{purchaseId}"})
     public ModelAndView purchaseDeleteGet(Model model,
-                                        @PathVariable long purchaseId) {
+                                        @PathVariable Long purchaseId) {
 
         PurchaseModel purchaseModel = null;
 
@@ -190,7 +190,7 @@ public class PurchaseController {
 
     @PostMapping(value = {"/purchaser/purchase-delete/{purchaseId}"})
     public ModelAndView purchaseDeletePost(Model model,
-                                    @PathVariable long purchaseId) {
+                                    @PathVariable Long purchaseId) {
 
         try {
 

@@ -1,10 +1,9 @@
 package com.rdeconti.mercadinho.controller;
 
-import com.rdeconti.mercadinho.controller.purchaser.PurchaseController;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.ContactModel;
+import com.rdeconti.mercadinho.models.manager.ContactModel;
 
-import com.rdeconti.mercadinho.services.ContactService;
+import com.rdeconti.mercadinho.services.manager.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,14 +48,14 @@ public class ContactController {
         model.addAttribute("next", pageNumber + 1);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/contact-list");
+        modelAndView.setViewName("/contact-list");
         return modelAndView;
 
     }
 
     @GetMapping(value = "/contact/contact-list/{contactId}")
     public ModelAndView contactListById(Model model,
-                                       @PathVariable long contactId) {
+                                       @PathVariable Long contactId) {
 
         ContactModel contact = null;
 
@@ -71,7 +70,7 @@ public class ContactController {
         model.addAttribute("object", contact);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/contact-list");
+        modelAndView.setViewName("/contact-list");
         return modelAndView;
 
     }
@@ -85,7 +84,7 @@ public class ContactController {
         model.addAttribute("object", contact);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/contact-create");
+        modelAndView.setViewName("/contact-create");
         return modelAndView;
     }
 
@@ -118,37 +117,37 @@ public class ContactController {
 
     @GetMapping(value = {"/contact/contact-update/{contactId}"})
     public ModelAndView contactUpdateGet(Model model,
-                                        @PathVariable long contactId) {
+                                        @PathVariable Long contactId) {
 
-        ContactModel contact = null;
+        ContactModel contactModel = null;
 
         try {
-            contact = contactService.findById(contactId);
+            contactModel = contactService.findById(contactId);
 
         } catch (ResourceNotFoundException exception) {
             model.addAttribute("errorMessage", "Registro não encontrado");
         }
 
         model.addAttribute("add", false);
-        model.addAttribute("object", contact);
+        model.addAttribute("object2", contactModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/contact-update");
+        modelAndView.setViewName("/contact-update");
         return modelAndView;
     }
 
     @PostMapping(value = {"/contact/contact-update/{contactId}"})
     public ModelAndView contactUpdatePost(Model model,
-                                         @PathVariable long contactId,
-                                         @ModelAttribute("contact") ContactModel contact) {
+                                         @PathVariable Long contactId,
+                                         @ModelAttribute("contact") ContactModel contactModel) {
 
         try {
 
-            contact.setId(contactId);
-            contactService.update(contact);
+            contactModel.setId(contactId);
+            contactService.update(contactModel);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaserRole/contact-list") ;
+            modelAndView.setViewName("redirect:/contact-list") ;
             return modelAndView;
 
         } catch (Exception ex) {
@@ -160,7 +159,7 @@ public class ContactController {
             model.addAttribute("add", false);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaserRole/contact-update");
+            modelAndView.setViewName("/contact-update");
             return modelAndView;
 
         }
@@ -168,7 +167,7 @@ public class ContactController {
 
     @GetMapping(value = {"/contact/contact-delete/{contactId}"})
     public ModelAndView contactDeleteGet(Model model,
-                                        @PathVariable long contactId) {
+                                        @PathVariable Long contactId) {
 
         ContactModel contact = null;
 
@@ -184,20 +183,20 @@ public class ContactController {
         model.addAttribute("object", contact);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/contact-delete");
+        modelAndView.setViewName("/contact-delete");
         return modelAndView;
     }
 
     @PostMapping(value = {"/contact/contact-delete/{contactId}"})
     public ModelAndView contactDeletePost(Model model,
-                                         @PathVariable long contactId) {
+                                         @PathVariable Long contactId) {
 
         try {
 
             contactService.deleteById(contactId);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaserRole/contact-list") ;
+            modelAndView.setViewName("redirect:/contact-list") ;
             return modelAndView;
 
 
@@ -209,7 +208,7 @@ public class ContactController {
             model.addAttribute("errorMessage", errorMessage);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaserRole/contact-delete");
+            modelAndView.setViewName("/contact-delete");
             return modelAndView;
 
         }

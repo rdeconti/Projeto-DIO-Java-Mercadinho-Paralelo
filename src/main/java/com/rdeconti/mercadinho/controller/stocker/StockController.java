@@ -1,6 +1,5 @@
 package com.rdeconti.mercadinho.controller.stocker;
 
-import com.rdeconti.mercadinho.controller.purchaser.PurchaseController;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.stocker.StockModel;
 import com.rdeconti.mercadinho.services.stocker.StockService;
@@ -55,7 +54,7 @@ public class StockController {
 
     @GetMapping(value = "/stock/stock-list/{stockId}")
     public ModelAndView stockListById(Model model,
-                                       @PathVariable long stockId) {
+                                       @PathVariable Long stockId) {
 
         StockModel stock = null;
 
@@ -117,7 +116,7 @@ public class StockController {
 
     @GetMapping(value = {"/stock/stock-update/{stockId}"})
     public ModelAndView stockUpdateGet(Model model,
-                                        @PathVariable long stockId) {
+                                        @PathVariable Long stockId) {
 
         StockModel stock = null;
 
@@ -138,7 +137,7 @@ public class StockController {
 
     @PostMapping(value = {"/stock/stock-update/{stockId}"})
     public ModelAndView stockUpdatePost(Model model,
-                                         @PathVariable long stockId,
+                                         @PathVariable Long stockId,
                                          @ModelAttribute("stock") StockModel stock) {
 
         try {
@@ -167,7 +166,7 @@ public class StockController {
 
     @GetMapping(value = {"/stock/stock-delete/{stockId}"})
     public ModelAndView stockDeleteGet(Model model,
-                                        @PathVariable long stockId) {
+                                        @PathVariable Long stockId) {
 
         StockModel stock = null;
 
@@ -189,7 +188,7 @@ public class StockController {
 
     @PostMapping(value = {"/stock/stock-delete/{stockId}"})
     public ModelAndView stockDeletePost(Model model,
-                                         @PathVariable long stockId) {
+                                         @PathVariable Long stockId) {
 
         try {
 

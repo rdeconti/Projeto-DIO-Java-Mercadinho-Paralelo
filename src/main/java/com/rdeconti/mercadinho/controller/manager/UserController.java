@@ -2,8 +2,8 @@ package com.rdeconti.mercadinho.controller.manager;
 
 import com.rdeconti.mercadinho.controller.purchaser.PurchaseController;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.ContactModel;
-import com.rdeconti.mercadinho.services.ContactService;
+import com.rdeconti.mercadinho.models.manager.ContactModel;
+import com.rdeconti.mercadinho.services.manager.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +46,7 @@ public class UserController {
 
     @GetMapping(value = "/user/user-list/{userId}")
     public ModelAndView userListById(Model model,
-                                       @PathVariable long userId) {
+                                       @PathVariable Long userId) {
 
         ContactModel user = null;
 
@@ -108,7 +108,7 @@ public class UserController {
 
     @GetMapping(value = {"/user/user-update/{userId}"})
     public ModelAndView userUpdateGet(Model model,
-                                        @PathVariable long userId) {
+                                        @PathVariable Long userId) {
 
         ContactModel user = null;
 
@@ -129,7 +129,7 @@ public class UserController {
 
     @PostMapping(value = {"/user/user-update/{userId}"})
     public ModelAndView userUpdatePost(Model model,
-                                         @PathVariable long userId,
+                                         @PathVariable Long userId,
                                          @ModelAttribute("user") ContactModel user) {
 
         try {
@@ -158,7 +158,7 @@ public class UserController {
 
     @GetMapping(value = {"/user/user-delete/{userId}"})
     public ModelAndView userDeleteGet(Model model,
-                                        @PathVariable long userId) {
+                                        @PathVariable Long userId) {
 
         ContactModel user = null;
 
@@ -180,7 +180,7 @@ public class UserController {
 
     @PostMapping(value = {"/user/user-delete/{userId}"})
     public ModelAndView userDeletePost(Model model,
-                                         @PathVariable long userId) {
+                                         @PathVariable Long userId) {
 
         try {
 

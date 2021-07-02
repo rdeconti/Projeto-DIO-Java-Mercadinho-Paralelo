@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+
+  <!-- Include HEAD -->
+  <th:block th:include="/fragments/_head"> </th:block>
+
+  <body>
+
+    <!-- Include HEADER -->
+    <th:block th:include="/fragments/_header"> </th:block>
+
+    <!-- start MAIN -->
+    <main>
+
+      <div class="container" align="center">
+
+          <h1>Alterar Fornecedor</h1>
+          <br/>
+
+          <a class="btn btn-primary" th:href="@{/purchaser/vendor-list}">Lista de Fornecedores</a>
+          <br/>
+
+          <!-- TODO CHECK THIS FEATURE
+          <select name="color">
+            <option th:each="colorOpt : ${T(com.rdeconti.mercadinho.models.enumColor).values()}"
+                    th:value="${colorOpt}" th:text="${colorOpt.displayValue}"></option>
+          </select>
+          -->
+
+        <form th:action="@{/purchaser/vendor-update/{objectId}/(objectId=${object.id})}" th:object="${object}" method="POST">
+
+          <table>
+
+            <tr>
+              <td class="table-title">Fornecedor</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{id}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Nome</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{contactID.name}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Situação</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{status}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Data de criação</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{created_at}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Criado por</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{created_by}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Data de alteração</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{changed_at}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Alterado por</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{changed_by}" size="50" /></td>
+            </tr>
+
+            <tr>
+              <td class="table-title">Contato</td>
+              <td></td>
+              <td><input class="form-control" type="text" th:field="*{changed_by}" size="50" /></td>
+            </tr>
+
+          </table>
+
+        </form>
+
+        <div class="form-row">
+
+          <div class="col">
+
+            <input type="text" class="form-control" placeholder="First name">
+
+
+
+          </div>
+
+          <div class="col">
+
+            <input type="text" class="form-control" placeholder="Last name">
+
+            <form th:action="@{/contact/contact-update/{object2Id}/(object2Id=${object2.id})}" th:object="${object2}" method="POST">
+
+              <table>
+
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{id}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{name}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{email}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{country}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{state}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{city}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{district}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{address}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{number}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{cep}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{complement}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{phone_1}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{phone_2}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{whatsapp}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{document}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{type}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{site}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{facebook}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{instagram}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{linkedin}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{youtube}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{status}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{created_at}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{created_by}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{changed_at}" size="50" /></td>
+                </tr>
+                <tr>
+                  <td><input class="form-control" type="text" th:field="*{changed_by}" size="50" /></td>
+                </tr>
+
+              </table>
+
+            </form>
+
+          </div>
+
+          <br/>
+          <input class="btn btn-primary" type="submit" th:value="Alterar Contato" />
+
+        </div>
+
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>
+
+      </div>
+
+    </main>
+
+    <!-- Include FOOTER -->
+    <th:block th:include="/fragments/_footer"> </th:block>
+
+  </body>
+
+</html>

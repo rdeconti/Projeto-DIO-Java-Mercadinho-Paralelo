@@ -1,8 +1,7 @@
 package com.rdeconti.mercadinho.controller.stocker;
 
-import com.rdeconti.mercadinho.controller.purchaser.PurchaseController;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.stocker.ProductModel;
+import com.rdeconti.mercadinho.models.purchaser.ProductModel;
 import com.rdeconti.mercadinho.services.stocker.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,7 +45,7 @@ public class ProductController {
 
     @GetMapping(value = "/product/product-list/{productId}")
     public ModelAndView productListById(Model model,
-                                       @PathVariable long productId) {
+                                       @PathVariable Long productId) {
 
         ProductModel productModel = null;
 
@@ -108,7 +107,7 @@ public class ProductController {
 
     @GetMapping(value = {"/product/product-update/{productId}"})
     public ModelAndView productUpdateGet(Model model,
-                                        @PathVariable long productId) {
+                                        @PathVariable Long productId) {
 
         ProductModel productModel = null;
 
@@ -129,7 +128,7 @@ public class ProductController {
 
     @PostMapping(value = {"/product/product-update/{productId}"})
     public ModelAndView productUpdatePost(Model model,
-                                         @PathVariable long productId,
+                                         @PathVariable Long productId,
                                          @ModelAttribute("product") ProductModel productModel) {
 
         try {
@@ -158,7 +157,7 @@ public class ProductController {
 
     @GetMapping(value = {"/product/product-delete/{productId}"})
     public ModelAndView productDeleteGet(Model model,
-                                        @PathVariable long productId) {
+                                        @PathVariable Long productId) {
 
         ProductModel productModel = null;
 
@@ -180,7 +179,7 @@ public class ProductController {
 
     @PostMapping(value = {"/product/product-delete/{productId}"})
     public ModelAndView productDeletePost(Model model,
-                                         @PathVariable long productId) {
+                                         @PathVariable Long productId) {
 
         try {
 

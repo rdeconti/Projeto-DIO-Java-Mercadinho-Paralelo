@@ -6,9 +6,11 @@ import com.rdeconti.mercadinho.services.AgendaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -22,55 +24,71 @@ public class AgendaController {
     @Autowired
     private AgendaService agendaService;
 
-    @GetMapping(value = {"/index"})
-    public String index(Model model) {
-        ///model.addAttribute("title", title);
-        return "index";
+    @RequestMapping(value={"/agenda/index"}, method = RequestMethod.GET)
+    public ModelAndView index1(Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        return modelAndView;
     }
 
-    @GetMapping(value = "/agendas")
-    public String getAgendaModels(Model model,
+    @RequestMapping(value={"/contacts"}, method = RequestMethod.GET)
+    public ModelAndView getContacts(Model model,
                               @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
-        List<AgendaModel> agendas = agendaService.findAll(pageNumber, ROW_PER_PAGE);
+
+        List<AgendaModel> contacts = agendaService.findAll(pageNumber, ROW_PER_PAGE);
 
         long count = agendaService.count();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
-        model.addAttribute("objects", agendas);
+
+        model.addAttribute("contacts", contacts);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("next", pageNumber + 1);
-        return "agenda-list";
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("contact-list");
+        return modelAndView;
+
     }
 
-    @GetMapping(value = "/agendas/{agendaId}")
-    public String getAgendaModelById(Model model, @PathVariable long agendaId) {
-        AgendaModel agenda = null;
+    @RequestMapping(value={"/contacts/{contactId}"}, method = RequestMethod.GET)
+    public ModelAndView getContactById(Model model, @PathVariable long contactId) {
+        AgendaModel contact = null;
         try {
-            agenda = agendaService.findById(agendaId);
+            contact = agendaService.findById(contactId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Registro não encontrado");
+            model.addAttribute("errorMessage", "Contact not found");
         }
-        model.addAttribute("object", agenda);
-        return "agenda";
+        model.addAttribute("contact", contact);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("contact");
+        return modelAndView;
     }
 
-    @GetMapping(value = {"/agendas/add"})
-    public String showAddAgendaModel(Model model) {
-        AgendaModel agenda = new AgendaModel();
+    @RequestMapping(value={"/contacts/add"}, method = RequestMethod.GET)
+    public ModelAndView showAddContact(Model model) {
+        AgendaModel contact = new AgendaModel();
         model.addAttribute("add", true);
-        model.addAttribute("object", agenda);
+        model.addAttribute("contact", contact);
 
-        return "agenda-edit";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("contact-edit");
+        return modelAndView;
     }
 
-    @PostMapping(value = "/agendas/add")
-    public String addAgendaModel(Model model,
-                             @ModelAttribute("agenda") AgendaModel agenda) {
+    @RequestMapping(value={"/contacts/add"}, method = RequestMethod.POST)
+    public ModelAndView addContact(Model model,
+                             @ModelAttribute("contact") AgendaModel contact) {
         try {
-            AgendaModel newAgendaModel = agendaService.save(agenda);
-            return "redirect:/agendas/" + String.valueOf(newAgendaModel.getId());
+            AgendaModel newContact = agendaService.save(contact);
+
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("redirect:/contacts/" + String.valueOf(newContact.getId()));
+            return modelAndView;
+
+
         } catch (Exception ex) {
             // log exception first,
             // then show error
@@ -78,33 +96,41 @@ public class AgendaController {
             logger.error(errorMessage);
             model.addAttribute("errorMessage", errorMessage);
 
-            //model.addAttribute("agenda", agenda);
+            //model.addAttribute("contact", contact);
             model.addAttribute("add", true);
-            return "agenda-edit";
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("contact-edit");
+            return modelAndView;
+
         }
     }
 
-    @GetMapping(value = {"/agendas/{agendaId}/edit"})
-    public String showEditAgendaModel(Model model, @PathVariable long agendaId) {
-        AgendaModel agenda = null;
+    @RequestMapping(value={"/contacts/{contactId}/edit"}, method = RequestMethod.GET)
+    public ModelAndView showEditContact(Model model, @PathVariable long contactId) {
+        AgendaModel contact = null;
         try {
-            agenda = agendaService.findById(agendaId);
+            contact = agendaService.findById(contactId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Registro não encontrado");
+            model.addAttribute("errorMessage", "Contact not found");
         }
         model.addAttribute("add", false);
-        model.addAttribute("object", agenda);
-        return "agenda-edit";
+        model.addAttribute("contact", contact);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("contact-edit");
+        return modelAndView;
     }
 
-    @PostMapping(value = {"/agendas/{agendaId}/edit"})
-    public String updateAgendaModel(Model model,
-                                @PathVariable long agendaId,
-                                @ModelAttribute("agenda") AgendaModel agenda) {
+    @RequestMapping(value={"/contacts/{contactId}/edit"}, method = RequestMethod.POST)
+    public ModelAndView updateContact(Model model,
+                                @PathVariable long contactId,
+                                @ModelAttribute("contact") AgendaModel contact) {
         try {
-            agenda.setId(agendaId);
-            agendaService.update(agenda);
-            return "redirect:/agendas/" + String.valueOf(agenda.getId());
+            contact.setId(contactId);
+            agendaService.update(contact);
+
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("redirect:/contacts/" + String.valueOf(contact.getId()));
+            return modelAndView;
         } catch (Exception ex) {
             // log exception first,
             // then show error
@@ -113,35 +139,43 @@ public class AgendaController {
             model.addAttribute("errorMessage", errorMessage);
 
             model.addAttribute("add", false);
-            return "agenda-edit";
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("contact-edit");
+            return modelAndView;
         }
     }
 
-    @GetMapping(value = {"/agendas/{agendaId}/delete"})
-    public String showDeleteAgendaModelById(
-            Model model, @PathVariable long agendaId) {
-        AgendaModel agenda = null;
+    @RequestMapping(value={"/contacts/{contactId}/delete"}, method = RequestMethod.GET)
+    public ModelAndView showDeleteContactById(
+            Model model, @PathVariable long contactId) {
+        AgendaModel contact = null;
         try {
-            agenda = agendaService.findById(agendaId);
+            contact = agendaService.findById(contactId);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Registro não encontrado");
+            model.addAttribute("errorMessage", "Contact not found");
         }
         model.addAttribute("allowDelete", true);
-        model.addAttribute("object", agenda);
-        return "agenda";
+        model.addAttribute("contact", contact);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("contact");
+        return modelAndView;
     }
 
-    @PostMapping(value = {"/agendas/{agendaId}/delete"})
-    public String deleteAgendaModelById(
-            Model model, @PathVariable long agendaId) {
+    @RequestMapping(value={"/contacts/{contactId}/delete"}, method = RequestMethod.POST)
+    public ModelAndView deleteContactById(
+            Model model, @PathVariable long contactId) {
         try {
-            agendaService.deleteById(agendaId);
-            return "redirect:/agendas";
+            agendaService.deleteById(contactId);
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("redirect:/contacts/");
+            return modelAndView;
         } catch (ResourceNotFoundException ex) {
             String errorMessage = ex.getMessage();
             logger.error(errorMessage);
             model.addAttribute("errorMessage", errorMessage);
-            return "agenda";
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("contact");
+            return modelAndView;
         }
     }
 }

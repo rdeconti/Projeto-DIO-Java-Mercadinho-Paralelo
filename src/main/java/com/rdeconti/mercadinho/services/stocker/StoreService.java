@@ -50,7 +50,7 @@ public class StoreService {
 
     public StoreModel save(StoreModel store) throws BadResourceException, ResourceAlreadyExistsException {
 
-        if (!ObjectUtils.isEmpty(store.getCreated())) {
+        if (!ObjectUtils.isEmpty(store.getCreated_at())) {
 
             if (store.getId() != null && existsById(store.getId())) {
 
@@ -72,7 +72,7 @@ public class StoreService {
     public void update(StoreModel store)
             throws BadResourceException, ResourceNotFoundException {
 
-        if (!ObjectUtils.isEmpty(store.getCreated())) {
+        if (!ObjectUtils.isEmpty(store.getCreated_at())) {
 
             if (!existsById(store.getId())) {
                 throw new ResourceNotFoundException("Registro não encontrado com este ID " + store.getId());

@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Data
@@ -25,9 +27,9 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_ID")
-    private int id;
+    private Long id;
 
-    @Column(name = "user_name")
+    @Column(name = "user_code")
     @Length(min = 5, message = "*Seu código de usuário deve ter pelo menos 5 caracteres")
     @NotEmpty(message = "*Por favor informe seu código de usuário")
     private String userName;
@@ -42,25 +44,43 @@ public class UserModel implements Serializable {
     @NotEmpty(message = "*Por favor informe sua senha")
     private String password;
 
-    @NotEmpty(message = "*Por favor informar a situação do usuário")
-    @Column(name = "user_status")
-    private Boolean active = true;
-
     @Column(name = "user_role")
-    @NotEmpty(message = "*Por favor informar a função do usuário")
+    @NotEmpty(message = "*Por favor informe a função do usuário")
     private String role;
 
-    /*
-    @Column(name = "user_firstName")
-    @NotEmpty(message = "*Por favor informe seu nome")
-    private String firstName;
+    @Column(name = "user_name")
+    @NotEmpty(message = "*Por favor informe o nome do usuário")
+    private String fullName;
 
-    @Column(name = "user_lastName")
-    @NotEmpty(message = "*Por favor informe seu sobrenome")
-    private String lastName;
+    @Column(name = "user_type")
+    @NotEmpty(message = "*Por favor informe o tipo de usuário")
+    private Integer type;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_ID"), inverseJoinColumns = @JoinColumn(name = "role_ID"))
-    private Set<RoleModel> roleModels;
-    */
+    @Column(name = "user_link")
+    @NotEmpty(message = "*Por favor informe o código: cliente ou funcionário")
+    private String link;
+
+    @NotEmpty(message = "*Por favor informar a situação")
+    @Column(name = "user_status")
+    private Boolean status = true;
+
+    @NotEmpty(message = "*Por favor informar a data de criação")
+    @DateTimeFormat(pattern="dd-MMM-yyyy")
+    @Column(name = "user_created_at")
+    private Date created_at = new Date();
+
+    @NotEmpty(message = "*Por favor informar a data de alteração")
+    @DateTimeFormat(pattern="dd-MMM-yyyy")
+    @Column(name = "user_changed_at")
+    private Date changed_at = new Date();
+
+    @NotEmpty(message = "*Por favor informar o responsável pela criação")
+    @Column(name = "user_created_by")
+    private String created_by;
+
+    @NotEmpty(message = "*Por favor informar o responsável pela alteração")
+    @DateTimeFormat(pattern="dd-MMM-yyyy")
+    @Column(name = "user_changed_by")
+    private String changed_by;
+
 }
