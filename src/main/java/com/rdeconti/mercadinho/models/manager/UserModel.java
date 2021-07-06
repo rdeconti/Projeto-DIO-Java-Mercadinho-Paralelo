@@ -1,9 +1,7 @@
 package com.rdeconti.mercadinho.models.manager;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,13 +9,15 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
-@Data
-@Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "USERS")
 public class UserModel implements Serializable {
@@ -67,12 +67,12 @@ public class UserModel implements Serializable {
     @NotEmpty(message = "*Por favor informar a data de criação")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "user_created_at")
-    private Date created_at = new Date();
+    private LocalDateTime created_at = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar a data de alteração")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "user_changed_at")
-    private Date changed_at = new Date();
+    private LocalDateTime changed_at = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar o responsável pela criação")
     @Column(name = "user_created_by")

@@ -2,7 +2,7 @@
 -- Author: Rosemeire Deconti
 -- Date: 01/06/2021
 -- Project: Develop an application to control stocks and e-commerce from a Grocery 
--- suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+-- Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
 -- ***********************************************************************************************
 USE groceryStore;
 

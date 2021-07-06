@@ -10,6 +10,7 @@ package com.rdeconti.mercadinho.models;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.Audited;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -25,13 +26,6 @@ import java.io.Serializable;
 @Entity
 @Table(name="AGENDAS")
 public class AgendaModel implements Serializable {
-
-    // TODO CORRIGIR TODOS OS LOMBOKS
-    // TODO UTILIZAR LOCALDATETIME E BIGDECIMAL
-    // TODO TIRAR A SENHA DO BANCO DE DADOS
-    // TODO CRIAR BANCO DE DADOS AUTOMATICAMENTE
-    // UTILIZAR O HttpStatus no controller para montar mensagens
-    // UTILIZAR @AUDITTED PARA AUDITAR TABELAS
 
     private static final long serialVersionUID = 1L;
 

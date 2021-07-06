@@ -24,6 +24,61 @@
 
             <div th:if="${object}">
 
+              <form class="form-horizontal" th:object="${object}">
+
+                <!--
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="number">Número</label>
+                  <input type="number" class="form-control" id="number" th:field="${object.id}" disabled>
+                </div>
+                -->
+
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="name">Nome</label>
+                  <input SIZE=40 type="text" class="form-control input-sm" id="name" th:field="*{name}" disabled>
+                </div>
+
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="phone">Telefone</label>
+                  <input SIZE=40 type="text" class="form-control input-sm" id="phone" th:field="*{phone}" disabled>
+                </div>
+
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="email">Email</label>
+                  <input SIZE=40 type="email" class="form-control input-sm" id="email" th:field="*{email}" disabled>
+                </div>
+
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="address1">Endereço1</label>
+                  <input SIZE=40 type="text" class="form-control input-sm" id="address1" th:field="*{address1}" disabled>
+                </div>
+
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="address2">Endereço2</label>
+                  <input SIZE=40 type="text" class="form-control input-sm" id="address2" th:field="*{address2}" disabled>
+                </div>
+
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="address3">Endereço3</label>
+                  <input SIZE=40 type="text" class="form-control input-sm" id="address3" th:field="*{address3}" disabled>
+                </div>
+
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="address3">Código postal</label>
+                  <input SIZE=40 type="text" class="form-control input-sm" id="postalCode" th:field="*{postalCode}" disabled>
+                </div>
+
+                <div class="form-group form-inline">
+                  <label class="control-label col-sm-6" for="comment">Observações</label>
+                  <textarea rows="3" class="form-control input-sm"  id="comment" th:field="*{note}"></textarea>
+                </div>
+
+                <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+
+
+              </form>
+
+              <!--
               <table>
 
                 <tr>
@@ -81,6 +136,7 @@
                 </tr>
 
               </table>
+              -->
 
               <br/><br/>
 

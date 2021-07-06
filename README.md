@@ -45,6 +45,10 @@ A aplicação controla alguns processos de um mercadinho e tem as seguintes func
 - Hibernate+JPA  
 - Thymeleaf 
 
+## Link Swagger UI
+- http://localhost:8080/swagger-ui/
+- 
+
 ## Melhorias futuras:
 - A versão 2 será uma aplicação que utilizará micro serviços.
 

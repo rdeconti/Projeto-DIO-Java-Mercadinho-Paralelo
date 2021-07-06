@@ -77,3 +77,11 @@ input {
 .main-buttons {
    text-align: center
 }
+
+.button-main {
+    min-width: 80px;
+    max-width: 80px;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+}

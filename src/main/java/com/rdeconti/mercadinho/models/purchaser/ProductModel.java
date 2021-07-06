@@ -1,21 +1,22 @@
 package com.rdeconti.mercadinho.models.purchaser;
 
 import com.rdeconti.mercadinho.models.stocker.ImageModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Data
-@Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name="PRODUCTS")
 public class ProductModel implements Serializable {
@@ -49,7 +50,7 @@ public class ProductModel implements Serializable {
 
     @NotEmpty(message = "*Por favor informar o preço do produto")
     @Column(name = "product_price", nullable = false)
-    private Double price;
+    private BigDecimal price;
 
     @NotEmpty(message = "*Por favor informar a descrição do produto")
     @Column(name = "product_description", length = 14, nullable = false)
@@ -62,12 +63,12 @@ public class ProductModel implements Serializable {
     @NotEmpty(message = "*Por favor informar a data de criação")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "product_created_at")
-    private Date created_at = new Date();
+    private LocalDateTime created_at = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar a data de alteração")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "product_changed_at")
-    private Date changed_at = new Date();
+    private LocalDateTime changed_at = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar o responsável pela criação")
     @Column(name = "product_created_by")

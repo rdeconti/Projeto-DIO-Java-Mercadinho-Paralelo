@@ -1,22 +1,23 @@
 package com.rdeconti.mercadinho.models.seller;
 
 import com.rdeconti.mercadinho.models.seller.CustomerModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Data
-@Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name="SALES")
 public class SaleModel implements Serializable {
@@ -35,7 +36,7 @@ public class SaleModel implements Serializable {
     @PositiveOrZero
     @Column(name = "sale_price")
     @NotEmpty(message = "*Por favor informar o preço de compra")
-    private Double price;
+    private BigDecimal price;
 
     @NotEmpty(message = "*Por favor informar o estágio do processo")
     @Column(name = "sale_stage")
@@ -52,12 +53,12 @@ public class SaleModel implements Serializable {
     @NotEmpty(message = "*Por favor informar a data de criação")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "sale_created_at")
-    private Date created_at = new Date();
+    private LocalDateTime created_at = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar a data de alteração")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "sale_changed_at")
-    private Date changed_at = new Date();
+    private LocalDateTime changed_at = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar o responsável pela criação")
     @Column(name = "sale_created_by")

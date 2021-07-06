@@ -17,17 +17,12 @@ import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @Api(value="Mercadinho Paralelo - Agenda Controller")
@@ -47,14 +42,6 @@ public class AgendaController implements WebMvcConfigurer {
 
     private static final int ROW_PER_PAGE = 5;
 
-    //
-    //@InitBinder
-    //public void InitBinder(WebDataBinder dataBinder) {
-    //    StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-    //    dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-    //}
-
-
     // -----------------------------------------------------------------------------------------------------------------
     // Resolve and inject collaborating beans into our bean
     // -----------------------------------------------------------------------------------------------------------------
@@ -66,10 +53,16 @@ public class AgendaController implements WebMvcConfigurer {
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            @ApiResponse(code = 200, message = "The request was successfully completed"),
+            @ApiResponse(code = 201, message = "Object was successfully created"),
+            @ApiResponse(code = 400, message = "The request was invalid."),
+            @ApiResponse(code = 401, message = "The request did not include an authentication token or the authentication token was expired."),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden."),
+            @ApiResponse(code = 404, message = "The requested resource was not found."),
+            @ApiResponse(code = 405, message = "The HTTP method in the request was not supported by the resource. For example, the DELETE method cannot be used with the Agent API."),
+            @ApiResponse(code = 409, message = "The request could not be completed due to a conflict. For example,  POST ContentStore Folder API cannot complete if the given file or folder name already exists in the parent location."),
+            @ApiResponse(code = 500, message = "The request was not completed due to an internal error on the server side."),
+            @ApiResponse(code = 503, message = "The server was unavailable."),
     }
     )
 
@@ -104,10 +97,16 @@ public class AgendaController implements WebMvcConfigurer {
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a specific record from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            @ApiResponse(code = 200, message = "The request was successfully completed"),
+            @ApiResponse(code = 201, message = "Object was successfully created"),
+            @ApiResponse(code = 400, message = "The request was invalid."),
+            @ApiResponse(code = 401, message = "The request did not include an authentication token or the authentication token was expired."),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden."),
+            @ApiResponse(code = 404, message = "The requested resource was not found."),
+            @ApiResponse(code = 405, message = "The HTTP method in the request was not supported by the resource. For example, the DELETE method cannot be used with the Agent API."),
+            @ApiResponse(code = 409, message = "The request could not be completed due to a conflict. For example,  POST ContentStore Folder API cannot complete if the given file or folder name already exists in the parent location."),
+            @ApiResponse(code = 500, message = "The request was not completed due to an internal error on the server side."),
+            @ApiResponse(code = 503, message = "The server was unavailable."),
     }
     )
 
@@ -137,10 +136,16 @@ public class AgendaController implements WebMvcConfigurer {
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "GET: Create a record into AGENDA", response = Iterable.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            @ApiResponse(code = 200, message = "The request was successfully completed"),
+            @ApiResponse(code = 201, message = "Object was successfully created"),
+            @ApiResponse(code = 400, message = "The request was invalid."),
+            @ApiResponse(code = 401, message = "The request did not include an authentication token or the authentication token was expired."),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden."),
+            @ApiResponse(code = 404, message = "The requested resource was not found."),
+            @ApiResponse(code = 405, message = "The HTTP method in the request was not supported by the resource. For example, the DELETE method cannot be used with the Agent API."),
+            @ApiResponse(code = 409, message = "The request could not be completed due to a conflict. For example,  POST ContentStore Folder API cannot complete if the given file or folder name already exists in the parent location."),
+            @ApiResponse(code = 500, message = "The request was not completed due to an internal error on the server side."),
+            @ApiResponse(code = 503, message = "The server was unavailable."),
     }
     )
 
@@ -165,29 +170,24 @@ public class AgendaController implements WebMvcConfigurer {
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "POST: Create a record into AGENDA", response = Iterable.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            @ApiResponse(code = 200, message = "The request was successfully completed"),
+            @ApiResponse(code = 201, message = "Object was successfully created"),
+            @ApiResponse(code = 400, message = "The request was invalid."),
+            @ApiResponse(code = 401, message = "The request did not include an authentication token or the authentication token was expired."),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden."),
+            @ApiResponse(code = 404, message = "The requested resource was not found."),
+            @ApiResponse(code = 405, message = "The HTTP method in the request was not supported by the resource. For example, the DELETE method cannot be used with the Agent API."),
+            @ApiResponse(code = 409, message = "The request could not be completed due to a conflict. For example,  POST ContentStore Folder API cannot complete if the given file or folder name already exists in the parent location."),
+            @ApiResponse(code = 500, message = "The request was not completed due to an internal error on the server side."),
+            @ApiResponse(code = 503, message = "The server was unavailable."),
     }
     )
 
-    // TROQUEI AQUI
     @RequestMapping(value={"/api/v1/post/agendas/create/"}, method = RequestMethod.POST)
     public ModelAndView objectCreatePost(Model model,
-                                 // @Valid AgendaModel agendaModelValidation, BindingResult bindingResult,
                                  @ModelAttribute("object") AgendaModel agendaModel) {
 
-        /*
-            if (bindingResult.hasErrors()) {
-                ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName(TEMPLATE_EDIT);
-                return modelAndView;
-            }
-
-         */
-
-            try {
+        try {
 
             AgendaModel newContact = agendaService.createObject(agendaModel);
 
@@ -217,10 +217,16 @@ public class AgendaController implements WebMvcConfigurer {
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "GET: Update a record into AGENDA", response = Iterable.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            @ApiResponse(code = 200, message = "The request was successfully completed"),
+            @ApiResponse(code = 201, message = "Object was successfully created"),
+            @ApiResponse(code = 400, message = "The request was invalid."),
+            @ApiResponse(code = 401, message = "The request did not include an authentication token or the authentication token was expired."),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden."),
+            @ApiResponse(code = 404, message = "The requested resource was not found."),
+            @ApiResponse(code = 405, message = "The HTTP method in the request was not supported by the resource. For example, the DELETE method cannot be used with the Agent API."),
+            @ApiResponse(code = 409, message = "The request could not be completed due to a conflict. For example,  POST ContentStore Folder API cannot complete if the given file or folder name already exists in the parent location."),
+            @ApiResponse(code = 500, message = "The request was not completed due to an internal error on the server side."),
+            @ApiResponse(code = 503, message = "The server was unavailable."),
     }
     )
 
@@ -254,10 +260,16 @@ public class AgendaController implements WebMvcConfigurer {
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "POST: Update a record into AGENDA", response = Iterable.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            @ApiResponse(code = 200, message = "The request was successfully completed"),
+            @ApiResponse(code = 201, message = "Object was successfully created"),
+            @ApiResponse(code = 400, message = "The request was invalid."),
+            @ApiResponse(code = 401, message = "The request did not include an authentication token or the authentication token was expired."),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden."),
+            @ApiResponse(code = 404, message = "The requested resource was not found."),
+            @ApiResponse(code = 405, message = "The HTTP method in the request was not supported by the resource. For example, the DELETE method cannot be used with the Agent API."),
+            @ApiResponse(code = 409, message = "The request could not be completed due to a conflict. For example,  POST ContentStore Folder API cannot complete if the given file or folder name already exists in the parent location."),
+            @ApiResponse(code = 500, message = "The request was not completed due to an internal error on the server side."),
+            @ApiResponse(code = 503, message = "The server was unavailable."),
     }
     )
 
@@ -296,10 +308,16 @@ public class AgendaController implements WebMvcConfigurer {
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "GET: Delete a record from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            @ApiResponse(code = 200, message = "The request was successfully completed"),
+            @ApiResponse(code = 201, message = "Object was successfully created"),
+            @ApiResponse(code = 400, message = "The request was invalid."),
+            @ApiResponse(code = 401, message = "The request did not include an authentication token or the authentication token was expired."),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden."),
+            @ApiResponse(code = 404, message = "The requested resource was not found."),
+            @ApiResponse(code = 405, message = "The HTTP method in the request was not supported by the resource. For example, the DELETE method cannot be used with the Agent API."),
+            @ApiResponse(code = 409, message = "The request could not be completed due to a conflict. For example,  POST ContentStore Folder API cannot complete if the given file or folder name already exists in the parent location."),
+            @ApiResponse(code = 500, message = "The request was not completed due to an internal error on the server side."),
+            @ApiResponse(code = 503, message = "The server was unavailable."),
     }
     )
 
@@ -333,10 +351,16 @@ public class AgendaController implements WebMvcConfigurer {
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "POST: Delete a record from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+            @ApiResponse(code = 200, message = "The request was successfully completed"),
+            @ApiResponse(code = 201, message = "Object was successfully created"),
+            @ApiResponse(code = 400, message = "The request was invalid."),
+            @ApiResponse(code = 401, message = "The request did not include an authentication token or the authentication token was expired."),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden."),
+            @ApiResponse(code = 404, message = "The requested resource was not found."),
+            @ApiResponse(code = 405, message = "The HTTP method in the request was not supported by the resource. For example, the DELETE method cannot be used with the Agent API."),
+            @ApiResponse(code = 409, message = "The request could not be completed due to a conflict. For example,  POST ContentStore Folder API cannot complete if the given file or folder name already exists in the parent location."),
+            @ApiResponse(code = 500, message = "The request was not completed due to an internal error on the server side."),
+            @ApiResponse(code = 503, message = "The server was unavailable."),
     }
     )
 

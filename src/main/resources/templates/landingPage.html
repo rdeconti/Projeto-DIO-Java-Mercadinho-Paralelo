@@ -66,6 +66,20 @@
       <div class="jumbotron text-center">
         <h1>Mercadinho Paralelo</h1>
         <p>Nós temos o que você precisa</p>
+        <ul>
+          <li>
+            <br/>
+            <form th:action="@{/cartIndex}" method="get">
+              <button class="button-main" type="Submit">COMPRAR</button>
+            </form>
+          </li>
+          <li>
+            <br/>
+            <form th:action="@{/authorization/login}" method="get">
+              <button class="button-main" type="Submit">ENTRAR</button>
+            </form>
+          </li>
+        </ul>
       </div>
 
       <!-- Container (About Section) -->

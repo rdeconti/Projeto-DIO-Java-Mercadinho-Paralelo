@@ -1,21 +1,22 @@
 package com.rdeconti.mercadinho.models.stocker;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Data
-@Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name="MOVEMENTS")
 public class MovementModel implements Serializable {
@@ -46,12 +47,12 @@ public class MovementModel implements Serializable {
     @NotEmpty(message = "*Por favor informar a data do movimento")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "movement_date")
-    private Date movementAt = new Date();
+    private LocalDateTime movementAt = LocalDateTime.now();
 
     @PositiveOrZero
     @Column(name = "movement_amount")
     @NotEmpty(message = "*Por favor informar a quantidade movimentada")
-    private Double amount;
+    private BigDecimal amount;
 
     @NotEmpty(message = "*Por favor informar a situação")
     @Column(name = "movement_status")
@@ -60,12 +61,12 @@ public class MovementModel implements Serializable {
     @NotEmpty(message = "*Por favor informar a data de criação")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "movement_created_at")
-    private Date created_at = new Date();
+    private LocalDateTime created_at = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar a data de alteração")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "movement_changed_at")
-    private Date changed_at = new Date();
+    private LocalDateTime changed_at = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar o responsável pela criação")
     @Column(name = "movement_created_by")
