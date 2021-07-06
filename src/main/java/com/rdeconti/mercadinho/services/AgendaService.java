@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// Class: Service level that execute business rules object AGENDA
+// -----------------------------------------------------------------------------------------------------------------
 package com.rdeconti.mercadinho.services;
 
 import com.rdeconti.mercadinho.exception.BadResourceException;
@@ -18,69 +25,115 @@ import java.util.List;
 @Service
 public class AgendaService {
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private AgendaRepository agendaRepository;
 
-    private boolean existsById(Long id) {
+    // -----------------------------------------------------------------------------------------------------------------
+    // Returns whether an entity with the given id exists
+    // -----------------------------------------------------------------------------------------------------------------
+    private boolean existsObjectById(Long id) {
         return agendaRepository.existsById(id);
     }
 
-    public AgendaModel findById(Long id) throws ResourceNotFoundException {
-        AgendaModel contact = agendaRepository.findById(id).orElse(null);
-        if (contact==null) {
-            throw new ResourceNotFoundException("Cannot find Contact with id: " + id);
+    // -----------------------------------------------------------------------------------------------------------------
+    // Retrieves an entity by its id
+    // -----------------------------------------------------------------------------------------------------------------
+    public AgendaModel findObjectById(Long id) throws ResourceNotFoundException {
+
+        AgendaModel agendaModel = agendaRepository.findById(id).orElse(null);
+
+        if (agendaModel==null) {
+            throw new ResourceNotFoundException("Registro não encontrado com este ID: " + id);
         }
-        else return contact;
+
+        else
+            return agendaModel;
     }
 
-    public List<AgendaModel> findAll(int pageNumber, int rowPerPage) {
-        List<AgendaModel> contacts = new ArrayList<>();
+    // -----------------------------------------------------------------------------------------------------------------
+    // Returns a page of entities meeting the paging restriction provided in the pageable object
+    // -----------------------------------------------------------------------------------------------------------------
+    public List<AgendaModel> findObjectList(int pageNumber, int rowPerPage) {
+
+        List<AgendaModel> modelArrayList = new ArrayList<>();
+
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
-        agendaRepository.findAll(sortedByIdAsc).forEach(contacts::add);
-        return contacts;
+
+        agendaRepository.findAll(sortedByIdAsc).forEach(modelArrayList::add);
+        return modelArrayList;
     }
 
-    public AgendaModel save(AgendaModel contact) throws BadResourceException, ResourceAlreadyExistsException {
-        if (!StringUtils.isEmpty(contact.getName())) {
-            if (contact.getId() != null && existsById(contact.getId())) {
-                throw new ResourceAlreadyExistsException("Contact with id: " + contact.getId() +
-                        " already exists");
+    // -----------------------------------------------------------------------------------------------------------------
+    // Create object
+    // -----------------------------------------------------------------------------------------------------------------
+    public AgendaModel createObject(AgendaModel agendaModel) throws BadResourceException, ResourceAlreadyExistsException {
+
+        if (agendaModel.getName() != null) {
+
+            if (agendaModel.getId() != null && existsObjectById(agendaModel.getId())) {
+
+                throw new ResourceAlreadyExistsException
+                        ("Registro com ID: " + agendaModel.getId() + " criado com sucesso!");
             }
-            return agendaRepository.save(contact);
+
+            return agendaRepository.save(agendaModel);
         }
+
         else {
-            BadResourceException exc = new BadResourceException("Failed to save contact");
-            exc.addErrorMessage("Contact is null or empty");
-            throw exc;
+
+            BadResourceException badResourceException = new BadResourceException("Erro ao salvar o registro");
+            badResourceException.addErrorMessage("Registro está nulo ou vazio");
+            throw badResourceException;
         }
+
     }
 
-    public void update(AgendaModel contact)
+    // -----------------------------------------------------------------------------------------------------------------
+    // Update object
+    // -----------------------------------------------------------------------------------------------------------------
+    public void updateObject(AgendaModel agendaModel)
             throws BadResourceException, ResourceNotFoundException {
-        if (!StringUtils.isEmpty(contact.getName())) {
-            if (!existsById(contact.getId())) {
-                throw new ResourceNotFoundException("Cannot find Contact with id: " + contact.getId());
+
+        if (!StringUtils.isEmpty(agendaModel.getName())) {
+
+            if (!existsObjectById(agendaModel.getId())) {
+                throw new ResourceNotFoundException("Registro não encontrado com ID: " + agendaModel.getId());
             }
-            agendaRepository.save(contact);
+
+            agendaRepository.save(agendaModel);
         }
+
         else {
-            BadResourceException exc = new BadResourceException("Failed to save contact");
-            exc.addErrorMessage("Contact is null or empty");
-            throw exc;
+
+            BadResourceException badResourceException = new BadResourceException("Erro ao salvar o registro");
+            badResourceException.addErrorMessage("Registro está nulo ou vazio");
+            throw badResourceException;
         }
+
     }
 
-    public void deleteById(Long id) throws ResourceNotFoundException {
-        if (!existsById(id)) {
+    // -----------------------------------------------------------------------------------------------------------------
+    // Delete object
+    // -----------------------------------------------------------------------------------------------------------------
+    public void deleteObject(Long id) throws ResourceNotFoundException {
+
+        if (!existsObjectById(id)) {
             throw new ResourceNotFoundException("Cannot find contact with id: " + id);
         }
+
         else {
             agendaRepository.deleteById(id);
         }
     }
 
-    public Long count() {
+    // -----------------------------------------------------------------------------------------------------------------
+    // Count number of registers of Object
+    // -----------------------------------------------------------------------------------------------------------------
+    public Long countObject() {
         return agendaRepository.count();
     }
 }

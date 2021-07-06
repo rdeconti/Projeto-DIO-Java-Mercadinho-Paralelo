@@ -32,49 +32,49 @@
               <div class="form-group form-inline">
                 <label class="control-label col-sm-6" for="name">Nome</label>
                 <input SIZE=40 type="text" class="form-control input-sm" id="name" th:field="*{name}">
-                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
               </div>
 
               <div class="form-group form-inline">
                   <label class="control-label col-sm-6" for="phone">Telefone</label>
                   <input SIZE=40 type="text" class="form-control input-sm" id="phone" th:field="*{phone}">
-                  <label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</label>
+                  <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</p>
               </div>
 
               <div class="form-group form-inline">
                   <label class="control-label col-sm-6" for="email">Email</label>
                   <input SIZE=40 type="email" class="form-control input-sm" id="email" th:field="*{email}">
-                  <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</label>
+                  <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>
               </div>
 
               <div class="form-group form-inline">
                   <label class="control-label col-sm-6" for="address1">Endereço1</label>
                   <input SIZE=40 type="text" class="form-control input-sm" id="address1" th:field="*{address1}">
-                  <label th:if="${#fields.hasErrors('address1')}" th:errors="*{address1}">Address1 Error</label>
+                  <p th:if="${#fields.hasErrors('address1')}" th:errors="*{address1}">Address1 Error</p>
               </div>
 
               <div class="form-group form-inline">
                   <label class="control-label col-sm-6" for="address2">Endereço2</label>
                   <input SIZE=40 type="text" class="form-control input-sm" id="address2" th:field="*{address2}">
-                  <label th:if="${#fields.hasErrors('address2')}" th:errors="*{address1}">Address2 Error</label>
+                  <p th:if="${#fields.hasErrors('address2')}" th:errors="*{address1}">Address2 Error</p>
               </div>
 
               <div class="form-group form-inline">
                   <label class="control-label col-sm-6" for="address3">Endereço3</label>
                   <input SIZE=40 type="text" class="form-control input-sm" id="address3" th:field="*{address3}">
-                  <label th:if="${#fields.hasErrors('address3')}" th:errors="*{address1}">Address3 Error</label>
+                  <p th:if="${#fields.hasErrors('address3')}" th:errors="*{address1}">Address3 Error</p>
               </div>
 
               <div class="form-group form-inline">
                   <label class="control-label col-sm-6" for="address3">Código postal</label>
                   <input SIZE=40 type="text" class="form-control input-sm" id="postalCode" th:field="*{postalCode}">
-                  <label th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}">Postal Code Error</label>
+                  <p th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}">Postal Code Error</p>
               </div>
 
               <div class="form-group form-inline">
                   <label class="control-label col-sm-6" for="comment">Observações</label>
                   <textarea rows="3" class="form-control input-sm"  id="comment" th:field="*{note}"></textarea>
-                  <label th:if="${#fields.hasErrors('note')}" th:errors="*{note}">Note Error</label>
+                  <p th:if="${#fields.hasErrors('note')}" th:errors="*{note}">Note Error</p>
               </div>
 
               <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />

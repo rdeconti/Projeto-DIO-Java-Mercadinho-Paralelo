@@ -2,6 +2,10 @@ package com.rdeconti.mercadinho.controller;
 
 import com.rdeconti.mercadinho.models.manager.UserModel;
 import com.rdeconti.mercadinho.services.manager.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,11 +15,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
+// TODO REVISAR EM TODOS OS CONTROLLERS A DOCUMENTÇÃO API
+
+@Api(value="Mercadinho Paralelo - Login Controller")
 @Controller
 public class LoginController {
 
-    @Autowired
+    /// @Autowired
     private UserService userService;
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // List objects (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
+
+    ////// @RequestMapping(value={"/api/v1/get/agendas/list/"}, method = RequestMethod.GET)
 
     @RequestMapping(value={"/authorization/noAccess"}, method = RequestMethod.GET)
     public ModelAndView noAccess(){
@@ -25,6 +46,17 @@ public class LoginController {
         return modelAndView;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // List objects (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
     @RequestMapping(value={"/"}, method = RequestMethod.GET)
     public ModelAndView landingPage(){
 
@@ -33,6 +65,17 @@ public class LoginController {
         return modelAndView;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // List objects (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
     @RequestMapping(value={"/authorization/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
 
@@ -41,6 +84,17 @@ public class LoginController {
         return modelAndView;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // List objects (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
     @RequestMapping(value="/authorization/registration", method = RequestMethod.GET)
     public ModelAndView registration(){
 
@@ -51,6 +105,17 @@ public class LoginController {
         return modelAndView;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // List objects (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
     @RequestMapping(value = "/authorization/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid UserModel userModel, BindingResult bindingResult) {
 

@@ -1,7 +1,10 @@
 <!DOCTYPE HTML>
 
 <html lang="pt-br"
-      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
 
       <!-- Include HEAD -->
       <th:block th:include="/fragments/_head"> </th:block>
@@ -84,20 +87,12 @@
 
               <br/><br/>
 
-              <form th:action="@{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}" method="POST">
-                Alterar <input type="submit" />
-              </form>
-
-              <form th:action="@{/api/v1/post/agendas/delete/id/{objectId}/(objectId=${object.id})}" method="POST">
-                Excluir <input type="submit" />
-              </form>
-
               <div th:if="not ${allowDelete}">
-                <a class="btn btn-primary" th:href="@{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}">Alterar</a> |
-                <a class="btn btn-primary" th:href="@{/api/v1/post/agendas/delete/id/{objectId}/(objectId=${object.id})}">Excluir</a>
+                <a class="btn btn-primary" th:href="@{/api/v1/post/agendas/update/id/(objectId=${object.id})}">Alterar</a> |
+                <a class="btn btn-primary" th:href="@{/api/v1/post/agendas/delete/id/(objectId=${object.id})}">Excluir</a>
               </div>
 
-              <form th:if="${allowDelete}" th:action="@{/api/v1/post/agendas/delete/id/{objectId}/(objectId=${object.id})}" method="POST">
+              <form th:if="${allowDelete}" th:action="@{/api/v1/post/agendas/delete/id/(objectId=${object.id})}" method="POST">
                 Excluir este contato? <input type="submit" th:value="Sim" />
               </form>
 

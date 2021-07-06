@@ -1,77 +1,73 @@
 <!DOCTYPE HTML>
 
 <html lang="pt-br"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org ">
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="">
 
       <!-- Include HEAD -->
       <th:block th:include="/fragments/_head"> </th:block>
 
       <body>
 
-      <!-- Include HEADER -->
-      <th:block th:include="/fragments/_header"> </th:block>
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
 
-      <!-- start MAIN -->
-      <main>
+        <!-- start MAIN -->
+        <main>
 
-        <div class="container" align="center">
+          <div class="container" align="center">
 
-          <h1>Lista de Contatos</h1>
+            <h1>Lista de Contatos</h1>
 
-          <br/><br/>
-          <a class="btn btn-primary" th:href="@{/contacts/add}">Incluir contato</a>
-          <br/><br/>
+            <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/create/}">Incluir contato</a>
+            <br/>
 
-          <div>
+            <div>
 
-            <table class="table table-hover">
+              <table class="table table-hover">
 
-              <thead>
+                <thead>
 
-                <tr>
-                  <th>Número</th>
-                  <th>Nome</th>
-                  <th>Telefone</th>
-                  <th>Email</th>
-                  <th>Alterar</th>
-                </tr>
+                  <tr>
+                    <th>Número</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Alterar</th>
+                  </tr>
 
-              </thead>
+                </thead>
 
-              <tbody>
+                <tbody>
 
-                <tr th:each ="contact : ${contacts}">
-                  <td><a th:href="@{/contacts/{contactId}(contactId=${contact.id})}" th:utext="${contact.id}">...</a></td>
-                  <td><a th:href="@{/contacts/{contactId}(contactId=${contact.id})}" th:utext="${contact.name}">...</a></td>
-                  <td th:utext="${contact.phone}">...</td>
-                  <td th:utext="${contact.email}">...</td>
-                  <td><a th:href="@{/contacts/{contactId}/edit(contactId=${contact.id})}">Alterar</a></td>
-                </tr>
+                  <tr th:each ="object : ${objects}">
 
-              </tbody>
+                    <td th:utext="${object.id}">...</td>
+                    <td th:utext="${object.name}">...</td>
+                    <td th:utext="${object.phone}">...</td>
+                    <td th:utext="${object.email}">...</td>
 
-            </table>
+                    <td><a th:href="@{/api/v1/get/agendas/update/id/{objectId}/(objectId=${object.id})}">Alterar</a></td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+            <div>
+              <br/>
+              <span th:if="${hasPrev}"><a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/?page={prev}(prev=${prev})}">Anterior</a>&nbsp;&nbsp;&nbsp;</span>
+              <span th:if="${hasNext}"><a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/?page={next}(next=${next})}">Próximo</a></span>
+            </div>
 
           </div>
 
-          <br/><br/>
-
-          <div>
-            <nobr>
-              <span th:if="${hasPrev}"><a class="btn btn-primary" th:href="@{/contacts?page={prev}(prev=${prev})}">Anterior</a>&nbsp;&nbsp;&nbsp;</span>
-              <span th:if="${hasNext}"><a class="btn btn-primary" th:href="@{/contacts?page={next}(next=${next})}">Próximo</a></span>
-            </nobr>
-          </div>
-
-        </div>
+        </main>
 
         <!-- Include FOOTER -->
         <th:block th:include="/fragments/_footer"> </th:block>
-
-      </main>
 
     </body>
 

@@ -1,172 +1,369 @@
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// Class: Controller to send and receive http messages regarding object AGENDA
+// -----------------------------------------------------------------------------------------------------------------
 package com.rdeconti.mercadinho.controller;
 
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.AgendaModel;
 import com.rdeconti.mercadinho.services.AgendaService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Api(value="Mercadinho Paralelo - Agenda Controller")
 @Controller
-public class AgendaController {
+@Validated
+public class AgendaController implements WebMvcConfigurer {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final int ROW_PER_PAGE = 5;
+    private static final String TEMPLATE_EDIT = "agenda/agenda-edit";
+    private static final String TEMPLATE_READ = "agenda/agenda-read";
+    private static final String TEMPLATE_LIST = "agenda/agenda-list";
 
+    private static final String ATTRIBUTE_OBJECT = "object";
+    private static final String ATTRIBUTE_NAME_ERROR_MESSAGE = "errorMessage";
+    private static final String ATTRIBUTE_VALUE_ERROR_MESSAGE = "Registro não encontrado";
+
+    private static final int ROW_PER_PAGE = 5;
+
+    //
+    //@InitBinder
+    //public void InitBinder(WebDataBinder dataBinder) {
+    //    StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+    //    dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    //}
+
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private AgendaService agendaService;
 
-    @RequestMapping(value={"/contacts"}, method = RequestMethod.GET)
-    public ModelAndView getContacts(Model model,
-                              @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
+    // -----------------------------------------------------------------------------------------------------------------
+    // List objects (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
 
-        List<AgendaModel> contacts = agendaService.findAll(pageNumber, ROW_PER_PAGE);
+    @RequestMapping(value={"/api/v1/get/agendas/list/"}, method = RequestMethod.GET)
+    public ModelAndView objectsList(Model model,
+        @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
-        long count = agendaService.count();
+        // Create list of objects limited at rows per page
+        List<AgendaModel> agendaModelList = agendaService.findObjectList(pageNumber, ROW_PER_PAGE);
+
+        // Calculate number of pages and define values to previous and next
+        long count = agendaService.countObject();
         boolean hasPrev = pageNumber > 1;
-        boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
+        boolean hasNext = ((long) pageNumber * ROW_PER_PAGE) < count;
 
-        model.addAttribute("contacts", contacts);
+        // Set attributes to be used by Thymeleaf
+        model.addAttribute("objects", agendaModelList);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("next", pageNumber + 1);
 
+        // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("agenda/agenda-list");
+        modelAndView.setViewName(TEMPLATE_LIST);
         return modelAndView;
 
     }
 
-    @RequestMapping(value={"/contacts/{contactId}"}, method = RequestMethod.GET)
-    public ModelAndView getContactById(Model model, @PathVariable long contactId) {
-        AgendaModel contact = null;
+    // -----------------------------------------------------------------------------------------------------------------
+    // Read object (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "Return a specific record from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
+
+    @RequestMapping(value={"/api/v1/get/agendas/read/id/{objectId}"}, method = RequestMethod.GET)
+    public ModelAndView objectRead(Model model, @PathVariable long objectId) {
+
+        AgendaModel agendaModel = null;
+
         try {
-            contact = agendaService.findById(contactId);
-        } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Contact not found");
+            agendaModel = agendaService.findObjectById(objectId);
+
+        } catch (ResourceNotFoundException exception) {
+            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
         }
-        model.addAttribute("contact", contact);
+
+        // Set attributes to be used by Thymeleaf
+        model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
+
+        // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("agenda/agenda-read");
+        modelAndView.setViewName(TEMPLATE_READ);
         return modelAndView;
     }
 
-    @RequestMapping(value={"/contacts/add"}, method = RequestMethod.GET)
-    public ModelAndView showAddContact(Model model) {
-        AgendaModel contact = new AgendaModel();
+    // -----------------------------------------------------------------------------------------------------------------
+    // Create object (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "GET: Create a record into AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
+
+    @RequestMapping(value={"/api/v1/get/agendas/create/"}, method = RequestMethod.GET)
+    public ModelAndView objectCreateGet(Model model) {
+
+        AgendaModel agendaModel = new AgendaModel();
+
+        // Set attributes to be used by Thymeleaf
         model.addAttribute("add", true);
-        model.addAttribute("contact", contact);
+        model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
 
+        // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("agenda/agenda-edit");
+        modelAndView.setViewName(TEMPLATE_EDIT);
+
         return modelAndView;
     }
 
-    @RequestMapping(value={"/contacts/add"}, method = RequestMethod.POST)
-    public ModelAndView addContact(Model model,
-                             @ModelAttribute("contact") AgendaModel contact) {
-        try {
-            AgendaModel newContact = agendaService.save(contact);
+    // -----------------------------------------------------------------------------------------------------------------
+    // Create object (POST)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "POST: Create a record into AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
+
+    // TROQUEI AQUI
+    @RequestMapping(value={"/api/v1/post/agendas/create/"}, method = RequestMethod.POST)
+    public ModelAndView objectCreatePost(Model model,
+                                 // @Valid AgendaModel agendaModelValidation, BindingResult bindingResult,
+                                 @ModelAttribute("object") AgendaModel agendaModel) {
+
+        /*
+            if (bindingResult.hasErrors()) {
+                ModelAndView modelAndView = new ModelAndView();
+                modelAndView.setViewName(TEMPLATE_EDIT);
+                return modelAndView;
+            }
+
+         */
+
+            try {
+
+            AgendaModel newContact = agendaService.createObject(agendaModel);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/contacts/" + String.valueOf(newContact.getId()));
+            modelAndView.setViewName("redirect:/api/v1/get/agendas/read/id/" + newContact.getId());
             return modelAndView;
 
+        } catch (Exception exception) {
 
-        } catch (Exception ex) {
-            // log exception first,
-            // then show error
-            String errorMessage = ex.getMessage();
+            String errorMessage = exception.getMessage();
             logger.error(errorMessage);
-            model.addAttribute("errorMessage", errorMessage);
 
-            //model.addAttribute("contact", contact);
+            // Set attributes to be used by Thymeleaf
+            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
             model.addAttribute("add", true);
+
+            // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("agenda/agenda-edit");
+            modelAndView.setViewName(TEMPLATE_EDIT);
             return modelAndView;
 
         }
     }
 
-    @RequestMapping(value={"/contacts/{contactId}/edit"}, method = RequestMethod.GET)
-    public ModelAndView showEditContact(Model model, @PathVariable long contactId) {
-        AgendaModel contact = null;
+    // -----------------------------------------------------------------------------------------------------------------
+    // Update object (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "GET: Update a record into AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
+
+    @RequestMapping(value={"/api/v1/get/agendas/update/id/{objectId}/"}, method = RequestMethod.GET)
+    public ModelAndView objectUpdateGet(Model model, @PathVariable long objectId) {
+
+        AgendaModel agendaModel = null;
+
         try {
-            contact = agendaService.findById(contactId);
-        } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Contact not found");
+
+            agendaModel = agendaService.findObjectById(objectId);
+
+        } catch (ResourceNotFoundException exception) {
+
+            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
+
         }
+
+        // Set attributes to be used by Thymeleaf
         model.addAttribute("add", false);
-        model.addAttribute("contact", contact);
+        model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
+
+        // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("agenda/agenda-edit");
+        modelAndView.setViewName(TEMPLATE_EDIT);
         return modelAndView;
     }
 
-    @RequestMapping(value={"/contacts/{contactId}/edit"}, method = RequestMethod.POST)
-    public ModelAndView updateContact(Model model,
-                                @PathVariable long contactId,
-                                @ModelAttribute("contact") AgendaModel contact) {
+    // -----------------------------------------------------------------------------------------------------------------
+    // Update object (POST)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "POST: Update a record into AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
+
+    @RequestMapping(value={"/api/v1/post/agendas/update/id/{objectId}"}, method = RequestMethod.POST)
+    public ModelAndView objectUpdatePost(Model model,
+                                      @PathVariable long objectId,
+                                      @ModelAttribute("object") AgendaModel agendaModel) {
+
         try {
-            contact.setId(contactId);
-            agendaService.update(contact);
+
+            agendaModel.setId(objectId);
+            agendaService.updateObject(agendaModel);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/contacts/" + String.valueOf(contact.getId()));
+            modelAndView.setViewName("redirect:/api/v1/get/agendas/read/id/" + agendaModel.getId());
             return modelAndView;
-        } catch (Exception ex) {
-            // log exception first,
-            // then show error
-            String errorMessage = ex.getMessage();
-            logger.error(errorMessage);
-            model.addAttribute("errorMessage", errorMessage);
 
+        } catch (Exception exception) {
+
+            String errorMessage = exception.getMessage();
+            logger.error(errorMessage);
+
+            // Set attributes to be used by Thymeleaf
+            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
             model.addAttribute("add", false);
+
+            // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("agenda/agenda-edit");
+            modelAndView.setViewName(TEMPLATE_EDIT);
             return modelAndView;
         }
     }
 
-    @RequestMapping(value={"/contacts/{contactId}/delete"}, method = RequestMethod.GET)
-    public ModelAndView showDeleteContactById(
-            Model model, @PathVariable long contactId) {
-        AgendaModel contact = null;
+    // -----------------------------------------------------------------------------------------------------------------
+    // Delete object (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "GET: Delete a record from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
+
+    @RequestMapping(value={"/api/v1/get/agendas/delete/id/{objectId}"}, method = RequestMethod.GET)
+    public ModelAndView objectDeleteGet(
+            Model model, @PathVariable long objectId) {
+
+        AgendaModel agendaModel = null;
+
         try {
-            contact = agendaService.findById(contactId);
-        } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "Contact not found");
+            agendaModel = agendaService.findObjectById(objectId);
+
+        } catch (ResourceNotFoundException exception) {
+
+            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
+
         }
+
+        // Set attributes to be used by Thymeleaf
         model.addAttribute("allowDelete", true);
-        model.addAttribute("contact", contact);
+        model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
+
+        // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("agenda/agenda-read");
+        modelAndView.setViewName(TEMPLATE_READ);
         return modelAndView;
     }
 
-    @RequestMapping(value={"/contacts/{contactId}/delete"}, method = RequestMethod.POST)
-    public ModelAndView deleteContactById(
-            Model model, @PathVariable long contactId) {
+    // -----------------------------------------------------------------------------------------------------------------
+    // Delete object (POST)
+    // -----------------------------------------------------------------------------------------------------------------
+    @ApiOperation(value = "POST: Delete a record from AGENDA", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    }
+    )
+
+    @RequestMapping(value={"/api/v1/post/agendas/delete/id/{objectId}"}, method = RequestMethod.POST)
+    public ModelAndView objectDeletePost(
+           Model model, @PathVariable long objectId) {
+
         try {
-            agendaService.deleteById(contactId);
+
+            agendaService.deleteObject(objectId);
+
+            // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/contacts/");
+            modelAndView.setViewName("redirect:/api/v1/get/agendas/list/");
             return modelAndView;
-        } catch (ResourceNotFoundException ex) {
-            String errorMessage = ex.getMessage();
+
+        } catch (ResourceNotFoundException exception) {
+
+            String errorMessage = exception.getMessage();
             logger.error(errorMessage);
-            model.addAttribute("errorMessage", errorMessage);
+
+            // Set attributes to be used by Thymeleaf
+            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
+
+            // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("agenda/agenda-read");
+            modelAndView.setViewName(TEMPLATE_READ);
             return modelAndView;
         }
     }

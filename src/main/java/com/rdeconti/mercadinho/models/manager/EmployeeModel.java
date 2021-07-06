@@ -22,6 +22,7 @@ public class EmployeeModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    // TODO VERIFICAR SE TODOS IDS ESTÃO SENDO GERADOS AUTOMATICAMENTE
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "employee_ID", nullable = false)

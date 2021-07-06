@@ -3,10 +3,10 @@
     <!-- Include HEAD -->
     <th:block th:include="/fragments/_head"> </th:block>
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 
         <a class="navbar-brand" th:href="@{/purchaser/index}">
-            <img alt="logo" style="width:160px; height:50px;" th:src="@{/images/mercadinho.jpg}">
+            <img alt="logo" style="width:140px; height:40px;" th:src="@{/images/mercadinho.png}">
         </a>
 
         <ul class="navbar-nav">
@@ -16,7 +16,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/contacts}">Agenda</a>
+                <a class="nav-link" th:href="@{/api/v1/get/agendas/list/}">Agenda</a>
             </li>
 
             <li class="nav-item">
