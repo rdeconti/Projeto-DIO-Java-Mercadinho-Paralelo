@@ -12,6 +12,7 @@ import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.AgendaModel;
 import com.rdeconti.mercadinho.repositories.AgendaRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -46,11 +47,14 @@ public class AgendaService {
         AgendaModel agendaModel = agendaRepository.findById(id).orElse(null);
 
         if (agendaModel==null) {
-            throw new ResourceNotFoundException("Registro não encontrado com este ID: " + id);
-        }
 
-        else
+            throw new ResourceNotFoundException("Registro não encontrado com este ID: " + id);
+
+        } else {
+
             return agendaModel;
+
+        }
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -70,25 +74,25 @@ public class AgendaService {
     // -----------------------------------------------------------------------------------------------------------------
     // Create object
     // -----------------------------------------------------------------------------------------------------------------
-    public AgendaModel createObject(AgendaModel agendaModel) throws BadResourceException, ResourceAlreadyExistsException {
+    public AgendaModel createObject(@NotNull AgendaModel agendaModel) throws BadResourceException, ResourceAlreadyExistsException {
 
-        if (agendaModel.getName() != null) {
-
-            if (agendaModel.getId() != null && existsObjectById(agendaModel.getId())) {
-
-                throw new ResourceAlreadyExistsException
-                        ("Registro com ID: " + agendaModel.getId() + " criado com sucesso!");
-            }
-
-            return agendaRepository.save(agendaModel);
-        }
-
-        else {
+        if (agendaModel.getName() == null) {
 
             BadResourceException badResourceException = new BadResourceException("Erro ao salvar o registro");
             badResourceException.addErrorMessage("Registro está nulo ou vazio");
             throw badResourceException;
+
         }
+
+        if (agendaModel.getId() != null && existsObjectById(agendaModel.getId())) {
+
+            BadResourceException badResourceException = new BadResourceException("Erro ao salvar o registro");
+            badResourceException.addErrorMessage("Registro já existe!");
+            throw badResourceException;
+
+        }
+
+        return agendaRepository.save(agendaModel);
 
     }
 

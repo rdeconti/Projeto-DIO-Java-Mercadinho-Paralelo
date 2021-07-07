@@ -35,51 +35,43 @@ public class AgendaModel implements Serializable {
     private Long id;
 
     @Valid
-    @NotEmpty(message = "*Por favor informar o nome")
-    @Size(max = 100)
+    @NotEmpty()
     @Column(name = "agenda_name")
     private String name;
 
     @Valid
-    @NotEmpty(message = "*Por favor informar o telefone")
-    @Pattern(regexp ="^\\+?[0-9. ()-]{7,25}$")
-    @Size(max = 25)
+    @NotEmpty()
     @Column(name = "agenda_phone")
     private String phone;
 
     @Valid
-    @NotEmpty(message = "*Por favor informar o e-mail")
+    @NotEmpty()
     @Email(message = "Email Address")
-    @Size(max = 100)
     @Column(name = "agenda_email")
     private String email;
 
     @Valid
-    @NotEmpty(message = "*Por favor informar o endereço")
-    @Size(max = 50)
+    @NotEmpty()
     @Column(name = "agenda_address1")
     private String address1;
 
     @Valid
-    @NotEmpty(message = "*Por favor informar o endereço")
-    @Size(max = 50)
+    @NotEmpty()
     @Column(name = "agenda_address2")
     private String address2;
 
     @Valid
-    @NotEmpty(message = "*Por favor informar o endereço")
-    @Size(max = 50)
+    @NotEmpty()
     @Column(name = "agenda_address3")
     private String address3;
 
     @Valid
-    @NotEmpty(message = "*Por favor informar o código postal")
-    @Size(max = 20)
+    @NotEmpty()
     @Column(name = "agenda_postal")
     private String postalCode;
 
     @Valid
-    @NotEmpty(message = "*Por favor informar as observações")
+    @NotEmpty()
     @Column(name = "agenda_note", length = 4000)
     private String note;
 }

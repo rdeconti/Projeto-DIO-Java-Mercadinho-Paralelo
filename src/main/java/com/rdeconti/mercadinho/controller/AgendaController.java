@@ -28,7 +28,7 @@ import java.util.List;
 @Api(value="Mercadinho Paralelo - Agenda Controller")
 @Controller
 @Validated
-public class AgendaController implements WebMvcConfigurer {
+public class AgendaController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -116,14 +116,19 @@ public class AgendaController implements WebMvcConfigurer {
         AgendaModel agendaModel = null;
 
         try {
+
+            // Obtain object by ID
             agendaModel = agendaService.findObjectById(objectId);
 
-        } catch (ResourceNotFoundException exception) {
-            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
-        }
+            // Set attributes to be used by Thymeleaf
+            model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
 
-        // Set attributes to be used by Thymeleaf
-        model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
+        } catch (ResourceNotFoundException resourceNotFoundException) {
+
+            // Set message error
+            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
+
+        }
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
@@ -152,6 +157,7 @@ public class AgendaController implements WebMvcConfigurer {
     @RequestMapping(value={"/api/v1/get/agendas/create/"}, method = RequestMethod.GET)
     public ModelAndView objectCreateGet(Model model) {
 
+        // Generate empty object
         AgendaModel agendaModel = new AgendaModel();
 
         // Set attributes to be used by Thymeleaf
@@ -189,15 +195,19 @@ public class AgendaController implements WebMvcConfigurer {
 
         try {
 
+            // Create object
             AgendaModel newContact = agendaService.createObject(agendaModel);
 
+            // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/api/v1/get/agendas/read/id/" + newContact.getId());
             return modelAndView;
 
         } catch (Exception exception) {
 
-            String errorMessage = exception.getMessage();
+            // Get message exception
+            // String errorMessage = exception.getMessage();
+            String errorMessage = "Informar os campos obrigatórios (*)";
             logger.error(errorMessage);
 
             // Set attributes to be used by Thymeleaf
@@ -289,7 +299,8 @@ public class AgendaController implements WebMvcConfigurer {
 
         } catch (Exception exception) {
 
-            String errorMessage = exception.getMessage();
+            // String errorMessage = exception.getMessage();
+            String errorMessage = "Informar os campos obrigatórios (*)";
             logger.error(errorMessage);
 
             // Set attributes to be used by Thymeleaf

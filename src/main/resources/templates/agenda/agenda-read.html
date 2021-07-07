@@ -18,148 +18,63 @@
 
             <h1>Exibir Contato</h1>
 
-            <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar Contatos</a>
-
-            <br/><br/>
-
             <div th:if="${object}">
 
-              <form class="form-horizontal" th:object="${object}">
+              <form class="form-horizontal"
+                    th:action="@{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}"
+                    th:object="${object}" method="POST">
 
-                <!--
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="number">Número</label>
-                  <input type="number" class="form-control" id="number" th:field="${object.id}" disabled>
-                </div>
-                -->
+                      <div class="form-group form-inline">
+                        <label class="control-label col-sm-6" for="name">Nome</label>
+                        <input SIZE=40 type="text" class="form-control input-sm" id="name" th:field="*{name}" disabled>
+                      </div>
 
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="name">Nome</label>
-                  <input SIZE=40 type="text" class="form-control input-sm" id="name" th:field="*{name}" disabled>
-                </div>
+                      <div class="form-group form-inline">
+                        <label class="control-label col-sm-6" for="phone">Telefone</label>
+                        <input SIZE=40 type="text" class="form-control input-sm" id="phone" th:field="*{phone}" disabled>
+                      </div>
 
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="phone">Telefone</label>
-                  <input SIZE=40 type="text" class="form-control input-sm" id="phone" th:field="*{phone}" disabled>
-                </div>
+                      <div class="form-group form-inline">
+                        <label class="control-label col-sm-6" for="email">Email</label>
+                        <input SIZE=40 type="email" class="form-control input-sm" id="email" th:field="*{email}" disabled>
+                      </div>
 
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="email">Email</label>
-                  <input SIZE=40 type="email" class="form-control input-sm" id="email" th:field="*{email}" disabled>
-                </div>
+                      <div class="form-group form-inline">
+                        <label class="control-label col-sm-6" for="address1">Endereço1</label>
+                        <input SIZE=40 type="text" class="form-control input-sm" id="address1" th:field="*{address1}" disabled>
+                      </div>
 
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="address1">Endereço1</label>
-                  <input SIZE=40 type="text" class="form-control input-sm" id="address1" th:field="*{address1}" disabled>
-                </div>
+                      <div class="form-group form-inline">
+                        <label class="control-label col-sm-6" for="address2">Endereço2</label>
+                        <input SIZE=40 type="text" class="form-control input-sm" id="address2" th:field="*{address2}" disabled>
+                      </div>
 
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="address2">Endereço2</label>
-                  <input SIZE=40 type="text" class="form-control input-sm" id="address2" th:field="*{address2}" disabled>
-                </div>
+                      <div class="form-group form-inline">
+                        <label class="control-label col-sm-6" for="address3">Endereço3</label>
+                        <input SIZE=40 type="text" class="form-control input-sm" id="address3" th:field="*{address3}" disabled>
+                      </div>
 
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="address3">Endereço3</label>
-                  <input SIZE=40 type="text" class="form-control input-sm" id="address3" th:field="*{address3}" disabled>
-                </div>
+                      <div class="form-group form-inline">
+                        <label class="control-label col-sm-6" for="address3">Código postal</label>
+                        <input SIZE=40 type="text" class="form-control input-sm" id="postalCode" th:field="*{postalCode}" disabled>
+                      </div>
 
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="address3">Código postal</label>
-                  <input SIZE=40 type="text" class="form-control input-sm" id="postalCode" th:field="*{postalCode}" disabled>
-                </div>
+                      <div class="form-group form-inline">
+                        <label class="control-label col-sm-6" for="comment">Observações</label>
+                        <textarea rows="3" class="form-control input-sm"  id="comment" th:field="*{note}" disabled></textarea>
+                      </div>
 
-                <div class="form-group form-inline">
-                  <label class="control-label col-sm-6" for="comment">Observações</label>
-                  <textarea rows="3" class="form-control input-sm"  id="comment" th:field="*{note}"></textarea>
-                </div>
+                      <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
 
-                <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+                      <div class="form-group form-inline division-centered">
+                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar Contato</a>
+                        &nbsp &nbsp &nbsp
+                        <input class="btn btn-primary" type="submit" th:value="'Alterar Contato'" />
+                      </div>
 
-
-              </form>
-
-              <!--
-              <table>
-
-                <tr>
-                  <td>Número</td>
-                  <td> </td>
-                  <td th:utext="${object.id}">...</td>
-                </tr>
-
-                <tr>
-                  <td>Nome</td>
-                  <td> </td>
-                  <td th:utext="${object.name}">...</td>
-                </tr>
-
-                <tr>
-                  <td>Telefone</td>
-                  <td> </td>
-                  <td th:utext="${object.phone}">...</td>
-                </tr>
-
-                <tr>
-                  <td>Email</td>
-                  <td> </td>
-                  <td th:utext="${object.email}">...</td>
-                </tr>
-
-                <tr>
-                  <td>Endereço</td>
-                  <td> </td>
-                  <td th:utext="${object.address1}">...</td>
-                </tr>
-
-                <tr>
-                  <td>Endereço</td>
-                  <td> </td>
-                  <td th:utext="${object.address2}">...</td>
-                </tr>
-
-                <tr>
-                  <td>Endereço</td>
-                  <td> </td>
-                  <td th:utext="${object.address3}">...</td>
-                </tr>
-
-                <tr>
-                  <td>Código postal</td>
-                  <td> </td>
-                  <td th:utext="${object.postalCode}">...</td>
-                </tr>
-
-                <tr>
-                  <td>Observações</td>
-                  <td> </td>
-                  <td th:utext="${object.note}">...</td>
-                </tr>
-
-              </table>
-              -->
-
-              <br/><br/>
-
-              <form th:action="@{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}" method="POST">
-                Alterar <input type="submit" />
-              </form>
-
-              <form th:action="@{/api/v1/post/agendas/delete/id/{objectId}/(objectId=${object.id})}" method="POST">
-                Excluir <input type="submit" />
-              </form>
-
-              <div th:if="not ${allowDelete}">
-                <a class="btn btn-primary" th:href="@{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}">Alterar</a> |
-                <a class="btn btn-primary" th:href="@{/api/v1/post/agendas/delete/id/{objectId}/(objectId=${object.id})}">Excluir</a>
-              </div>
-
-              <form th:if="${allowDelete}" th:action="@{/api/v1/post/agendas/delete/id/{objectId}/(objectId=${object.id})}" method="POST">
-                Excluir este contato? <input type="submit" th:value="Sim" />
               </form>
 
             </div>
-
-            <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
 
           </div>
 

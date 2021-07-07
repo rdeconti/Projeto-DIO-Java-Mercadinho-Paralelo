@@ -35,9 +35,10 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#myPage">
-              <img alt="logo" style="width:160px; height:50px;" th:src="@{/images/mercadinho.jpg}">
+              <img alt="logo" style="width:200px; height:80px;" th:src="@{/images/mercadinho.jpg}">
             </a>
           </div>
+          <br/>
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#about">SOBRE NÓS</a></li>
@@ -46,15 +47,14 @@
               <li><a href="#pricing">PREÇOS</a></li>
               <li><a href="#contact">CONTATO</a></li>
               <li>
-                <br/>
                 <form th:action="@{/cartIndex}" method="get">
-                  <button class="btn btn-sm mr-1 btn-danger btn-block" type="Submit">COMPRAR</button>
+                  <button class="btn btn-lg btn-warning btn-block" type="Submit">COMPRAR</button>
                 </form>
               </li>
+              <li> &nbsp &nbsp &nbsp </li>
               <li>
-                <br/>
                 <form th:action="@{/authorization/login}" method="get">
-                  <button class="btn btn-sm mr-1 btn-primary btn-block" type="Submit">ENTRAR</button>
+                  <button class="btn btn-lg btn-warning btn-block" type="Submit">ENTRAR</button>
                 </form>
               </li>
             </ul>
@@ -66,20 +66,6 @@
       <div class="jumbotron text-center">
         <h1>Mercadinho Paralelo</h1>
         <p>Nós temos o que você precisa</p>
-        <ul>
-          <li>
-            <br/>
-            <form th:action="@{/cartIndex}" method="get">
-              <button class="button-main" type="Submit">COMPRAR</button>
-            </form>
-          </li>
-          <li>
-            <br/>
-            <form th:action="@{/authorization/login}" method="get">
-              <button class="button-main" type="Submit">ENTRAR</button>
-            </form>
-          </li>
-        </ul>
       </div>
 
       <!-- Container (About Section) -->

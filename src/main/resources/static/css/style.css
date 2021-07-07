@@ -26,16 +26,12 @@ form, label {
 form {
     width: 800px;
     margin: 5px;
-    background-color: #f4511e;
 }
 
 label {
-    color: white;
     font-weight: bold;
     display: inline-block;
     width: 100px;
-    float: left;
-    text-align: right;
 }
 
 input {
@@ -74,14 +70,10 @@ input {
     font-style: normal;
 }
 
-.main-buttons {
-   text-align: center
-}
-
-.button-main {
-    min-width: 80px;
-    max-width: 80px;
-    background-color: blue;
-    color: white;
-    font-weight: bold;
+.division-centered {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
