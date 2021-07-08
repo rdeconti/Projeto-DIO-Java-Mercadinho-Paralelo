@@ -16,7 +16,7 @@
 
           <div class="container" align="center">
 
-            <h1 th:text="${add} ? 'Criar Contato' : 'Alterar Contato'" />
+            <h1 th:text="${add} ? 'Criar' : 'Alterar'" />
 
             <form class="form-horizontal"
                   th:action="${add} ? @{/api/v1/post/agendas/create/} : @{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}"
@@ -65,9 +65,9 @@
                     <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
 
                     <div class="form-group form-inline division-centered">
-                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar Contato</a>
-                        &nbsp &nbsp &nbsp
-                        <input class="btn btn-primary" type="submit" th:value="${add} ? 'Criar Contato' : 'Alterar Contato'" />
+                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <input class="btn btn-primary" type="submit" th:value="${add} ? 'Criar' : 'Alterar'" />
                     </div>
 
             </form>

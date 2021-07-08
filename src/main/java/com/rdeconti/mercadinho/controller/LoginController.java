@@ -58,10 +58,10 @@ public class LoginController {
     }
     )
     @RequestMapping(value={"/"}, method = RequestMethod.GET)
-    public ModelAndView landingPage(){
+    public ModelAndView index(){
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/landingPage");
+        modelAndView.setViewName("/index");
         return modelAndView;
     }
 

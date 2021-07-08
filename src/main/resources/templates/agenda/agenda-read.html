@@ -16,7 +16,7 @@
 
           <div class="container" align="center">
 
-            <h1>Exibir Contato</h1>
+            <h1>Exibir</h1>
 
             <div th:if="${object}">
 
@@ -67,9 +67,11 @@
                       <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
 
                       <div class="form-group form-inline division-centered">
-                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar Contato</a>
-                        &nbsp &nbsp &nbsp
-                        <input class="btn btn-primary" type="submit" th:value="'Alterar Contato'" />
+                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/update/id/{objectId}/(objectId=${object.id})}">Alterar</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/delete/id/{objectId}/(objectId=${object.id})}">Excluir</a>
                       </div>
 
               </form>

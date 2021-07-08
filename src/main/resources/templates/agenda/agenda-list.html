@@ -16,10 +16,7 @@
 
           <div class="container" align="center">
 
-            <h1>Lista de Contatos</h1>
-
-            <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/create/}">Incluir contato</a>
-            <br/>
+            <h1>Contatos</h1>
 
             <div>
 
@@ -58,8 +55,11 @@
 
             <div>
               <br/>
-              <span th:if="${hasPrev}"><a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/?page={prev}(prev=${prev})}">Anterior</a>&nbsp;&nbsp;&nbsp;</span>
-              <span th:if="${hasNext}"><a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/?page={next}(next=${next})}">Próximo</a></span>
+              <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/create/}">Criar</a>
+              &nbsp;&nbsp;&nbsp;
+              <span th:if="${hasPrev}"><a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/?page={prev}(prev=${prev})}">Anterior</a></span>
+              &nbsp;&nbsp;&nbsp;
+              <span th:if="${hasNext}"><a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/?page={next}(next=${next})}">Próxima</a></span>
             </div>
 
           </div>
