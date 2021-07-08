@@ -11,6 +11,10 @@ import com.rdeconti.mercadinho.models.AgendaModel;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+// Extension of CrudRepository to provide additional methods
+// to retrieve entities using the pagination and sorting abstraction.
 public interface AgendaRepository extends PagingAndSortingRepository<AgendaModel, Long>,
         JpaSpecificationExecutor<AgendaModel> {
+        // Interface to allow execution of Specifications based on the JPA criteria API.
+
 }

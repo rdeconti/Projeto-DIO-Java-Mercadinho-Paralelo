@@ -26,6 +26,11 @@ import java.util.List;
 @Service
 public class AgendaService {
 
+    private static final String ATTRIBUTE_VALUE_ERROR_MESSAGE_1 = "Registro não encontrado com este ID: ";
+    private static final String ATTRIBUTE_VALUE_ERROR_MESSAGE_2 = "Registro está nulo ou vazio";
+    private static final String ATTRIBUTE_VALUE_ERROR_MESSAGE_3 = "Erro ao salvar o registro";
+    private static final String ATTRIBUTE_VALUE_ERROR_MESSAGE_4 = "Registro já existe!";
+
     // -----------------------------------------------------------------------------------------------------------------
     // Resolve and inject collaborating beans into our bean
     // -----------------------------------------------------------------------------------------------------------------
@@ -48,7 +53,7 @@ public class AgendaService {
 
         if (agendaModel==null) {
 
-            throw new ResourceNotFoundException("Registro não encontrado com este ID: " + id);
+            throw new ResourceNotFoundException(ATTRIBUTE_VALUE_ERROR_MESSAGE_1 + id);
 
         } else {
 
@@ -76,22 +81,25 @@ public class AgendaService {
     // -----------------------------------------------------------------------------------------------------------------
     public AgendaModel createObject(@NotNull AgendaModel agendaModel) throws BadResourceException, ResourceAlreadyExistsException {
 
+        // Treat null argument
         if (agendaModel.getName() == null) {
 
-            BadResourceException badResourceException = new BadResourceException("Erro ao salvar o registro");
-            badResourceException.addErrorMessage("Registro está nulo ou vazio");
+            BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
+            badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_2);
             throw badResourceException;
 
         }
 
+        // Treat object already exists
         if (agendaModel.getId() != null && existsObjectById(agendaModel.getId())) {
 
-            BadResourceException badResourceException = new BadResourceException("Erro ao salvar o registro");
-            badResourceException.addErrorMessage("Registro já existe!");
+            BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
+            badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_4);
             throw badResourceException;
 
         }
 
+        // Save object
         return agendaRepository.save(agendaModel);
 
     }
@@ -102,19 +110,21 @@ public class AgendaService {
     public void updateObject(AgendaModel agendaModel)
             throws BadResourceException, ResourceNotFoundException {
 
-        if (!StringUtils.isEmpty(agendaModel.getName())) {
+        // Treat invalid argument
+        if (agendaModel.getName() != null) {
 
             if (!existsObjectById(agendaModel.getId())) {
-                throw new ResourceNotFoundException("Registro não encontrado com ID: " + agendaModel.getId());
+                throw new ResourceNotFoundException(ATTRIBUTE_VALUE_ERROR_MESSAGE_1 + agendaModel.getId());
             }
 
+            // Save Object
             agendaRepository.save(agendaModel);
         }
 
         else {
 
-            BadResourceException badResourceException = new BadResourceException("Erro ao salvar o registro");
-            badResourceException.addErrorMessage("Registro está nulo ou vazio");
+            BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
+            badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_2);
             throw badResourceException;
         }
 
@@ -125,11 +135,14 @@ public class AgendaService {
     // -----------------------------------------------------------------------------------------------------------------
     public void deleteObject(Long id) throws ResourceNotFoundException {
 
+        // Treat invalid argument
         if (!existsObjectById(id)) {
-            throw new ResourceNotFoundException("Cannot find contact with id: " + id);
+            throw new ResourceNotFoundException(ATTRIBUTE_VALUE_ERROR_MESSAGE_1 + id);
         }
 
         else {
+
+            // Delete object
             agendaRepository.deleteById(id);
         }
     }

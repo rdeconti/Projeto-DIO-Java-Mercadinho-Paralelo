@@ -18,6 +18,9 @@ import java.util.Set;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private UserService userService;
 

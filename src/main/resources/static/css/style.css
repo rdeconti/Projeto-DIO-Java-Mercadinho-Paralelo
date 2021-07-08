@@ -77,3 +77,9 @@ input {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.nav-link {
+    padding: 3px;
+    margin: 10px;
+    font-size: 32px;
+}

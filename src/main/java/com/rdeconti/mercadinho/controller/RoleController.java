@@ -2,20 +2,27 @@ package com.rdeconti.mercadinho.controller;
 
 import com.rdeconti.mercadinho.models.manager.UserModel;
 import com.rdeconti.mercadinho.services.manager.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
+@Api(value="Mercadinho Paralelo - Role Controller")
 @Controller
+@Validated
 public class RoleController {
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private UserService userService;
 

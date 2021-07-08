@@ -18,6 +18,9 @@ import java.util.List;
 @Service
 public class ImageService {
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private ImageRepository imageRepository;
 

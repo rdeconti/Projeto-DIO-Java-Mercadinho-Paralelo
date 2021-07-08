@@ -20,6 +20,9 @@ import java.util.List;
 @Service
 public class PurchaseService {
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private PurchaseRepository purchaseRepository;
 

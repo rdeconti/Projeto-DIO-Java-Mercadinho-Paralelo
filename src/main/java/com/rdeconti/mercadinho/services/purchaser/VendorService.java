@@ -19,6 +19,9 @@ import java.util.List;
 @Service
 public class VendorService {
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private VendorRepository vendorRepository;
 

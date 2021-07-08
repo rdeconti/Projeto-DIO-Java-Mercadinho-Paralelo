@@ -1,3 +1,12 @@
+<!--
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// HTML: Read or Delete model
+// -----------------------------------------------------------------------------------------------------------------
+-->
 <!DOCTYPE HTML>
 
 <html lang="pt-br"
@@ -16,13 +25,13 @@
 
           <div class="container" align="center">
 
-            <h1>Exibir</h1>
+            <h1 th:text="${delete} ? 'Excluir' : 'Exibir'" />
 
             <div th:if="${object}">
 
-              <form class="form-horizontal"
-                    th:action="@{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}"
-                    th:object="${object}" method="POST">
+                <form class="form-horizontal"
+                      th:action="${delete} ? @{/api/v1/post/agendas/delete/id/{objectId}/(objectId=${object.id})} : @{/api/v1/get/agendas/update/id/{objectId}/(objectId=${object.id})}"
+                      th:object="${object}" method="POST">
 
                       <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="name">Nome</label>
@@ -68,10 +77,8 @@
 
                       <div class="form-group form-inline division-centered">
                         <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/update/id/{objectId}/(objectId=${object.id})}">Alterar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/delete/id/{objectId}/(objectId=${object.id})}">Excluir</a>
+                        &nbsp &nbsp &nbsp
+                        <input class="btn btn-primary" type="submit" th:value="${delete} ? 'Excluir' : 'Alterar'" />
                       </div>
 
               </form>

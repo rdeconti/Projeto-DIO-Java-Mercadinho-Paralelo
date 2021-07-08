@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,9 +20,13 @@ import javax.validation.Valid;
 
 @Api(value="Mercadinho Paralelo - Login Controller")
 @Controller
+@Validated
 public class LoginController {
 
-    /// @Autowired
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
+    @Autowired
     private UserService userService;
 
     // -----------------------------------------------------------------------------------------------------------------

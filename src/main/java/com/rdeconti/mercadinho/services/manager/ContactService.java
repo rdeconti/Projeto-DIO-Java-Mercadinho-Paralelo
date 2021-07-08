@@ -18,6 +18,9 @@ import java.util.List;
 @Service
 public class ContactService {
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private ContactRepository contactRepository;
 

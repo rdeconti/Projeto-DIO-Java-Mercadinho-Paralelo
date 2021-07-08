@@ -22,7 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import java.util.List;
 
 @Api(value="Mercadinho Paralelo - Agenda Controller")
@@ -32,8 +32,8 @@ public class AgendaController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final String TEMPLATE_EDIT = "agenda/agenda-edit";
-    private static final String TEMPLATE_READ = "agenda/agenda-read";
+    private static final String TEMPLATE_CREATE_UPDATE = "agenda/agenda-create-update";
+    private static final String TEMPLATE_READ_DELETE = "agenda/agenda-read-delete";
     private static final String TEMPLATE_LIST = "agenda/agenda-list";
 
     private static final String ATTRIBUTE_OBJECT = "object";
@@ -130,9 +130,13 @@ public class AgendaController {
 
         }
 
+        // Set attributes to be used by Thymeleaf
+        // Attribute "delete false" indicates to Thymeleaf READ-DELETE is to READ
+        model.addAttribute("delete", false);
+
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(TEMPLATE_READ);
+        modelAndView.setViewName(TEMPLATE_READ_DELETE);
         return modelAndView;
     }
 
@@ -161,12 +165,13 @@ public class AgendaController {
         AgendaModel agendaModel = new AgendaModel();
 
         // Set attributes to be used by Thymeleaf
+        // Attribute "add true" indicates to Thymeleaf EDIT is a creation of object
         model.addAttribute("add", true);
         model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(TEMPLATE_EDIT);
+        modelAndView.setViewName(TEMPLATE_CREATE_UPDATE);
 
         return modelAndView;
     }
@@ -211,12 +216,13 @@ public class AgendaController {
             logger.error(errorMessage);
 
             // Set attributes to be used by Thymeleaf
-            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
+            // Attribute "add true" indicates to Thymeleaf EDIT is a creation of object
             model.addAttribute("add", true);
+            model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName(TEMPLATE_EDIT);
+            modelAndView.setViewName(TEMPLATE_CREATE_UPDATE);
             return modelAndView;
 
         }
@@ -247,21 +253,24 @@ public class AgendaController {
 
         try {
 
+            // Obtain object by ID
             agendaModel = agendaService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
+            // Send message error
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
 
         }
 
         // Set attributes to be used by Thymeleaf
+        // Attribute "add false" indicates to Thymeleaf EDIT is a update of object
         model.addAttribute("add", false);
         model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(TEMPLATE_EDIT);
+        modelAndView.setViewName(TEMPLATE_CREATE_UPDATE);
         return modelAndView;
     }
 
@@ -290,26 +299,29 @@ public class AgendaController {
 
         try {
 
+            // Update object
             agendaModel.setId(objectId);
             agendaService.updateObject(agendaModel);
 
+            // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("redirect:/api/v1/get/agendas/read/id/" + agendaModel.getId());
             return modelAndView;
 
         } catch (Exception exception) {
 
-            // String errorMessage = exception.getMessage();
+            // Message from validator not in use: String errorMessage = exception.getMessage();
             String errorMessage = "Informar os campos obrigatórios (*)";
             logger.error(errorMessage);
 
             // Set attributes to be used by Thymeleaf
+            // Attribute "add false" indicates to Thymeleaf EDIT is a update of object
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
             model.addAttribute("add", false);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName(TEMPLATE_EDIT);
+            modelAndView.setViewName(TEMPLATE_CREATE_UPDATE);
             return modelAndView;
         }
     }
@@ -339,21 +351,25 @@ public class AgendaController {
         AgendaModel agendaModel = null;
 
         try {
+
+            // Obtain object by ID
             agendaModel = agendaService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
+            // Send message error
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
 
         }
 
         // Set attributes to be used by Thymeleaf
-        model.addAttribute("allowDelete", true);
+        // Attribute "Delete true" indicates to Thymeleaf READ_DELETE can delete
+        model.addAttribute("delete", true);
         model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(TEMPLATE_READ);
+        modelAndView.setViewName(TEMPLATE_READ_DELETE);
         return modelAndView;
     }
 
@@ -381,6 +397,7 @@ public class AgendaController {
 
         try {
 
+            // Delete object
             agendaService.deleteObject(objectId);
 
             // Create and set template to be displayed
@@ -390,15 +407,18 @@ public class AgendaController {
 
         } catch (ResourceNotFoundException exception) {
 
+            // Send message error
             String errorMessage = exception.getMessage();
             logger.error(errorMessage);
 
             // Set attributes to be used by Thymeleaf
+            // Attribute "Delete true" indicates to Thymeleaf READ_DELETE can delete
+            model.addAttribute("delete", true);
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName(TEMPLATE_READ);
+            modelAndView.setViewName(TEMPLATE_READ_DELETE);
             return modelAndView;
         }
     }

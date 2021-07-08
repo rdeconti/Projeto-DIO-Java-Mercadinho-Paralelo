@@ -18,6 +18,9 @@ import java.util.List;
 @Service
 public class SaleItemService {
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private SaleItemRepository saleItemRepository;
 

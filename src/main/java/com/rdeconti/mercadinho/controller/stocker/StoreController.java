@@ -3,20 +3,27 @@ package com.rdeconti.mercadinho.controller.stocker;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.stocker.StoreModel;
 import com.rdeconti.mercadinho.services.stocker.StoreService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.logging.Logger;
 
+@Api(value="Mercadinho Paralelo - Store Controller")
 @Controller
+@Validated
 public class StoreController {
 
     private static final Logger log = Logger.getLogger(StoreController.class.getName());
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Resolve and inject collaborating beans into our bean
+    // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private StoreService storeService;
 
