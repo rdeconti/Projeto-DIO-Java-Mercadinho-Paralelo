@@ -9,10 +9,11 @@ package com.rdeconti.mercadinho;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.rdeconti.mercadinho")
 public class MercadinhoApplication {
 
 	public static void main(String[] args) {
+		System.setProperty("spring.profiles.active", "mercadinho");
 		SpringApplication.run(MercadinhoApplication.class, args);
 	}
 
