@@ -28,7 +28,7 @@
             <h1>Alterar Agenda</h1>
 
             <form class="form-horizontal"
-                  th:action="${add} ? @{/api/v1/post/agendas/create/} : @{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}"
+                  th:action="@{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}"
                   th:object="${object}" method="POST">
 
                     <div class="form-group form-inline ml-auto">
@@ -76,7 +76,7 @@
                     <div class="form-group form-inline division-centered">
                         <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar</a>
                         &nbsp &nbsp &nbsp
-                        <input class="btn btn-primary" type="submit" th:value="${add} ? 'Criar' : 'Alterar'" />
+                        <input class="btn btn-primary" type="submit" value="Alterar Agenda"/>
                     </div>
 
             </form>

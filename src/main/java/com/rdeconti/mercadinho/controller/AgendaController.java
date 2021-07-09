@@ -51,7 +51,7 @@ public class AgendaController {
     private AgendaService agendaService;
 
     // -----------------------------------------------------------------------------------------------------------------
-    // List objects (GET)
+    // List objects AGENDA (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -95,7 +95,7 @@ public class AgendaController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // Read object (GET)
+    // Read object AGENDA (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a specific record from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -143,7 +143,7 @@ public class AgendaController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // Create object (GET)
+    // Create object AGENDA (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "GET: Create a record into AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -179,7 +179,7 @@ public class AgendaController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // Create object (POST)
+    // Create object AGENDA (POST)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "POST: Create a record into AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -207,7 +207,9 @@ public class AgendaController {
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/api/v1/get/agendas/read/id/" + newContact.getId());
+            // modelAndView.setViewName("redirect:/api/v1/get/agendas/update/id/" + newContact.getId());
+            // modelAndView.setViewName("redirect:/api/v1/get/agendas/update/id/{objectId}/" + newContact.getId());
+            modelAndView.setViewName("redirect:/api/v1/get/agendas/list/");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -231,7 +233,7 @@ public class AgendaController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // Update object (GET)
+    // Update object AGENDA (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "GET: Update a record into AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -277,7 +279,7 @@ public class AgendaController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // Update object (POST)
+    // Update object AGENDA (POST)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "POST: Update a record into AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -329,7 +331,7 @@ public class AgendaController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // Delete object (GET)
+    // Delete object AGENDA (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "GET: Delete a record from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -376,7 +378,7 @@ public class AgendaController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // Delete object (POST)
+    // Delete object AGENDA (POST)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "POST: Delete a record from AGENDA", response = Iterable.class)
     @ApiResponses(value = {

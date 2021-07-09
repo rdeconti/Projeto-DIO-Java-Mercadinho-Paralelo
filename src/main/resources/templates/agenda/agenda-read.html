@@ -26,13 +26,11 @@
           <div class="container" align="center">
 
             <h1>Exibir Agenda</h1>
-            <h1 th:text="${delete} ? 'Excluir' : 'Exibir'" />
 
             <div th:if="${object}">
 
                 <form class="form-horizontal"
-                      th:action="${delete} ? @{/api/v1/post/agendas/delete/id/{objectId}/(objectId=${object.id})} : @{/api/v1/get/agendas/update/id/{objectId}/(objectId=${object.id})}"
-                      th:object="${object}" method="POST">
+                      th:object="${object}">
 
                       <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="name">Nome</label>
@@ -78,8 +76,6 @@
 
                       <div class="form-group form-inline division-centered">
                         <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar</a>
-                        &nbsp &nbsp &nbsp
-                        <input class="btn btn-primary" type="submit" th:value="${delete} ? 'Excluir' : 'Alterar'" />
                       </div>
 
               </form>
