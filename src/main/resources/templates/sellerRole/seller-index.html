@@ -22,7 +22,7 @@
                 <br/>
 
                 <div class="panel-heading">
-                    <span th:utext="${userName}"></span>
+                    <span class="admin-message-text text-center" th:utext="${userName}"></span>
                     <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
                 </div>
 
@@ -30,12 +30,12 @@
 
                     <div class="col-xl bg-primary text-white text-center">
                         <p>Aqui você realiza a manutenção do cadastro de clientes</p>
-                        <a class="btn btn-info" th:href="@{/customer/customer-list}">Listar Clientes</a>
+                        <a class="btn btn-primary" th:href="@{/customer/customer-list}">Listar Clientes</a>
                     </div>
 
                     <div class="col-xl bg-primary text-white text-center offset-2">
                         <p>Aqui você cria e acompanha os pedidos de venda</p>
-                        <a class="btn btn-info" th:href="@{/seller/sale-list}">Listar Vendas</a>
+                        <a class="btn btn-primary" th:href="@{/seller/sale-list}">Listar Vendas</a>
                     </div>
 
                 </div>

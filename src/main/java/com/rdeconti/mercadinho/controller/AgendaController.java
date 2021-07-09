@@ -132,10 +132,6 @@ public class AgendaController {
 
         }
 
-        // Set attributes to be used by Thymeleaf
-        // Attribute "delete false" indicates to Thymeleaf READ-DELETE is to READ
-        model.addAttribute("delete", false);
-
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(TEMPLATE_READ);
@@ -167,8 +163,6 @@ public class AgendaController {
         AgendaModel agendaModel = new AgendaModel();
 
         // Set attributes to be used by Thymeleaf
-        // Attribute "add true" indicates to Thymeleaf EDIT is a creation of object
-        model.addAttribute("add", true);
         model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
 
         // Create and set template to be displayed
@@ -207,8 +201,6 @@ public class AgendaController {
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            // modelAndView.setViewName("redirect:/api/v1/get/agendas/update/id/" + newContact.getId());
-            // modelAndView.setViewName("redirect:/api/v1/get/agendas/update/id/{objectId}/" + newContact.getId());
             modelAndView.setViewName("redirect:/api/v1/get/agendas/list/");
             return modelAndView;
 
@@ -220,8 +212,6 @@ public class AgendaController {
             logger.error(errorMessage);
 
             // Set attributes to be used by Thymeleaf
-            // Attribute "add true" indicates to Thymeleaf EDIT is a creation of object
-            model.addAttribute("add", true);
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
 
             // Create and set template to be displayed
@@ -268,8 +258,6 @@ public class AgendaController {
         }
 
         // Set attributes to be used by Thymeleaf
-        // Attribute "add false" indicates to Thymeleaf EDIT is a update of object
-        model.addAttribute("add", false);
         model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
 
         // Create and set template to be displayed
@@ -319,9 +307,7 @@ public class AgendaController {
             logger.error(errorMessage);
 
             // Set attributes to be used by Thymeleaf
-            // Attribute "add false" indicates to Thymeleaf EDIT is a update of object
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
-            model.addAttribute("add", false);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
@@ -367,8 +353,6 @@ public class AgendaController {
         }
 
         // Set attributes to be used by Thymeleaf
-        // Attribute "Delete true" indicates to Thymeleaf READ_DELETE can delete
-        model.addAttribute("delete", true);
         model.addAttribute(ATTRIBUTE_OBJECT, agendaModel);
 
         // Create and set template to be displayed
@@ -416,8 +400,6 @@ public class AgendaController {
             logger.error(errorMessage);
 
             // Set attributes to be used by Thymeleaf
-            // Attribute "Delete true" indicates to Thymeleaf READ_DELETE can delete
-            model.addAttribute("delete", true);
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, errorMessage);
 
             // Create and set template to be displayed

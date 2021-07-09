@@ -22,7 +22,7 @@
                 <br/>
 
                 <div class="panel-heading">
-                    <span th:utext="${userName}"></span>
+                    <span class="admin-message-text text-center" th:utext="${userName}"></span>
                     <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
                 </div>
 
@@ -30,22 +30,22 @@
 
                     <div class="col-lg bg-primary text-white text-center">
                         <p>Aqui você realiza a manutenção do cadastro de lojas</p>
-                        <a class="btn btn-info" th:href="@{/store/store-list}">Listar lojas</a>
+                        <a class="btn btn-primary" th:href="@{/store/store-list}">Listar lojas</a>
                     </div>
 
                     <div class="col-lg bg-primary text-white text-center">
                         <p>Aqui você realiza a manutenção do cadastro de produtos</p>
-                        <a class="btn btn-info" th:href="@{/product/product-list}">Listar Produtos</a>
+                        <a class="btn btn-primary" th:href="@{/product/product-list}">Listar Produtos</a>
                     </div>
 
                     <div class="col-lg bg-primary text-white text-center offset-2">
                         <p>Aqui você cria e acompanha os recebimentos dos pedidos de compra</p>
-                        <a class="btn btn-info" th:href="@{/receiving/receiving-list}">Listar entradas</a>
+                        <a class="btn btn-primary" th:href="@{/receiving/receiving-list}">Listar entradas</a>
                     </div>
 
                     <div class="col-lg bg-primary text-white text-center offset-2">
                         <p>Aqui você cria e acompanha as saídas dos pedidos de venda</p>
-                        <a class="btn btn-info" th:href="@{/shipping/shipping-list}">Listar saídas</a>
+                        <a class="btn btn-primary" th:href="@{/shipping/shipping-list}">Listar saídas</a>
                     </div>
 
                 </div>
