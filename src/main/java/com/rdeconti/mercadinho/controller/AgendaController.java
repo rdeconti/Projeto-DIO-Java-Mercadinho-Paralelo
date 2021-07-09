@@ -32,8 +32,10 @@ public class AgendaController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final String TEMPLATE_CREATE_UPDATE = "agenda/agenda-create-update";
-    private static final String TEMPLATE_READ_DELETE = "agenda/agenda-read-delete";
+    private static final String TEMPLATE_CREATE = "agenda/agenda-create";
+    private static final String TEMPLATE_READ = "agenda/agenda-read";
+    private static final String TEMPLATE_UPDATE = "agenda/agenda-update";
+    private static final String TEMPLATE_DELETE = "agenda/agenda-delete";
     private static final String TEMPLATE_LIST = "agenda/agenda-list";
 
     private static final String ATTRIBUTE_OBJECT = "object";
@@ -136,7 +138,7 @@ public class AgendaController {
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(TEMPLATE_READ_DELETE);
+        modelAndView.setViewName(TEMPLATE_READ);
         return modelAndView;
     }
 
@@ -171,7 +173,7 @@ public class AgendaController {
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(TEMPLATE_CREATE_UPDATE);
+        modelAndView.setViewName(TEMPLATE_CREATE);
 
         return modelAndView;
     }
@@ -222,7 +224,7 @@ public class AgendaController {
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName(TEMPLATE_CREATE_UPDATE);
+            modelAndView.setViewName(TEMPLATE_CREATE);
             return modelAndView;
 
         }
@@ -270,7 +272,7 @@ public class AgendaController {
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(TEMPLATE_CREATE_UPDATE);
+        modelAndView.setViewName(TEMPLATE_UPDATE);
         return modelAndView;
     }
 
@@ -321,7 +323,7 @@ public class AgendaController {
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName(TEMPLATE_CREATE_UPDATE);
+            modelAndView.setViewName(TEMPLATE_UPDATE);
             return modelAndView;
         }
     }
@@ -369,7 +371,7 @@ public class AgendaController {
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(TEMPLATE_READ_DELETE);
+        modelAndView.setViewName(TEMPLATE_DELETE);
         return modelAndView;
     }
 
@@ -418,7 +420,7 @@ public class AgendaController {
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName(TEMPLATE_READ_DELETE);
+            modelAndView.setViewName(TEMPLATE_DELETE);
             return modelAndView;
         }
     }
