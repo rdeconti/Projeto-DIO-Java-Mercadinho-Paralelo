@@ -20,20 +20,36 @@ import java.util.Collection;
 @Validated
 public class RoleController {
 
+    private static final String ATTRIBUTE_USER_NAME = "userName";
+    private static final String ATTRIBUTE_ADMIN_MESSAGE = "adminMessage";
+    private static final String ATTRIBUTE_USER_MESSAGE = "Seja bem-vindo(a)! ";
+    private static final String ATTRIBUTE_ROLE_MANAGER = "Conteúdo disponível para ROLE-MANAGER";
+    private static final String ATTRIBUTE_ROLE_PURCHASER = "Conteúdo disponível para ROLE-PURCHASER";
+    private static final String ATTRIBUTE_ROLE_SELLER = "Conteúdo disponível para ROLE-SELLER";
+    private static final String ATTRIBUTE_ROLE_STOCKER = "Conteúdo disponível para ROLE-STOCKER";
+
+
     // -----------------------------------------------------------------------------------------------------------------
     // Resolve and inject collaborating beans into our bean
     // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private UserService userService;
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Authorization: role DEFAULT after authorized Login (GET)
+    // -----------------------------------------------------------------------------------------------------------------
     @RequestMapping(value= {"/role/defaultAfterLogin"}, method = RequestMethod.GET)
     public String defaultAfterLogin() {
 
         Collection<? extends GrantedAuthority> authorities;
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         authorities = authentication.getAuthorities();
+
         String myRole = authorities.toArray()[0].toString();
 
+        // Treat user role and give authorized forms
         switch(myRole) {
 
             case "ROLE_MANAGER":
@@ -55,6 +71,9 @@ public class RoleController {
 
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Authorization: role MANAGER after authorized Login (GET)
+    // -----------------------------------------------------------------------------------------------------------------
     @RequestMapping(value="/role/manager", method = RequestMethod.GET)
     public ModelAndView manager(){
 
@@ -63,13 +82,16 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getFullName()  + " (" + userModel.getEmail() + ")");
-        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-MANAGER");
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getFullName());
+        modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_MANAGER);
         modelAndView.setViewName("managerRole/manager-index");
 
         return modelAndView;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Authorization: role PURCHASER after authorized Login (GET)
+    // -----------------------------------------------------------------------------------------------------------------
     @RequestMapping(value="/role/purchaser", method = RequestMethod.GET)
     public ModelAndView purchaser(){
 
@@ -78,13 +100,16 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getUserName() + "/" + userModel.getFullName()  + " (" + userModel.getEmail() + ")");
-        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-PURCHASER");
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getFullName());
+        modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_PURCHASER);
         modelAndView.setViewName("purchaserRole/purchaser-index");
 
         return modelAndView;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Authorization: role SELLER after authorized Login (GET)
+    // -----------------------------------------------------------------------------------------------------------------
     @RequestMapping(value="/role/seller", method = RequestMethod.GET)
     public ModelAndView seller(){
 
@@ -93,13 +118,16 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getFullName() + "/" + userModel.getFullName()  + " (" + userModel.getEmail() + ")");
-        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-SELLER");
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getFullName());
+        modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_SELLER);
         modelAndView.setViewName("sellerRole/seller-index");
 
         return modelAndView;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Authorization: role STOCKER after authorized Login (GET)
+    // -----------------------------------------------------------------------------------------------------------------
     @RequestMapping(value="/role/stocker", method = RequestMethod.GET)
     public ModelAndView stocker(){
 
@@ -108,8 +136,8 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject("userName", "Sinta-se em casa! " + userModel.getFullName() + "/" + userModel.getFullName()  + " (" + userModel.getEmail() + ")");
-        modelAndView.addObject("adminMessage","Conteúdo disponível para ROLE-STOCKER");
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getFullName());
+        modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_STOCKER);
         modelAndView.setViewName("stockerRole/stocker-index");
 
         return modelAndView;
