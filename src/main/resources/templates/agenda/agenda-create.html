@@ -34,42 +34,42 @@
 
                     <div class="form-group form-inline ml-auto">
                         <label class="control-label col-sm-6" for="name">Nome</label>
-                        <input SIZE=40 type="text" placeholder="*Informe o nome" class="form-control input-sm" id="name" th:field="*{name}">
+                        <input type="text" placeholder="*Informe o nome" class="form-control input-sm" id="name" th:field="*{name}">
                     </div>
 
                     <div class="form-group form-inline ml-auto">
                       <label class="control-label col-sm-6" for="phone">Telefone</label>
-                      <input SIZE=40 type="text" placeholder="*Informe o telefone"  class="form-control input-sm" id="phone" th:field="*{phone}">
+                      <input type="text" placeholder="*Informe o telefone"  class="form-control input-sm" id="phone" th:field="*{phone}">
                     </div>
 
                     <div class="form-group form-inline">
                       <label class="control-label col-sm-6" for="email">Email</label>
-                      <input SIZE=40 type="email" placeholder="*Informe o e-mail"  class="form-control input-sm" id="email" th:field="*{email}">
+                      <input type="email" placeholder="*Informe o e-mail"  class="form-control input-sm" id="email" th:field="*{email}">
                     </div>
 
                     <div class="form-group form-inline">
                       <label class="control-label col-sm-6" for="address1">Endereço1</label>
-                      <input SIZE=40 type="text" placeholder="*Informe o endereço"  class="form-control input-sm" id="address1" th:field="*{address1}">
+                      <input type="text" placeholder="*Informe o endereço"  class="form-control input-sm" id="address1" th:field="*{address1}">
                     </div>
 
                     <div class="form-group form-inline">
                       <label class="control-label col-sm-6" for="address2">Endereço2</label>
-                      <input SIZE=40 type="text" placeholder="*Informe o endereço" class="form-control input-sm" id="address2" th:field="*{address2}">
+                      <input type="text" placeholder="*Informe o endereço" class="form-control input-sm" id="address2" th:field="*{address2}">
                     </div>
 
                     <div class="form-group form-inline">
                       <label class="control-label col-sm-6" for="address3">Endereço3</label>
-                      <input SIZE=40 type="text" placeholder="*Informe o endereço" class="form-control input-sm" id="address3" th:field="*{address3}">
+                      <input type="text" placeholder="*Informe o endereço" class="form-control input-sm" id="address3" th:field="*{address3}">
                     </div>
 
                     <div class="form-group form-inline">
                       <label class="control-label col-sm-6" for="postalCode">Código postal</label>
-                      <input SIZE=40 type="text" placeholder="*Informe o código postal" class="form-control input-sm" id="postalCode" th:field="*{postalCode}">
+                      <input type="text" placeholder="*Informe o código postal" class="form-control input-sm" id="postalCode" th:field="*{postalCode}">
                     </div>
 
                     <div class="form-group form-inline">
                       <label class="control-label col-sm-6" for="comment">Observações</label>
-                      <textarea rows="3" placeholder="*Informe as observações" class="form-control input-sm"  id="comment" th:field="*{note}"></textarea>
+                      <textarea rows="4" placeholder="*Informe as observações" class="form-control input-sm"  id="comment" th:field="*{note}"></textarea>
                     </div>
 
                     <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>
@@ -77,7 +77,7 @@
                     <div class="form-group form-inline division-centered">
                         <a class="btn btn-primary" th:href="@{/api/v1/get/agendas/list/}">Listar Agenda</a>
                         &nbsp &nbsp &nbsp
-                        <input class="btn btn-primary" type="submit" value="Criar Agenda"/>
+                        <input class="btn btn-primary" type="submit" value="Criar"/>
                     </div>
 
             </form>

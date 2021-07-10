@@ -32,11 +32,17 @@
                 <h3 class="form-signin-heading">Sejam bem-vindos!</h3>
                 <br/>
 
-                <input type="text" id="user_name" name="userName" placeholder="Código do usuário"
-                       class="form-control"/> <br/>
+                <div class="form-group form-inline ml-auto">
+                    <label class="control-label" for="user_name">Código</label>
+                    <input type="text" id="user_name" name="userName" placeholder="Código do usuário" class="form-control"/>
+                    <br/>
+                </div>
 
-                <input type="password" placeholder="Senha"
-                       id="password" name="password" class="form-control"/> <br/>
+                <div class="form-group form-inline ml-auto">
+                    <label class="control-label" for="password">Senha</label>
+                    <input type="password" placeholder="Senha"  id="password" name="password" class="form-control"/>
+                    <br/>
+                </div>
 
                 <div align="center" th:if="${param.error}">
                     <p style="font-size: 20; color: #FF1C19;">Nome ou senha inválido, por favor verificar!</p>

@@ -18,30 +18,28 @@ h1, h2, h3 {
     padding: 1px;
 }
 
-form, label {
-    display: block;
+btn {
     padding: 5px;
 }
 
 form {
     width: 800px;
     margin: 5px;
+    padding: 5px;
 }
 
 label {
-    font-weight: bold;
     display: inline-block;
+    font-weight: bold;
     width: 100px;
+    color: red;
+    text-align: left;
 }
 
 input {
     display: inline-block;
     padding-left: 5px;
-}
-
-panel-heading {
-    padding: 10px;
-    background-color: gray;
+    width: 100px;
 }
 
 .admin-message-text {
