@@ -1,75 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body marginwidth="0" marginheight="0">
-<h1>Something went wrong! </h1>
-<h2>Our Engineers are on it</h2>
-<a href="/">Go Home</a>
-<div class="container">
-    <div class="row">
-        <h1>Thymeleaf Error Page</h1>
-    </div>
-    <div class="row">It apperrs Either something went wrong or the page
-        doesn't exist anymore.....</div>
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Date</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${timestamp}"></span>
-        </div>
-    </div>
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Path</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${path}"></span>
-        </div>
-    </div>
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Error</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${error}"></span>
-        </div>
-    </div>
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Status</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${status}"></span>
-        </div>
-    </div>
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Message</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${message}"></span>
-        </div>
-    </div>
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Exception</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${exception}"></span>
-        </div>
-    </div>
-    <div class="row rowDesign">
-        <div class="col-md-4 ml-auto">
-            <span class="legend">Trace</span>
-        </div>
-        <div class="col-md-8">
-            <span th:text="${trace}"></span>
-        </div>
-    </div>
-</div>
-</body>
+<!--
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// HTML: ERROR page
+// -----------------------------------------------------------------------------------------------------------------
+-->
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="">
+
+        <!-- Include HEAD -->
+        <th:block th:include="/fragments/_head"> </th:block>
+
+        <body>
+
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
+
+        <!-- start MAIN -->
+        <main>
+
+            <div class="container" align="center">
+
+                <h1>Algo errado aconteceu ...</h1>
+                <h1>Estamos trabalhando para eliminar este problema!</h1>
+                <p><a href="/">Volte para a página inicial</a></p>
+
+            </div>
+
+        </main>
+
+        <!-- Include FOOTER -->
+        <th:block th:include="/fragments/_footer"> </th:block>
+
+        </body>
+
 </html>

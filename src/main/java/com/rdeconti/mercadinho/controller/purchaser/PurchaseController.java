@@ -33,7 +33,7 @@ public class PurchaseController {
     public ModelAndView purchaseIndex(Model model) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/purchaser-index");
+        modelAndView.setViewName("index/purchaser-index");
         return modelAndView;
 
     }
@@ -56,7 +56,7 @@ public class PurchaseController {
         model.addAttribute("next", pageNumber + 1);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/purchase-list");
+        modelAndView.setViewName("index/purchase-list");
         return modelAndView;
 
     }
@@ -78,7 +78,7 @@ public class PurchaseController {
         model.addAttribute("object", purchaseModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/purchase-list");
+        modelAndView.setViewName("index/purchase-list");
         return modelAndView;
 
     }
@@ -92,7 +92,7 @@ public class PurchaseController {
         model.addAttribute("object", purchaseModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/purchase-create");
+        modelAndView.setViewName("index/purchase-create");
         return modelAndView;
     }
 
@@ -105,7 +105,7 @@ public class PurchaseController {
             PurchaseModel newPurchaseModel = purchaseService.save(purchaseModel);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaserRole/purchase-list");
+            modelAndView.setViewName("redirect:/index/purchase-list");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -117,7 +117,7 @@ public class PurchaseController {
             model.addAttribute("add", true);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaserRole/purchase-update");
+            modelAndView.setViewName("index/purchase-update");
             return modelAndView;
 
         }
@@ -140,7 +140,7 @@ public class PurchaseController {
         model.addAttribute("object", purchaseModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/purchase-update");
+        modelAndView.setViewName("index/purchase-update");
         return modelAndView;
     }
 
@@ -155,7 +155,7 @@ public class PurchaseController {
             purchaseService.update(purchaseModel);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaserRole/purchase-list") ;
+            modelAndView.setViewName("redirect:/index/purchase-list") ;
             return modelAndView;
 
         } catch (Exception ex) {
@@ -167,7 +167,7 @@ public class PurchaseController {
             model.addAttribute("add", false);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaserRole/purchase-update");
+            modelAndView.setViewName("index/purchase-update");
             return modelAndView;
 
         }
@@ -191,7 +191,7 @@ public class PurchaseController {
         model.addAttribute("object", purchaseModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("purchaserRole/purchase-delete");
+        modelAndView.setViewName("index/purchase-delete");
         return modelAndView;
     }
 
@@ -204,7 +204,7 @@ public class PurchaseController {
             purchaseService.deleteById(purchaseId);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/purchaserRole/purchase-list") ;
+            modelAndView.setViewName("redirect:/index/purchase-list") ;
             return modelAndView;
 
 
@@ -216,7 +216,7 @@ public class PurchaseController {
             model.addAttribute("errorMessage", errorMessage);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("purchaserRole/purchase-delete");
+            modelAndView.setViewName("index/purchase-delete");
             return modelAndView;
 
         }

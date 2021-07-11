@@ -6,21 +6,22 @@
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 
         <a class="navbar-brand" th:href="@{/purchaser/index}">
-            <img alt="logo" style="width:140px; height:40px;" th:src="@{/images/mercadinho.jpg}">
+            <img alt="logo" style="width:140px; height:60px;" th:src="@{/images/mercadinho.jpg}">
         </a>
 
         <ul class="navbar-nav">
 
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/purchaser/index}">Início</a>
+                <a class="nav-link" href="/">Início</a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/api/v1/get/agendas/list/}">Agenda</a>
             </li>
 
+            <!-- TODO PROGRAMMING SPRING SECURITY LOGOUT -->
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/purchaser/purchase-list}">Sair</a>
+                <a class="nav-link" Href="/">Sair</a>
             </li>
 
         </ul>

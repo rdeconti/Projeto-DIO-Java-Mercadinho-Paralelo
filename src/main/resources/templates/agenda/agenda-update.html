@@ -31,12 +31,12 @@
                   th:action="@{/api/v1/post/agendas/update/id/{objectId}/(objectId=${object.id})}"
                   th:object="${object}" method="POST">
 
-                    <div class="form-group form-inline ml-auto">
+                    <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="name">Nome</label>
                         <input SIZE=40 type="text" placeholder="*Informe o nome" class="form-control input-sm" id="name" th:field="*{name}">
                     </div>
 
-                    <div class="form-group form-inline ml-auto">
+                    <div class="form-group form-inline">
                       <label class="control-label col-sm-6" for="phone">Telefone</label>
                       <input SIZE=40 type="text" placeholder="*Informe o telefone"  class="form-control input-sm" id="phone" th:field="*{phone}">
                     </div>

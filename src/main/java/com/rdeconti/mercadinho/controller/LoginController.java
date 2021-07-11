@@ -1,7 +1,7 @@
 package com.rdeconti.mercadinho.controller;
 
-import com.rdeconti.mercadinho.models.manager.UserModel;
-import com.rdeconti.mercadinho.services.manager.UserService;
+import com.rdeconti.mercadinho.models.UserModel;
+import com.rdeconti.mercadinho.services.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -40,8 +40,6 @@ public class LoginController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     }
     )
-
-    ////// @RequestMapping(value={"/api/v1/get/agendas/list/"}, method = RequestMethod.GET)
 
     @RequestMapping(value={"/authorization/noAccess"}, method = RequestMethod.GET)
     public ModelAndView noAccess(){

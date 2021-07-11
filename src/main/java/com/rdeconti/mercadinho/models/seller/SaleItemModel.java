@@ -68,20 +68,20 @@ public class SaleItemModel implements Serializable {
     @NotEmpty(message = "*Por favor informar a data de criação")
     @DateTimeFormat(pattern = "dd-MMM-yyyy")
     @Column(name = "item_created_at")
-    private LocalDateTime created_at = LocalDateTime.now();
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar a data de alteração")
     @DateTimeFormat(pattern = "dd-MMM-yyyy")
     @Column(name = "item_changed_at")
-    private LocalDateTime changed_at = LocalDateTime.now();
+    private LocalDateTime changedDate = LocalDateTime.now();
 
-    @NotEmpty(message = "*Por favor informar o responsável pela criação")
+    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
     @Column(name = "item_created_by")
-    private String created_by;
+    private String createdUser;
 
-    @NotEmpty(message = "*Por favor informar o responsável pela alteração")
+    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
     @DateTimeFormat(pattern = "dd-MMM-yyyy")
     @Column(name = "item_changed_by")
-    private String changed_by;
+    private String changedUser;
 
 }

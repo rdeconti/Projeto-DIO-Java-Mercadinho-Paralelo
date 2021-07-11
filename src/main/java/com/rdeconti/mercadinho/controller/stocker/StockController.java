@@ -31,7 +31,7 @@ public class StockController {
     public ModelAndView stockIndex(Model model) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/stock-index");
+        modelAndView.setViewName("index/stock-index");
         return modelAndView;
 
     }
@@ -54,7 +54,7 @@ public class StockController {
         model.addAttribute("next", pageNumber + 1);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/stock-list");
+        modelAndView.setViewName("index/stock-list");
         return modelAndView;
 
     }
@@ -76,7 +76,7 @@ public class StockController {
         model.addAttribute("object", stock);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/stock-list");
+        modelAndView.setViewName("index/stock-list");
         return modelAndView;
 
     }
@@ -90,7 +90,7 @@ public class StockController {
         model.addAttribute("object", stock);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/stock-create");
+        modelAndView.setViewName("index/stock-create");
         return modelAndView;
     }
 
@@ -103,7 +103,7 @@ public class StockController {
             StockModel newStockModel = stockService.save(stock);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/stock-list");
+            modelAndView.setViewName("redirect:/index/stock-list");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -115,7 +115,7 @@ public class StockController {
             model.addAttribute("add", true);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/stock-update");
+            modelAndView.setViewName("index/stock-update");
             return modelAndView;
 
         }
@@ -138,7 +138,7 @@ public class StockController {
         model.addAttribute("object", stock);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/stock-update");
+        modelAndView.setViewName("index/stock-update");
         return modelAndView;
     }
 
@@ -153,7 +153,7 @@ public class StockController {
             stockService.update(stock);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/stock-list") ;
+            modelAndView.setViewName("redirect:/index/stock-list") ;
             return modelAndView;
 
         } catch (Exception ex) {
@@ -165,7 +165,7 @@ public class StockController {
             model.addAttribute("add", false);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/stock-update");
+            modelAndView.setViewName("index/stock-update");
             return modelAndView;
 
         }
@@ -189,7 +189,7 @@ public class StockController {
         model.addAttribute("object", stock);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/stock-delete");
+        modelAndView.setViewName("index/stock-delete");
         return modelAndView;
     }
 
@@ -202,7 +202,7 @@ public class StockController {
             stockService.deleteById(stockId);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/stock-list") ;
+            modelAndView.setViewName("redirect:/index/stock-list") ;
             return modelAndView;
 
 
@@ -214,7 +214,7 @@ public class StockController {
             model.addAttribute("errorMessage", errorMessage);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/stock-delete");
+            modelAndView.setViewName("index/stock-delete");
             return modelAndView;
 
         }

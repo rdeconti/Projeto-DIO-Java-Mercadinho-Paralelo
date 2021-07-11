@@ -1,7 +1,7 @@
 package com.rdeconti.mercadinho.controller;
 
-import com.rdeconti.mercadinho.models.manager.UserModel;
-import com.rdeconti.mercadinho.services.manager.UserService;
+import com.rdeconti.mercadinho.models.UserModel;
+import com.rdeconti.mercadinho.services.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -82,9 +82,9 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getFullName());
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getName());
         modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_MANAGER);
-        modelAndView.setViewName("managerRole/manager-index");
+        modelAndView.setViewName("index/manager-index");
 
         return modelAndView;
     }
@@ -100,9 +100,9 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getFullName());
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getName());
         modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_PURCHASER);
-        modelAndView.setViewName("purchaserRole/purchaser-index");
+        modelAndView.setViewName("index/purchaser-index");
 
         return modelAndView;
     }
@@ -118,9 +118,9 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getFullName());
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getName());
         modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_SELLER);
-        modelAndView.setViewName("sellerRole/seller-index");
+        modelAndView.setViewName("index/seller-index");
 
         return modelAndView;
     }
@@ -136,9 +136,9 @@ public class RoleController {
 
         UserModel userModel = userService.findUserByUserName(auth.getName());
 
-        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getFullName());
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getName());
         modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_STOCKER);
-        modelAndView.setViewName("stockerRole/stocker-index");
+        modelAndView.setViewName("index/stocker-index");
 
         return modelAndView;
     }

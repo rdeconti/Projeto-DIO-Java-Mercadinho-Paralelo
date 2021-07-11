@@ -31,7 +31,7 @@ public class SaleController {
     public ModelAndView saleIndex(Model model) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("sellerRole/sale-index");
+        modelAndView.setViewName("index/sale-index");
         return modelAndView;
 
     }
@@ -54,7 +54,7 @@ public class SaleController {
         model.addAttribute("next", pageNumber + 1);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("sellerRole/sale-list");
+        modelAndView.setViewName("index/sale-list");
         return modelAndView;
 
     }
@@ -76,7 +76,7 @@ public class SaleController {
         model.addAttribute("object", saleModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("sellerRole/sale-list");
+        modelAndView.setViewName("index/sale-list");
         return modelAndView;
 
     }
@@ -90,7 +90,7 @@ public class SaleController {
         model.addAttribute("object", saleModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("sellerRole/sale-create");
+        modelAndView.setViewName("index/sale-create");
         return modelAndView;
     }
 
@@ -103,7 +103,7 @@ public class SaleController {
             SaleModel newSaleModel = saleService.save(sale);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/sellerRole/sale-list");
+            modelAndView.setViewName("redirect:/index/sale-list");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -115,7 +115,7 @@ public class SaleController {
             model.addAttribute("add", true);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("sellerRole/sale-update");
+            modelAndView.setViewName("index/sale-update");
             return modelAndView;
 
         }
@@ -138,7 +138,7 @@ public class SaleController {
         model.addAttribute("object", saleModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("sellerRole/sale-update");
+        modelAndView.setViewName("sindex/sale-update");
         return modelAndView;
     }
 
@@ -153,7 +153,7 @@ public class SaleController {
             saleService.update(saleModel);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/sellerRole/sale-list") ;
+            modelAndView.setViewName("redirect:/index/sale-list") ;
             return modelAndView;
 
         } catch (Exception ex) {
@@ -165,7 +165,7 @@ public class SaleController {
             model.addAttribute("add", false);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("sellerRole/sale-update");
+            modelAndView.setViewName("index/sale-update");
             return modelAndView;
 
         }
@@ -189,7 +189,7 @@ public class SaleController {
         model.addAttribute("object", saleModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("sellerRole/sale-delete");
+        modelAndView.setViewName("sindex/sale-delete");
         return modelAndView;
     }
 
@@ -202,7 +202,7 @@ public class SaleController {
             saleService.deleteById(saleId);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/sellerRole/sale-list") ;
+            modelAndView.setViewName("redirect:/index/sale-list") ;
             return modelAndView;
 
 
@@ -214,7 +214,7 @@ public class SaleController {
             model.addAttribute("errorMessage", errorMessage);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("sellerRole/sale-delete");
+            modelAndView.setViewName("index/sale-delete");
             return modelAndView;
 
         }

@@ -8,22 +8,36 @@ USE groceryStore;
 
 -- ***********************************************************************************************
 -- Declare date to be used in table creations 
--- value 6 corresponding to role MASTERDATA
--- long texts generated with lorem ipsum
 -- ***********************************************************************************************
 SET @created_at = CURRENT_DATE();
 SET @changed_at = CURRENT_DATE();
 SET @birthdate = DATE_SUB(CURDATE(), INTERVAL 30 YEAR);
 SET @expiration = CURDATE() + INTERVAL 360 DAY;
-SET @created_by = 6; 
-SET @changed_by = 6;
-SET @describedBy = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis eget diam varius mollis ut id urna. Sed ac leo non neque molestie auctor. Pellentesque condimentum arcu vitae facilisis cursus. Quisque id tincidunt metus. Nam ornare tempus sem, a commodo mauris sodales non. Mauris elementum dignissim sem. Mauris magna turpis, ullamcorper a rutrum vehicula, auctor ut libero. Etiam odio quam, efficitur et tempus feugiat, tincidunt a justo. Integer a erat aliquet, elementum neque at, accumsan lectus.';
+SET @created_by = 'MANAGER da Silva'; 
+SET @changed_by = 'MANAGER da Silva';
+SET @email = 'email@email.com.br';
+SET @phone = '9-9999-9999';
+SET	@whats = '8-8888-8888';
+SET @cnpj = '34.685.117/0001-78';
+SET @cpf = '463.234.490-72';
+SET	@rg = '30.359.552-8';
+SET @cep = '07776-465';
+SET @ean = '7891000315507';
+SET @address = 'Rua Antonio Pedro Magalhães 537, Jordanésia (Jordanésia), Cajamar, São Paulo, SP';
+SET @note = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis eget diam varius mollis ut id urna. Sed ac leo non neque molestie auctor. Pellentesque condimentum arcu vitae facilisis cursus. Quisque id tincidunt metus. Nam ornare tempus sem, a commodo mauris sodales non. Mauris elementum dignissim sem. Mauris magna turpis, ullamcorper a rutrum vehicula, auctor ut libero. Etiam odio quam, efficitur et tempus feugiat, tincidunt a justo. Integer a erat aliquet, elementum neque at, accumsan lectus.';
 SET @email = 'email@gmail.com';
-SET @site = 'site@uol.com.br';
-SET @facebook = 'https://www.facebook.com/facebook1';
-SET @instagram = 'https://www.instagram.com/facebook1';
-SET @linkedin = 'https://www.linkedin.com/facebook1';
-SET @youtube = 'https://www.youtube.com/facebook1';
+SET @image1 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/banana.jpg';
+SET @image2 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/batata.jpg';
+SET @image3 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/cenoura.jpg';
+SET @image4 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/damasco.jpg';
+SET @image5 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/framboesa.jpg';
+SET @image6 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/maca.jpg';
+SET @image7 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/melancia.jpg';
+SET @image8 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/mirtilo.jpg';
+SET @image9 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/morango.jpg';
+SET @image10 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/pepino.jpg';
+SET @image11 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/pera.jpg';
+SET @image12 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/uva.jpg';
 
 -- ***********************************************************************************************
 -- Drop tables
@@ -42,8 +56,6 @@ DROP TABLE IF EXISTS CUSTOMERS;
 DROP TABLE IF EXISTS VENDORS;
 DROP TABLE IF EXISTS EMPLOYEES;
 DROP TABLE IF EXISTS USERS;
-DROP TABLE IF EXISTS CONTACTS;
-DROP TABLE IF EXISTS IMAGES;
 DROP TABLE IF EXISTS AGENDAS;
    
 -- ***********************************************************************************************
@@ -79,92 +91,6 @@ VALUES
 	(13, 'contato1', '9-9999-9999', 'email@gemail.com', 'address1', 'address2', ' address3', '0999-99', 'blablabla');
    
 -- ***********************************************************************************************
--- Create table: IMAGES
--- status: true = active / false = not active
--- ***********************************************************************************************
-CREATE TABLE IMAGES (
-	image_ID BIGINT NOT NULL AUTO_INCREMENT,
-	image_name VARCHAR(255) NOT NULL,
-	image_url VARCHAR(255) NOT NULL,
-	image_status BOOLEAN NOT NULL,
-	image_created_at DATE NULL,
-	image_changed_at DATE NULL,
-	image_created_by INT NOT NULL,
-	image_changed_by INT NOT NULL,
-	PRIMARY KEY (image_ID),
-	INDEX idx_image_name (image_name)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO IMAGES(image_ID, image_name, image_url, image_status, image_created_at, image_changed_at, image_created_by, image_changed_by)
-VALUES
-	(1,'banana', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/banana.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (2,'batata', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/batata.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (3,'ceoura', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/cenoura.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (4,'damasco', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/damasco.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (5,'framboesa', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/framboesa.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (6,'maça', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/maca.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (7,'melância', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/melancia.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (8,'mirtilo', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/mirtilo.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (9,'morango', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/morango.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-    (10,'pepino', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/pepino.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-	(11,'pera', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/pera.jpg', true, @created_at, @changed_at, @created_by, @changed_by),
-	(12,'uva', 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/uva.jpg', true, @created_at, @changed_at, @created_by, @changed_by);
-
--- ***********************************************************************************************
--- Create table: CONTACTS
--- type: 1 = RG, 2 = CPF, 3 = CNPJ
--- status: true = active / false = not active
--- ***********************************************************************************************
-CREATE TABLE CONTACTS (
-	contact_ID BIGINT NOT NULL auto_increment,
-	contact_name VARCHAR (255),
-	contact_email VARCHAR (255),
-    contact_country VARCHAR (255),
-    contact_state VARCHAR (255),
-    contact_city VARCHAR (255),
-    contact_district VARCHAR (255),
-	contact_address VARCHAR (255),
-    contact_number VARCHAR (255),
-    contact_cep VARCHAR (255),
-    contact_complement VARCHAR (255),
-	contact_phone_1 VARCHAR (255),
-	contact_phone_2 VARCHAR (255),
-	contact_whats_app VARCHAR (255),
-	contact_type INT,
-	contact_document VARCHAR (255),
-    contact_site VARCHAR (255),
-    contact_facebook VARCHAR (255),
-    contact_instagram VARCHAR (255),
-    contact_linkedin VARCHAR (255),
-    contact_youtube VARCHAR (255),
-	contact_status BOOLEAN,
-	contact_birthdate DATE,
-	contact_created_at DATE,
-	contact_changed_at DATE,
-	contact_created_by INT,
-	contact_changed_by INT,
-	PRIMARY KEY (contact_ID)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO CONTACTS(contact_ID, contact_name, contact_email, contact_country, contact_state, contact_city, contact_district, contact_address, contact_number, contact_cep, contact_complement, contact_phone_1, contact_phone_2, contact_whats_app, contact_type, contact_document, contact_site, contact_facebook, contact_instagram, contact_linkedin, contact_youtube, contact_status, contact_birthdate, contact_created_at, contact_changed_at, contact_created_by, contact_changed_by)
-VALUES  
-
-	(1, 'Fornecedor 1', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 'Fornecedor 1', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 'Fornecedor 2', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(4, 'Cliente 1', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(5, 'Cliente 2', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 'Cliente 3', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(7, 'Empregado 1', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(8, 'Empregado 2', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(9, 'Empregado 3', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(10, 'MANAGER', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(11, 'EMPLOYEE', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(13, 'Loja 1', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(14, 'Loja 2', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by),
-	(15, 'Loja 3', @email, 'País X', 'Estado X', 'Cidade X', 'Bairro X', 'Endereço X', '9999', '99999-999', 'Complemento 1', '9-9999-9999', '9-9999-9999', '9-9999-9999', 1, '99999999999999', 'site@xxx.com.br', @facebook, @instagram, @linkedin, @youtube, true, @birthdate, @created_at, @changed_at, @created_by, @changed_by);
-
--- ***********************************************************************************************
 -- Create table: USERS
 -- status: true = active / false = not active
 -- type: 1=employee 2=customer
@@ -177,26 +103,31 @@ CREATE TABLE USERS (
 	user_password VARCHAR(255) NOT NULL, 
 	user_role VARCHAR(255) NOT NULL,
 	user_name VARCHAR(255) NOT NULL,
-    user_type INT NOT NULL,
-    user_link INT,
+	user_address VARCHAR (255),
+    user_cep VARCHAR (255),
+	user_phone VARCHAR (255),
+	user_whats VARCHAR (255),
+	user_document VARCHAR (255),
 	user_status BOOLEAN NOT NULL,
 	user_created_at DATE NOT NULL,
 	user_changed_at DATE NOT NULL,
-	user_created_by INT NOT NULL,
-	user_changed_by INT NOT NULL,
+	user_created_by VARCHAR(255) NOT NULL,
+	user_changed_by VARCHAR(255) NOT NULL,
 	PRIMARY KEY (user_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ----------------------------------------------------------------------------------
 -- password 12345 = $2a$10$f1XHZXpdECjp5C977Y6GtuSwtL1ZwiXHxJFgHP9AgtzBxVwpMRC/e
+-- ----------------------------------------------------------------------------------
+
 SET @password = "$2a$10$f1XHZXpdECjp5C977Y6GtuSwtL1ZwiXHxJFgHP9AgtzBxVwpMRC/e";
-INSERT INTO USERS(user_ID, user_code, user_email, user_password, user_role, user_name, user_type, user_link, user_status, user_created_at, user_changed_at, user_created_by, user_changed_by)
+INSERT INTO USERS(user_ID, user_code, user_email, user_password, user_role, user_name, user_address, user_cep, user_phone, user_whats, user_document, user_status, user_created_at, user_changed_at, user_created_by, user_changed_by)
 VALUES
-	(1, 'MANAGER', 'manager@gmail.com',  @password, 'ROLE_MANAGER', 'Manager da Silva', 1, 1, true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 'PURCHASER', 'purchaser@gmail.com',  @password, 'ROLE_PURCHASER', 'Purchaser da Silva', 1, 1, true, @created_at, @changed_at, @created_by, @changed_by),    
-	(3, 'SELLER', 'seller@gmail.com',  @password, 'ROLE_SELLER', 'Seller da Silva', 1, 1, true, @created_at, @changed_at, @created_by, @changed_by),     
-	(4, 'STOCKER', 'stocker@gmail.com',  @password, 'ROLE_STOCKER', 'Stocker da Silva', 1, 1, true, @created_at, @changed_at, @created_by, @changed_by), 
-	(5, 'USER', 'userModel@gmail.com',  @password, 'ROLE_USER', 'User da Silva', 1, 1, true, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 'MASTERDATA', 'masterdata@gmail.com',  @password, 'ROLE_MASTERDATA', 'Masterdata da Silva', 1, 1, true, @created_at, @changed_at, @created_by, @changed_by);
+	(1, 'MANAGER', 'manager@gmail.com',  @password, 'ROLE_MANAGER', 'Manager da Silva', @address, @cep, @phone, @whats, @rg, true, @created_at, @changed_at, @created_by, @changed_by),
+	(2, 'PURCHASER', 'purchaser@gmail.com',  @password, 'ROLE_PURCHASER', 'Purchaser da Silva', @address, @cep, @phone, @whats, @rg, true, @created_at, @changed_at, @created_by, @changed_by),
+	(3, 'SELLER', 'seller@gmail.com',  @password, 'ROLE_SELLER', 'Seller da Silva', @address, @cep, @phone, @whats, @rg, true, @created_at, @changed_at, @created_by, @changed_by),
+	(4, 'STOCKER', 'stocker@gmail.com',  @password, 'ROLE_STOCKER', 'Stocker da Silva', @address, @cep, @phone, @whats, @rg, true, @created_at, @changed_at, @created_by, @changed_by),
+	(5, 'USER', 'userModel@gmail.com',  @password, 'ROLE_USER', 'User da Silva', @address, @cep, @phone, @whats, @rg, true, @created_at, @changed_at, @created_by, @changed_by);
     
 -- ***********************************************************************************************
 -- Create table: VENDORS
@@ -204,43 +135,89 @@ VALUES
 -- ***********************************************************************************************
 CREATE TABLE VENDORS (
 	vendor_ID BIGINT NOT NULL auto_increment,
-	vendor_contactID BIGINT NOT NULL,
-	vendor_status BOOLEAN NOT NULL,
+    vendor_name VARCHAR (255),
+	vendor_email VARCHAR (255),
+	vendor_address VARCHAR (255),
+    vendor_cep VARCHAR (255),
+	vendor_phone VARCHAR (255),
+	vendor_whats VARCHAR (255),
+	vendor_document VARCHAR (255),
+    vendor_note VARCHAR (3000) NULL,
+	vendor_status BOOLEAN NOT NULL, 
 	vendor_created_at DATE NOT NULL,
 	vendor_changed_at DATE NOT NULL,
-	vendor_created_by INT NOT NULL,
-	vendor_changed_by INT NOT NULL,
-	PRIMARY KEY (vendor_ID),
-	FOREIGN KEY (vendor_ContactID) REFERENCES CONTACTS(contact_ID)
+	vendor_created_by VARCHAR(255) NOT NULL,
+	vendor_changed_by VARCHAR(255) NOT NULL,
+	PRIMARY KEY (vendor_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO VENDORS(vendor_ID, vendor_contactID, vendor_status, vendor_created_at, vendor_changed_at, vendor_created_by, vendor_changed_by)
+INSERT INTO VENDORS(vendor_ID, vendor_name, vendor_email, vendor_address, vendor_cep, vendor_phone, vendor_whats, vendor_document, vendor_note, vendor_status, vendor_created_at, vendor_changed_at, vendor_created_by, vendor_changed_by)
 VALUES
-	(1, 1, true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 2, true, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 3, true, @created_at, @changed_at, @created_by, @changed_by);
-
+	(1, 'vendor 1', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (2, 'vendor 2', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (3, 'vendor 3', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (4, 'vendor 4', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (5, 'vendor 5', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (6, 'vendor 6', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (7, 'vendor 7', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (8, 'vendor 8', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (9, 'vendor 9', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (10, 'vendor 10', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (11, 'vendor 11', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (12, 'vendor 12', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (13, 'vendor 13', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (14, 'vendor 14', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (15, 'vendor 15', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (16, 'vendor 16', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (17, 'vendor 17', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (18, 'vendor 18', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (19, 'vendor 19', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (20, 'vendor 20', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by);
+    
 -- ***********************************************************************************************
 -- Create table: CUSTOMERS
 -- status: true = active / false = not active
 -- ***********************************************************************************************
 CREATE TABLE CUSTOMERS (
 	customer_ID BIGINT NOT NULL auto_increment,
-	customer_contactID BIGINT NOT NULL,
+    customer_name VARCHAR (255),
+	customer_email VARCHAR (255),
+	customer_address VARCHAR (255),
+    customer_cep VARCHAR (255),
+	customer_phone VARCHAR (255),
+	customer_whats VARCHAR (255),
+	customer_document VARCHAR (255),
+	customer_note VARCHAR (3000),
 	customer_status BOOLEAN NOT NULL,
 	customer_created_at DATE NOT NULL,
 	customer_changed_at DATE NOT NULL,
-	customer_created_by INT NOT NULL,
-	customer_changed_by INT NOT NULL,    
-	PRIMARY KEY (customer_ID),
-	FOREIGN KEY (customer_ContactID) REFERENCES CONTACTS(contact_ID)
+	customer_created_by VARCHAR(255) NOT NULL,
+	customer_changed_by VARCHAR(255) NOT NULL,
+	PRIMARY KEY (customer_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO CUSTOMERS(customer_ID, customer_contactID, customer_status, customer_created_at, customer_changed_at, customer_created_by, customer_changed_by)
-VALUES   
-	(1, 4, true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 5, true, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 6, true, @created_at, @changed_at, @created_by, @changed_by);
+INSERT INTO CUSTOMERS(customer_ID, customer_name, customer_email, customer_address, customer_cep, customer_phone, customer_whats, customer_document, customer_note, customer_status, customer_created_at, customer_changed_at, customer_created_by, customer_changed_by)
+VALUES
+	(1, 'customer 1', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (2, 'customer 2', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (3, 'customer 3', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (4, 'customer 4', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (5, 'customer 5', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (6, 'customer 6', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (7, 'customer 7', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (8, 'customer 8', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (9, 'customer 9', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (10, 'customer 10', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (11, 'customer 11', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (12, 'customer 12', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (13, 'customer 13', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (14, 'customer 14', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (15, 'customer 15', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (16, 'customer 16', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (17, 'customer 17', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (18, 'customer 18', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (19, 'customer 19', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (20, 'customer 20', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by);
     
 -- ***********************************************************************************************
 -- Create table: EMPLOYEES
@@ -248,21 +225,44 @@ VALUES
 -- ***********************************************************************************************
 CREATE TABLE EMPLOYEES (
 	employee_ID BIGINT NOT NULL auto_increment,
-	employee_contactID BIGINT NOT NULL,
+    employee_name VARCHAR (255),
+	employee_email VARCHAR (255),
+	employee_address VARCHAR (255),
+    employee_cep VARCHAR (255),
+	employee_phone VARCHAR (255),
+	employee_whats VARCHAR (255),
+	employee_document VARCHAR (255),
+	employee_note VARCHAR (3000),    
 	employee_status BOOLEAN NOT NULL,
 	employee_created_at DATE NOT NULL,
 	employee_changed_at DATE NOT NULL,
-	employee_created_by INT NOT NULL,
-	employee_changed_by INT NOT NULL,    
-	PRIMARY KEY (employee_ID),
-	FOREIGN KEY (employee_contactID) REFERENCES CONTACTS(contact_ID)
+	employee_created_by VARCHAR(255) NOT NULL,
+	employee_changed_by VARCHAR(255) NOT NULL,
+	PRIMARY KEY (employee_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO EMPLOYEES(employee_ID, employee_contactID, employee_status, employee_created_at, employee_changed_at, employee_created_by, employee_changed_by)
-VALUES   
-	(1, 4, true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 5, true, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 6, true, @created_at, @changed_at, @created_by, @changed_by);
+INSERT INTO EMPLOYEES(employee_ID, employee_name, employee_email, employee_address, employee_cep, employee_phone, employee_whats, employee_document, employee_note, employee_status, employee_created_at, employee_changed_at, employee_created_by, employee_changed_by)
+VALUES
+	(1, 'employee 1', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (2, 'employee 2', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (3, 'employee 3', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (4, 'employee 4', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (5, 'employee 5', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (6, 'employee 6', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (7, 'employee 7', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (8, 'employee 8', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (9, 'employee 9', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (10, 'employee 10', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (11, 'employee 11', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (12, 'employee 12', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (13, 'employee 13', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (14, 'employee 14', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (15, 'employee 15', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (16, 'employee 16', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (17, 'employee 17', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (18, 'employee 18', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (19, 'employee 19', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (20, 'employee 20', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by);
     
 -- ***********************************************************************************************
 -- Create table: STORES
@@ -270,26 +270,45 @@ VALUES
 -- ***********************************************************************************************
 CREATE TABLE STORES (
 	store_ID BIGINT NOT NULL auto_increment,
-	store_contactID BIGINT NOT NULL,				-- dados de contato
-    store_social VARCHAR(255), 						-- razão social
-    store_municipal VARCHAR(255), 					-- inscrição municipal
-	store_state VARCHAR(255), 						-- inscrição estadual
-    store_activity VARCHAR(255), 					-- atividade principal da loja
+    store_name VARCHAR (255),
+	store_email VARCHAR (255),
+	store_address VARCHAR (255),
+    store_cep VARCHAR (255),
+	store_phone VARCHAR (255),
+	store_whats VARCHAR (255),
+	store_document VARCHAR (255),
+	store_note VARCHAR (3000),
 	store_status BOOLEAN NOT NULL,
 	store_created_at DATE NOT NULL,
 	store_changed_at DATE NOT NULL,
-	store_created_by INT NOT NULL,
-	store_changed_by INT NOT NULL,    
-	PRIMARY KEY (store_ID),
-	FOREIGN KEY (store_ContactID) REFERENCES CONTACTS(contact_ID)
+	store_created_by VARCHAR(255) NOT NULL,
+	store_changed_by VARCHAR(255) NOT NULL,
+	PRIMARY KEY (store_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO STORES(store_ID, store_contactID, store_social, store_municipal, store_state, store_activity, store_status, store_created_at, store_changed_at, store_created_by, store_changed_by)
+INSERT INTO STORES(store_ID, store_name, store_email, store_address, store_cep, store_phone, store_whats, store_document, store_note, store_status, store_created_at, store_changed_at, store_created_by, store_changed_by)
 VALUES
-	(1, 13, '999999999999', '999999999999', '999999999999', '999999999999', true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 14, '999999999999', '999999999999', '999999999999', '999999999999', true, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 15, '999999999999', '999999999999', '999999999999', '999999999999', true, @created_at, @changed_at, @created_by, @changed_by);
-
+	(1, 'store 1', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (2, 'store 2', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (3, 'store 3', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (4, 'store 4', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (5, 'store 5', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (6, 'store 6', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (7, 'store 7', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (8, 'store 8', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (9, 'store 9', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (10, 'store 10', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (11, 'store 11', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (12, 'store 12', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (13, 'store 13', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (14, 'store 14', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (15, 'store 15', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (16, 'store 16', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (17, 'store 17', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (18, 'store 18', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (19, 'store 19', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (20, 'store 20', @email, @address, @cep, @phone, @whats, @cnpj, @note, true, @created_at, @changed_at, @created_by, @changed_by);
+ 
 -- ***********************************************************************************************
 -- Create table: PRODUCTS
 -- product category: 1=FRUITS, 2=VEGETABLES, 3=MEAT, 4=FISH, 5=LEGUMES
@@ -297,7 +316,7 @@ VALUES
 -- ***********************************************************************************************
 CREATE TABLE PRODUCTS (
 	product_ID BIGINT NOT NULL auto_increment,
-	product_imageID BIGINT NOT NULL,
+	product_image VARCHAR(255) NOT NULL,
 	product_category INT NOT NULL,
 	product_name VARCHAR(255) NOT NULL,
 	product_ean VARCHAR(255) NOT NULL,
@@ -307,26 +326,37 @@ CREATE TABLE PRODUCTS (
 	product_status BOOLEAN NOT NULL,
 	product_created_at DATE NOT NULL,
 	product_changed_at DATE NOT NULL,
-	product_created_by INT NOT NULL,
-	product_changed_by INT NOT NULL,    
-	PRIMARY KEY (product_ID),
-    FOREIGN KEY (product_imageID) REFERENCES IMAGES(image_ID)
+	product_created_by VARCHAR(255) NOT NULL,
+	product_changed_by VARCHAR(255) NOT NULL,
+	PRIMARY KEY (product_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO PRODUCTS(product_ID, product_imageID, product_category, product_name, product_ean, product_unity, product_price, product_description, product_status, product_created_at, product_changed_at, product_created_by, product_changed_by)
+INSERT INTO PRODUCTS(product_ID, product_image, product_category, product_name, product_ean, product_unity, product_price, product_description, product_status, product_created_at, product_changed_at, product_created_by, product_changed_by)
 VALUES
- 	(1, 1, 1, 'Banana', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(2, 2, 2, 'Batata', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(3, 3, 2, 'Cenoura', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(4, 4, 1, 'Damasco', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(5, 5, 1, 'Framboesa', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 6, 1, 'Maçã', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(7, 7, 1, 'Melância', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(8, 8, 1, 'Mirtilo', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(9, 9, 1, 'Morango', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(10, 10, 2, 'Pepino', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-    (11, 11, 1, 'Pera', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
- 	(12, 12, 1, 'Uva', '123456789012', 'UN', 1000, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by);
+ 	(1, @image1, 1, 'Banana', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(2, @image2, 2, 'Batata', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(3, @image3, 2, 'Cenoura', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(4, @image4, 1, 'Damasco', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(5, @image5, 1, 'Framboesa', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(6, @image6, 1, 'Maçã', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(7, @image7, 1, 'Melância', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(8, @image8, 1, 'Mirtilo', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(9, @image9, 1, 'Morango', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(10, @image10, 2, 'Pepino', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (11, @image11, 1, 'Pera', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(12, @image12, 1, 'Uva', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (13, @image1, 1, 'Banana Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(14, @image2, 2, 'Batata Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(15, @image3, 2, 'Cenoura Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(16, @image4, 1, 'Damasco Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(17, @image5, 1, 'Framboesa Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(18, @image6, 1, 'Maçã Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(19, @image7, 1, 'Melância Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(20, @image8, 1, 'Mirtilo Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(21, @image9, 1, 'Morango Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(22, @image10, 2, 'Pepino Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+    (23, @image11, 1, 'Pera Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+ 	(24, @image12, 1, 'Uva Premium', @ean, 'UN', 1000, @note, true, @created_at, @changed_at, @created_by, @changed_by);
     
 -- ***********************************************************************************************
 -- Create table: STOCKS
@@ -341,8 +371,8 @@ CREATE TABLE STOCKS (
 	stock_expiration DATE NOT NULL,
 	stock_created_at DATE NOT NULL,
 	stock_changed_at DATE NOT NULL,
-	stock_created_by INT NOT NULL,
-	stock_changed_by INT NOT NULL,    
+	stock_created_by VARCHAR(255) NOT NULL,
+	stock_changed_by VARCHAR(255) NOT NULL,
 	PRIMARY KEY (stock_ID),
 	FOREIGN KEY (stock_storeID) REFERENCES STORES(store_ID),
 	FOREIGN KEY (stock_productID) REFERENCES PRODUCTS(product_ID)
@@ -375,24 +405,24 @@ CREATE TABLE CARTS (
 	cart_status BOOLEAN NOT NULL,
 	cart_created_at DATE NOT NULL,
 	cart_changed_at DATE NOT NULL,
-	cart_created_by INT NOT NULL,
-	cart_changed_by INT NOT NULL,    
+	cart_created_by VARCHAR(255) NOT NULL,
+	cart_changed_by VARCHAR(255) NOT NULL,
 	PRIMARY KEY (cart_ID),
 	FOREIGN KEY (cart_userID) REFERENCES USERS(user_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO CARTS(cart_ID, cart_userID, cart_price, cart_stage, cart_comments, cart_status, cart_created_at, cart_changed_at, cart_created_by, cart_changed_by) 
 	VALUES
-	(1, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(4, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(5, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(7, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(8, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(9, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(10, 5, 3000, 2, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by);
+	(1, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(2, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(3, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(4, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(5, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(6, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(7, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(8, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(9, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(10, 5, 3000, 2, @note, true, @created_at, @changed_at, @created_by, @changed_by);
 
 -- ***********************************************************************************************
 -- Create table: CARTS ITEMS
@@ -411,8 +441,8 @@ CREATE TABLE CARTS_ITEMS (
     item_comments VARCHAR (3000) not null,
 	item_created_at DATE NOT NULL,
 	item_changed_at DATE NOT NULL,
-	item_created_by INT NOT NULL,
-	item_changed_by INT NOT NULL,    
+	item_created_by VARCHAR(255) NOT NULL,
+	item_changed_by VARCHAR(255) NOT NULL,
 	PRIMARY KEY (item_ID),
 	FOREIGN KEY (item_orderID) REFERENCES CARTS(cart_ID),
 	FOREIGN KEY (item_stockID) REFERENCES STOCKS(stock_ID)
@@ -420,36 +450,36 @@ CREATE TABLE CARTS_ITEMS (
 
 INSERT INTO CARTS_ITEMS(item_ID, item_orderID, item_stockID, item_amount, item_price, item_discount, item_stage, item_status, item_comments, item_created_at, item_changed_at, item_created_by, item_changed_by) 
 	VALUES
-	(1, 1, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 1, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 1, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(4, 2, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(5, 2, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 2, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(7, 3, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(8, 3, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(9, 3, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(10, 4, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(11, 4, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(12, 4, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(13, 5, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(14, 5, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(15, 5, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(16, 6, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(17, 6, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(18, 6, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),   
-    (19, 7, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(20, 7, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(21, 7, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by), 
-	(22, 8, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(23, 8, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(24, 8, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by), 
-	(25, 9, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(26, 9, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(27, 9, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by), 
-	(28, 10, 1, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(29, 10, 2, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(30, 10, 3, 1000, 2000, 100, 2, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by);      
+	(1, 1, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(2, 1, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(3, 1, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(4, 2, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(5, 2, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(6, 2, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(7, 3, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(8, 3, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(9, 3, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(10, 4, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(11, 4, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(12, 4, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(13, 5, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(14, 5, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(15, 5, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(16, 6, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(17, 6, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(18, 6, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),   
+    (19, 7, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(20, 7, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(21, 7, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by), 
+	(22, 8, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(23, 8, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(24, 8, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by), 
+	(25, 9, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(26, 9, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(27, 9, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by), 
+	(28, 10, 1, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(29, 10, 2, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(30, 10, 3, 1000, 2000, 100, 2, true, @note, @created_at, @changed_at, @created_by, @changed_by);      
     
 -- *****************************************************************************************************
 -- Create table: SALES
@@ -465,24 +495,24 @@ CREATE TABLE SALES (
 	sale_status BOOLEAN NOT NULL,
 	sale_created_at DATE NOT NULL,
 	sale_changed_at DATE NOT NULL,
-	sale_created_by INT NOT NULL,
-	sale_changed_by INT NOT NULL,    
+	sale_created_by VARCHAR(255) NOT NULL,
+	sale_changed_by VARCHAR(255) NOT NULL,
 	PRIMARY KEY (sale_ID),
 	FOREIGN KEY (sale_customerID) REFERENCES CUSTOMERS(customer_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO SALES(sale_ID, sale_customerID, sale_price, sale_stage, sale_comments, sale_status, sale_created_at, sale_changed_at, sale_created_by, sale_changed_by) 
 	VALUES
-	(1, 1, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 2, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 3, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(4, 1, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(5, 2, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 3, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(7, 1, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(8, 2, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(9, 3, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(10, 3, 3000, 3, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by);
+	(1, 1, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(2, 2, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(3, 3, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(4, 1, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(5, 2, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(6, 3, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(7, 1, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(8, 2, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(9, 3, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(10, 3, 3000, 3, @note, true, @created_at, @changed_at, @created_by, @changed_by);
 
 -- ***********************************************************************************************
 -- Create table: SALES ITEMS
@@ -501,8 +531,8 @@ CREATE TABLE SALES_ITEMS (
 	item_status BOOLEAN NOT NULL,
 	item_created_at DATE NOT NULL,
 	item_changed_at DATE NOT NULL,
-	item_created_by INT NOT NULL,
-	item_changed_by INT NOT NULL,    
+	item_created_by VARCHAR(255) NOT NULL,
+	item_changed_by VARCHAR(255) NOT NULL,
 	PRIMARY KEY (item_ID),
 	FOREIGN KEY (item_orderID) REFERENCES SALES(sale_ID),
 	FOREIGN KEY (item_stockID) REFERENCES STOCKS(stock_ID)
@@ -510,36 +540,36 @@ CREATE TABLE SALES_ITEMS (
 
 INSERT INTO SALES_ITEMS(item_ID, item_orderID, item_stockID, item_amount, item_price, item_discount, item_stage, item_comments, item_status, item_created_at, item_changed_at, item_created_by, item_changed_by) 
 	VALUES
-	(1, 1, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 1, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 1, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(4, 2, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(5, 2, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 2, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(7, 3, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(8, 3, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(9, 3, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(10, 4, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(11, 4, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(12, 4, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(13, 5, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(14, 5, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(15, 5, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(16, 6, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(17, 6, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(18, 6, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),   
-    (19, 7, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(20, 7, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(21, 7, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by), 
-	(22, 8, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(23, 8, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(24, 8, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by), 
-	(25, 9, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(26, 9, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(27, 9, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by), 
-	(28, 10, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(29, 10, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(30, 10, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by);     
+	(1, 1, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(2, 1, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(3, 1, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(4, 2, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(5, 2, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(6, 2, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(7, 3, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(8, 3, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(9, 3, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(10, 4, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(11, 4, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(12, 4, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(13, 5, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(14, 5, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(15, 5, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(16, 6, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(17, 6, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(18, 6, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),   
+    (19, 7, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(20, 7, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(21, 7, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by), 
+	(22, 8, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(23, 8, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(24, 8, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by), 
+	(25, 9, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(26, 9, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(27, 9, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by), 
+	(28, 10, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(29, 10, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(30, 10, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by);     
     
 -- ***********************************************************************************************
 -- Create table: PURCHASES
@@ -555,24 +585,24 @@ CREATE TABLE PURCHASES (
     purchase_comments VARCHAR (3000) not null,    
 	purchase_created_at DATE NOT NULL,
 	purchase_changed_at DATE NOT NULL,
-	purchase_created_by INT NOT NULL,
-	purchase_changed_by INT NOT NULL,    
+	purchase_created_by VARCHAR(255) NOT NULL,
+	purchase_changed_by VARCHAR(255) NOT NULL, 
 	PRIMARY KEY (purchase_ID),
 	FOREIGN KEY (purchase_vendorID) REFERENCES VENDORS(vendor_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO PURCHASES(purchase_ID, purchase_vendorID, purchase_price, purchase_stage, purchase_status, purchase_comments, purchase_created_at, purchase_changed_at, purchase_created_by, purchase_changed_by) 
 	VALUES
-    (1, 1, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 2, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 3, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(4, 1, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(5, 2, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 3, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(7, 1, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(8, 2, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(9, 3, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by),
-	(10, 3, 1000, 3, true, @describedBy, @created_at, @changed_at, @created_by, @changed_by);
+    (1, 1, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(2, 2, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(3, 3, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(4, 1, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(5, 2, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(6, 3, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(7, 1, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(8, 2, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(9, 3, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by),
+	(10, 3, 1000, 3, true, @note, @created_at, @changed_at, @created_by, @changed_by);
     
 -- ***********************************************************************************************
 -- Create table: PURCHASES ITEMS
@@ -591,8 +621,8 @@ CREATE TABLE PURCHASES_ITEMS (
     item_status BOOLEAN NOT NULL,
 	item_created_at DATE NOT NULL,
 	item_changed_at DATE NOT NULL,
-	item_created_by INT NOT NULL,
-	item_changed_by INT NOT NULL,    
+	item_created_by VARCHAR(255) NOT NULL,
+	item_changed_by VARCHAR(255) NOT NULL, 
 	PRIMARY KEY (item_ID),
 	FOREIGN KEY (item_orderID) REFERENCES PURCHASES(purchase_ID),
 	FOREIGN KEY (item_stockID) REFERENCES STOCKS(stock_ID)
@@ -600,36 +630,36 @@ CREATE TABLE PURCHASES_ITEMS (
 
 INSERT INTO PURCHASES_ITEMS(item_ID, item_orderID, item_stockID, item_amount, item_price, item_discount, item_stage, item_comments, item_status, item_created_at, item_changed_at, item_created_by, item_changed_by) 
 	VALUES
-	(1, 1, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(2, 1, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(3, 1, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(4, 2, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(5, 2, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(6, 2, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(7, 3, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(8, 3, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(9, 3, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(10, 4, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(11, 4, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(12, 4, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(13, 5, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(14, 5, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(15, 5, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(16, 6, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(17, 6, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(18, 6, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),   
-    (19, 7, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(20, 7, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(21, 7, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by), 
-	(22, 8, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(23, 8, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(24, 8, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by), 
-	(25, 9, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(26, 9, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(27, 9, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by), 
-	(28, 10, 1, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(29, 10, 2, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by),
-	(30, 10, 3, 1000, 2000, 100, 6, @describedBy, true, @created_at, @changed_at, @created_by, @changed_by);     
+	(1, 1, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(2, 1, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(3, 1, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(4, 2, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(5, 2, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(6, 2, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(7, 3, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(8, 3, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(9, 3, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(10, 4, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(11, 4, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(12, 4, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(13, 5, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(14, 5, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(15, 5, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(16, 6, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(17, 6, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(18, 6, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),   
+    (19, 7, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(20, 7, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(21, 7, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by), 
+	(22, 8, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(23, 8, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(24, 8, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by), 
+	(25, 9, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(26, 9, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(27, 9, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by), 
+	(28, 10, 1, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(29, 10, 2, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by),
+	(30, 10, 3, 1000, 2000, 100, 6, @note, true, @created_at, @changed_at, @created_by, @changed_by);     
     
 -- ***********************************************************************************************
 -- Create table: STOCK MOVEMENTS
@@ -647,8 +677,8 @@ CREATE TABLE MOVEMENTS (
 	movement_status BOOLEAN NOT NULL,
 	movement_created_at DATE NOT NULL,
 	movement_changed_at DATE NOT NULL,
-	movement_created_by INT NOT NULL,
-	movement_changed_by INT NOT NULL,    
+	movement_created_by VARCHAR(255) NOT NULL,
+	movement_changed_by VARCHAR(255) NOT NULL,
 	PRIMARY KEY (movement_ID),
 	FOREIGN KEY (movement_stockID) REFERENCES STOCKS(stock_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -685,27 +715,6 @@ INSERT INTO MOVEMENTS(movement_ID, movement_stockID, movement_order, movement_it
 	(28, 10, 1, 8, 'C', @created_at, 100, true, @created_at, @changed_at, @created_by, @changed_by),
 	(29, 10, 2, 9, 'C', @created_at, 100, true, @created_at, @changed_at, @created_by, @changed_by),
 	(30, 10, 3, 10, 'C', @created_at, 100, true, @created_at, @changed_at, @created_by, @changed_by);     
-    
--- ***********************************************************************************************
--- Print data from tables
--- ***********************************************************************************************
-SELECT * FROM CARTS;
-SELECT * FROM CARTS_ITEMS;
-SELECT * FROM SALES;
-SELECT * FROM SALES_ITEMS;
-SELECT * FROM PURCHASES;
-SELECT * FROM PURCHASES_ITEMS;
-SELECT * FROM STOCKS;
-SELECT * FROM STORES;
-SELECT * FROM PRODUCTS;
-SELECT * FROM MOVEMENTS;
-SELECT * FROM CUSTOMERS;
-SELECT * FROM VENDORS;
-SELECT * FROM EMPLOYEES;
-SELECT * FROM USERS;
-SELECT * FROM CONTACTS;
-SELECT * FROM IMAGES;
-SELECT * FROM AGENDAS;
 
 --  -----------------------------------------------------------------------------------------------------------------------------
 --  ----------------------------------------------------------------------------------------------------------------------------
@@ -807,6 +816,24 @@ insert into Accounts (USER_NAME, ACTIVE, ENCRYTED_PASSWORD, USER_ROLE)
 values ('manager1', true,
 '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 'ROLE_MANAGER');
 
+-- ***********************************************************************************************
+-- Print data from tables
+-- ***********************************************************************************************
+SELECT * FROM CARTS;
+SELECT * FROM CARTS_ITEMS;
+SELECT * FROM SALES;
+SELECT * FROM SALES_ITEMS;
+SELECT * FROM PURCHASES;
+SELECT * FROM PURCHASES_ITEMS;
+SELECT * FROM STOCKS;
+SELECT * FROM STORES;
+SELECT * FROM PRODUCTS;
+SELECT * FROM MOVEMENTS;
+SELECT * FROM CUSTOMERS;
+SELECT * FROM VENDORS;
+SELECT * FROM EMPLOYEES;
+SELECT * FROM USERS;
+SELECT * FROM AGENDAS;
 SELECT * FROM ORDER_DETAILS;
 SELECT * FROM ORDERS;
 SELECT * FROM ACCOUNTS;

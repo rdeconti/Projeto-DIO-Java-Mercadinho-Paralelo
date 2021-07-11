@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <!-- Include HEAD -->
+    <th:block th:include="/fragments/_head"> </th:block>
+
+    <body>
+
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
+
+        <!-- start MAIN -->
+        <main>
+
+            <div class="container" align="center">
+
+                <h1>Você tem autorização para funções do processo de</h1>
+                <h1>COMPRAS</h1>
+                <br/>
+
+                <div class="panel-heading">
+                    <span class="admin-message-text text-center" th:utext="${userName}"></span>
+                    <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl bg-primary text-white text-center">
+                        <p>Aqui você realiza a manutenção do cadastro de fornecedores</p>
+                        <a class="btn btn-primary" th:href="@{/api/v1/get/vendors/list/}">Listar Fornecedores</a>
+                    </div>
+
+                    <div class="col-xl bg-primary text-white text-center offset-2">
+                        <p>Aqui você cria e acompanha os pedidos de compra</p>
+                        <a class="btn btn-primary" th:href="@{/api/v1/get/purchase/list/}">Listar Compras</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- Include FOOTER -->
+        <th:block th:include="/fragments/_footer"> </th:block>
+
+    </body>
+
+</html>

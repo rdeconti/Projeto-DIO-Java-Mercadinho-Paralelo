@@ -45,7 +45,7 @@ public class ShippingController {
         model.addAttribute("next", pageNumber + 1);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/shipping-list");
+        modelAndView.setViewName("index/shipping-list");
         return modelAndView;
 
     }
@@ -67,7 +67,7 @@ public class ShippingController {
         model.addAttribute("object", shippingModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/shipping-list");
+        modelAndView.setViewName("index/shipping-list");
         return modelAndView;
 
     }
@@ -81,7 +81,7 @@ public class ShippingController {
         model.addAttribute("object", shippingModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/shipping-create");
+        modelAndView.setViewName("index/shipping-create");
         return modelAndView;
     }
 
@@ -94,7 +94,7 @@ public class ShippingController {
             ShippingModel newShippingModel = shippingService.save(shipping);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/shipping-list");
+            modelAndView.setViewName("redirect:/index/shipping-list");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -106,7 +106,7 @@ public class ShippingController {
             model.addAttribute("add", true);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/shipping-update");
+            modelAndView.setViewName("index/shipping-update");
             return modelAndView;
 
         }
@@ -129,7 +129,7 @@ public class ShippingController {
         model.addAttribute("object", shippingModel);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/shipping-update");
+        modelAndView.setViewName("index/shipping-update");
         return modelAndView;
     }
 
@@ -144,7 +144,7 @@ public class ShippingController {
             shippingService.update(shippingModel);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/shipping-list") ;
+            modelAndView.setViewName("redirect:/index/shipping-list") ;
             return modelAndView;
 
         } catch (Exception exception) {
@@ -156,7 +156,7 @@ public class ShippingController {
             model.addAttribute("add", false);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/shipping-update");
+            modelAndView.setViewName("index/shipping-update");
             return modelAndView;
 
         }
@@ -180,7 +180,7 @@ public class ShippingController {
         model.addAttribute("object", shipping);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/shipping-delete");
+        modelAndView.setViewName("index/shipping-delete");
         return modelAndView;
     }
 
@@ -193,7 +193,7 @@ public class ShippingController {
             shippingService.deleteById(shippingId);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/shipping-list") ;
+            modelAndView.setViewName("redirect:/index/shipping-list") ;
             return modelAndView;
 
 
@@ -205,7 +205,7 @@ public class ShippingController {
             model.addAttribute("errorMessage", errorMessage);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/shipping-delete");
+            modelAndView.setViewName("index/shipping-delete");
             return modelAndView;
 
         }

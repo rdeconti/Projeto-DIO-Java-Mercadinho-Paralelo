@@ -1,8 +1,7 @@
 package com.rdeconti.mercadinho.models.seller;
 
-import com.rdeconti.mercadinho.models.seller.CustomerModel;
+import com.rdeconti.mercadinho.models.CustomerModel;
 import lombok.*;
-import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -54,20 +52,20 @@ public class CartModel implements Serializable {
     @NotEmpty(message = "*Por favor informar a data de criação")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "cart_created_at")
-    private LocalDateTime created_at = LocalDateTime.now();
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     @NotEmpty(message = "*Por favor informar a data de alteração")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "cart_changed_at")
-    private LocalDateTime changed_at = LocalDateTime.now();
+    private LocalDateTime changedDate = LocalDateTime.now();
 
-    @NotEmpty(message = "*Por favor informar o responsável pela criação")
+    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
     @Column(name = "cart_created_by")
-    private String created_by;
+    private String createdUser;
 
-    @NotEmpty(message = "*Por favor informar o responsável pela alteração")
+    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "cart_changed_by")
-    private String changed_by;
+    private String changedUser;
 
 }

@@ -45,7 +45,7 @@ public class ReceivingController {
         model.addAttribute("next", pageNumber + 1);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/receiving-list");
+        modelAndView.setViewName("index/receiving-list");
         return modelAndView;
 
     }
@@ -67,7 +67,7 @@ public class ReceivingController {
         model.addAttribute("object", receiving);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/receiving-list");
+        modelAndView.setViewName("index/receiving-list");
         return modelAndView;
 
     }
@@ -81,7 +81,7 @@ public class ReceivingController {
         model.addAttribute("object", receiving);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/receiving-create");
+        modelAndView.setViewName("index/receiving-create");
         return modelAndView;
     }
 
@@ -94,7 +94,7 @@ public class ReceivingController {
             ReceivingModel newReceivingModel = receivingService.save(receiving);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/receiving-list");
+            modelAndView.setViewName("redirect:/index/receiving-list");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -106,7 +106,7 @@ public class ReceivingController {
             model.addAttribute("add", true);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/receiving-update");
+            modelAndView.setViewName("index/receiving-update");
             return modelAndView;
 
         }
@@ -129,7 +129,7 @@ public class ReceivingController {
         model.addAttribute("object", receiving);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/receiving-update");
+        modelAndView.setViewName("index/receiving-update");
         return modelAndView;
     }
 
@@ -144,7 +144,7 @@ public class ReceivingController {
             receivingService.update(receiving);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/receiving-list") ;
+            modelAndView.setViewName("redirect:/index/receiving-list") ;
             return modelAndView;
 
         } catch (Exception ex) {
@@ -156,7 +156,7 @@ public class ReceivingController {
             model.addAttribute("add", false);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/receiving-update");
+            modelAndView.setViewName("index/receiving-update");
             return modelAndView;
 
         }
@@ -180,7 +180,7 @@ public class ReceivingController {
         model.addAttribute("object", receiving);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("stockerRole/receiving-delete");
+        modelAndView.setViewName("index/receiving-delete");
         return modelAndView;
     }
 
@@ -193,7 +193,7 @@ public class ReceivingController {
             receivingService.deleteById(receivingId);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/stockerRole/receiving-list") ;
+            modelAndView.setViewName("redirect:/index/receiving-list") ;
             return modelAndView;
 
 
@@ -205,7 +205,7 @@ public class ReceivingController {
             model.addAttribute("errorMessage", errorMessage);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("stockerRole/receiving-delete");
+            modelAndView.setViewName("index/receiving-delete");
             return modelAndView;
 
         }

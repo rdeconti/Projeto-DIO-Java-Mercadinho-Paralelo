@@ -1,7 +1,6 @@
 package com.rdeconti.mercadinho.services;
 
-import com.rdeconti.mercadinho.models.manager.UserModel;
-import com.rdeconti.mercadinho.services.manager.UserService;
+import com.rdeconti.mercadinho.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

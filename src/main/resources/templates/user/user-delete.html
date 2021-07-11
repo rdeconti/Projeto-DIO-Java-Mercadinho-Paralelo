@@ -1,0 +1,111 @@
+<!--
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// HTML: Read or Delete model
+// -----------------------------------------------------------------------------------------------------------------
+-->
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="">
+
+      <!-- Include HEAD -->
+      <th:block th:include="/fragments/_head"> </th:block>
+
+      <body>
+
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
+
+        <!-- start MAIN -->
+        <main>
+
+          <div class="container" align="center">
+
+            <h1>Excluir Usuário</h1>
+
+            <div th:if="${object}">
+
+                <form class="form-horizontal"
+                      th:action="@{/api/v1/post/users/delete/id/{objectId}/(objectId=${object.id})}"
+                      th:object="${object}" method="POST">
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="name">Nome</label>
+                            <input type="text" placeholder="*Informe o nome" class="form-control input-sm" id="name" disabled th:field="*{userName}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="email">Nome</label>
+                            <input type="text" placeholder="*Informe o email" class="form-control input-sm" id="email" disabled th:field="*{email}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="address">Endereço</label>
+                            <textarea rows="4" placeholder="*Informe o endereço" class="form-control input-sm"  id="address" disabled th:field="*{address}"></textarea>
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="cep">Nome</label>
+                            <input type="text" placeholder="*Informe o CEP" class="form-control input-sm" id="cep" disabled th:field="*{cep}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="phone">Telefone</label>
+                            <input type="text" placeholder="*Informe o telefone" class="form-control input-sm" id="phone" disabled th:field="*{phone}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="whats">WhatsApp</label>
+                            <input type="text" placeholder="*Informe o WhatsApp" class="form-control input-sm" id="whats" disabled th:field="*{whats}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="cpf">CPF</label>
+                            <input type="text" placeholder="*Informe o CPF" class="form-control input-sm" id="cpf" disabled th:field="*{cpf}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="status">Situação</label>
+                            <input type="text" class="form-control input-sm" id="status" disabled th:field="*{status}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="createdDate">Criação</label>
+                            <input type="text" class="form-control input-sm" id="createdDate" disabled th:field="*{createdDate}">
+                            <label class="control-label col-sm-6" for="createdUser">Criado por</label>
+                            <input type="text" class="form-control input-sm" id="createdUser" disabled th:field="*{createdUser}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="changedDate">Alteração</label>
+                            <input type="text" class="form-control input-sm" id="changedDate" disabled th:field="*{changedDate}">
+                            <label class="control-label col-sm-6" for="changedUser">Alterado por</label>
+                            <input type="text" class="form-control input-sm" id="changedUser" disabled th:field="*{changedUser}">
+                        </div>
+
+                        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>
+
+                        <div class="form-group form-inline division-centered">
+                            <a class="btn btn-primary" th:href="@{/api/v1/get/users/list/}">Listar</a>
+                            &nbsp &nbsp &nbsp
+                            <input class="btn btn-primary" type="submit" value="Excluir"/>
+                        </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </main>
+
+        <!-- Include FOOTER -->
+        <th:block th:include="/fragments/_footer"> </th:block>
+
+      </body>
+
+</html>
