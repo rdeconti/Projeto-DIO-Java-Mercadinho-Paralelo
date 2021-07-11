@@ -40,31 +40,11 @@ public class PurchaseModel implements Serializable {
     @Column(name = "purchase_stage")
     private Integer stage;
 
-    @NotEmpty(message = "*Por favor informar a situação")
     @Column(name = "purchase_status")
     private Boolean status = true;
 
     @NotEmpty(message = "*Por favor informar comentários sobre a informação")
     @Column(name = "purchase_comments")
     private String comments;
-
-    @NotEmpty(message = "*Por favor informar a data de criação")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "purchase_created_at")
-    private LocalDateTime createdDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar a data de alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "purchase_changed_at")
-    private LocalDateTime changedDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
-    @Column(name = "purchase_created_by")
-    private String createdUser;
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "purchase_changed_by")
-    private String changedUser;
 
 }

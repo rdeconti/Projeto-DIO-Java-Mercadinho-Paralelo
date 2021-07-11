@@ -67,28 +67,8 @@ public class EmployeeModel implements Serializable {
     @NotEmpty(message = "*Por favor informe observações do empregado")
     private String note;
 
-    @NotEmpty(message = "*Por favor informar a situação")
     @Column(name = "employee_status")
     private Boolean status = true;
-
-    @NotEmpty(message = "*Por favor informar a data de criação")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "employee_created_at")
-    private LocalDateTime createdDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar a data de alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "employee_changed_at")
-    private LocalDateTime changedDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
-    @Column(name = "employee_created_by")
-    private String createdUser;
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "employee_changed_by")
-    private String changedUser;
 
 }
 

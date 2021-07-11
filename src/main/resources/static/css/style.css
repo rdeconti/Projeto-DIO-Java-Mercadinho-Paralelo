@@ -28,12 +28,12 @@ form {
     padding: 5px;
 }
 
-label {
-    display: inline-block;
+.control-label {
     font-weight: bold;
     width: 100px;
     color: red;
     text-align: left;
+    text-transform: uppercase;
 }
 
 input {

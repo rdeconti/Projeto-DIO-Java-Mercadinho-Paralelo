@@ -51,17 +51,17 @@ public class VendorModel implements Serializable {
     private String address;
 
     @Column(name = "vendor_cep")
-    @Pattern(regexp="\\d{5}-\\d{3}")
+    //@Pattern(regexp="\\d{5}-\\d{3}")
     @NotEmpty(message = "*Por favor informe o CEP do fornecedor")
     private String cep;
 
     @Column(name = "vendor_phone")
-    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
+    //@Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
     @NotEmpty(message = "*Por favor informe o telefone do fornecedor")
     private String phone;
 
     @Column(name = "vendor_whats")
-    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
+    //@Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
     @NotEmpty(message = "*Por favor informe o whatsApp do fornecedor")
     private String whats;
 
@@ -74,27 +74,7 @@ public class VendorModel implements Serializable {
     @NotEmpty(message = "*Por favor informe observações do fornecedor")
     private String note;
 
-    @NotEmpty(message = "*Por favor informar a situação")
-    @Column(name = "vendor_status", nullable = false)
+    @Column(name = "vendor_status")
     private Boolean status = true;
-
-    @NotEmpty(message = "*Por favor informar a data de criação")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "vendor_created_at")
-    private LocalDateTime createdDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar a data de alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "vendor_changed_at")
-    private LocalDateTime changedDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
-    @Column(name = "vendor_created_by")
-    private String createdUser;
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "vendor_changed_by")
-    private String changedUser;
 
 }

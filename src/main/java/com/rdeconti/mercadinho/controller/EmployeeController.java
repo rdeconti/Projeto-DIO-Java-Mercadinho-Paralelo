@@ -132,6 +132,14 @@ public class EmployeeController {
 
         }
 
+        // Formatting status (due MySql has TINYINT(1))
+        assert employeeModel != null;
+        if (employeeModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
+        }
+
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(TEMPLATE_READ);
@@ -161,6 +169,14 @@ public class EmployeeController {
 
         // Generate empty object
         EmployeeModel employeeModel = new EmployeeModel();
+
+        // Formatting status (due MySql has TINYINT(1))
+        assert employeeModel != null;
+        if (employeeModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
+        }
 
         // Set attributes to be used by Thymeleaf
         model.addAttribute(ATTRIBUTE_OBJECT, employeeModel);
@@ -257,6 +273,14 @@ public class EmployeeController {
 
         }
 
+        // Formatting status (due MySql has TINYINT(1))
+        assert employeeModel != null;
+        if (employeeModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
+        }
+
         // Set attributes to be used by Thymeleaf
         model.addAttribute(ATTRIBUTE_OBJECT, employeeModel);
 
@@ -350,6 +374,14 @@ public class EmployeeController {
             // Send message error
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
 
+        }
+
+        // Formatting status (due MySql has TINYINT(1))
+        assert employeeModel != null;
+        if (employeeModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
         }
 
         // Set attributes to be used by Thymeleaf

@@ -55,27 +55,7 @@ public class ProductModel implements Serializable {
     @Column(name = "product_description", length = 14, nullable = false)
     private String description;
 
-    @NotEmpty(message = "*Por favor informar a situação")
     @Column(name = "product_status")
     private Boolean status = true;
-
-    @NotEmpty(message = "*Por favor informar a data de criação")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "product_created_at")
-    private LocalDateTime createdDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar a data de alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "product_changed_at")
-    private LocalDateTime changedDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
-    @Column(name = "product_created_by")
-    private String createdUser;
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "product_changed_by")
-    private String changedUser;
 
 }

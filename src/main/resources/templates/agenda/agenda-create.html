@@ -68,7 +68,7 @@
 
                     <div class="form-group form-inline">
                       <label class="control-label col-sm-6" for="comment">Observações</label>
-                      <textarea rows="4" placeholder="*Informe as observações" class="form-control input-sm"  id="comment" th:field="*{note}"></textarea>
+                      <textarea rows="2" cols="30" placeholder="*Informe as observações" class="form-control input-sm"  id="comment" th:field="*{note}"></textarea>
                     </div>
 
                     <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>

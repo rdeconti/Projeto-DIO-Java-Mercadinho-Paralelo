@@ -45,27 +45,7 @@ public class CartModel implements Serializable {
     @Column(name = "cart_comments")
     private String comments;
 
-    @NotEmpty(message = "*Por favor informar a situação")
     @Column(name = "cart_status")
     private Boolean status = true;
-
-    @NotEmpty(message = "*Por favor informar a data de criação")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "cart_created_at")
-    private LocalDateTime createdDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar a data de alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "cart_changed_at")
-    private LocalDateTime changedDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
-    @Column(name = "cart_created_by")
-    private String createdUser;
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "cart_changed_by")
-    private String changedUser;
 
 }

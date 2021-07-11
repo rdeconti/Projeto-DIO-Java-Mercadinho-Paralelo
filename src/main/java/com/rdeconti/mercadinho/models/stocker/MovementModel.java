@@ -54,28 +54,8 @@ public class MovementModel implements Serializable {
     @NotEmpty(message = "*Por favor informar a quantidade movimentada")
     private BigDecimal amount;
 
-    @NotEmpty(message = "*Por favor informar a situação")
     @Column(name = "movement_status")
     private Boolean active = true;
-
-    @NotEmpty(message = "*Por favor informar a data de criação")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "movement_created_at")
-    private LocalDateTime createdDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar a data de alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "movement_changed_at")
-    private LocalDateTime changedDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
-    @Column(name = "movement_created_by")
-    private String createdUser;
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "movement_changed_by")
-    private String changedUser;
 
 }
 

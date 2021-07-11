@@ -63,26 +63,12 @@
 
                      <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="description">Descrição</label>
-                        <textarea rows="4" placeholder="*Informe a descrição do produto" class="form-control input-sm"  id="description" th:field="*{description}"></textarea>
+                        <textarea rows="2" cols="30" placeholder="*Informe a descrição do produto" class="form-control input-sm"  id="description" th:field="*{description}"></textarea>
                     </div>
 
                     <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="status">Situação</label>
-                        <input type="text" class="form-control input-sm" id="status" disabled th:field="*{status}">
-                    </div>
-
-                    <div class="form-group form-inline">
-                        <label class="control-label col-sm-6" for="createdDate">Criação</label>
-                        <input type="text" class="form-control input-sm" id="createdDate" disabled th:field="*{createdDate}">
-                        <label class="control-label col-sm-6" for="createdUser">Criado por</label>
-                        <input type="text" class="form-control input-sm" id="createdUser" disabled th:field="*{createdUser}">
-                    </div>
-
-                    <div class="form-group form-inline">
-                        <label class="control-label col-sm-6" for="changedDate">Alteração</label>
-                        <input type="text" class="form-control input-sm" id="changedDate" disabled th:field="*{changedDate}">
-                        <label class="control-label col-sm-6" for="changedUser">Alterado por</label>
-                        <input type="text" class="form-control input-sm" id="changedUser" disabled th:field="*{changedUser}">
+                        <input type="text" class="form-control input-sm" id="status" disabled th:value="${currentStatus} ? 'Ativado' : 'Desativado'">
                     </div>
 
                     <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>

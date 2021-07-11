@@ -132,6 +132,14 @@ public class UserController {
 
         }
 
+        // Formatting status (due MySql has TINYINT(1))
+        assert userModel != null;
+        if (userModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
+        }
+
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(TEMPLATE_READ);
@@ -161,6 +169,14 @@ public class UserController {
 
         // Generate empty object
         UserModel userModel = new UserModel();
+
+        // Formatting status (due MySql has TINYINT(1))
+        assert userModel != null;
+        if (userModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
+        }
 
         // Set attributes to be used by Thymeleaf
         model.addAttribute(ATTRIBUTE_OBJECT, userModel);
@@ -257,6 +273,14 @@ public class UserController {
 
         }
 
+        // Formatting status (due MySql has TINYINT(1))
+        assert userModel != null;
+        if (userModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
+        }
+
         // Set attributes to be used by Thymeleaf
         model.addAttribute(ATTRIBUTE_OBJECT, userModel);
 
@@ -350,6 +374,14 @@ public class UserController {
             // Send message error
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
 
+        }
+
+        // Formatting status (due MySql has TINYINT(1))
+        assert userModel != null;
+        if (userModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
         }
 
         // Set attributes to be used by Thymeleaf

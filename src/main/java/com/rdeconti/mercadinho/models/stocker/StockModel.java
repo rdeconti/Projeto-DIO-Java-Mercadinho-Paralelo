@@ -41,7 +41,6 @@ public class StockModel implements Serializable {
     @Column(name = "stock_amount", nullable = false)
     private BigDecimal amount;
 
-    @NotEmpty(message = "*Por favor informar a situação")
     @Column(name = "product_status")
     private Boolean status = true;
 
@@ -49,24 +48,5 @@ public class StockModel implements Serializable {
     @DateTimeFormat(pattern="dd-MMM-yyyy")
     @Column(name = "stock_expiration")
     private LocalDateTime expiration;
-
-    @NotEmpty(message = "*Por favor informar a data de criação")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "stock_created_at")
-    private LocalDateTime createdDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar a data de alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "stock_changed_at")
-    private LocalDateTime changedDate = LocalDateTime.now();
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela criação")
-    @Column(name = "stock_created_by")
-    private String createdUser;
-
-    @NotEmpty(message = "*Por favor informar usuário responsável pela alteração")
-    @DateTimeFormat(pattern="dd-MMM-yyyy")
-    @Column(name = "stock_changed_by")
-    private String changedUser;
 
 }

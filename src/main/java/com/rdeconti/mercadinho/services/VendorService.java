@@ -3,6 +3,7 @@ package com.rdeconti.mercadinho.services;
 import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
+import com.rdeconti.mercadinho.models.UserModel;
 import com.rdeconti.mercadinho.models.VendorModel;
 import com.rdeconti.mercadinho.repositories.VendorRepository;
 
@@ -11,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +33,9 @@ public class VendorService {
     // -----------------------------------------------------------------------------------------------------------------
     @Autowired
     private VendorRepository vendorRepository;
+
+    @Autowired
+    private UserService userService;
 
     // -----------------------------------------------------------------------------------------------------------------
     // Returns whether an entity with the given id exists
@@ -145,5 +152,59 @@ public class VendorService {
     // -----------------------------------------------------------------------------------------------------------------
     public Long countObject() {
         return vendorRepository.count();
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // Change object status to ACTIVATED
+    // -----------------------------------------------------------------------------------------------------------------
+    public void activateObject(VendorModel vendorModel)
+            throws BadResourceException, ResourceNotFoundException {
+
+        // Treat invalid argument
+        if (vendorModel.getName() != null) {
+
+            if (!existsObjectById(vendorModel.getId())) {
+                throw new ResourceNotFoundException(ATTRIBUTE_VALUE_ERROR_MESSAGE_1 + vendorModel.getId());
+            }
+
+            // Save Object ACTIVATED
+            vendorModel.setStatus(true);
+            vendorRepository.save(vendorModel);
+        }
+
+        else {
+
+            BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
+            badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_2);
+            throw badResourceException;
+        }
+
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // Change object status to DEACTIVATED
+    // -----------------------------------------------------------------------------------------------------------------
+    public void deactivateObject(VendorModel vendorModel)
+            throws BadResourceException, ResourceNotFoundException {
+
+        // Treat invalid argument
+        if (vendorModel.getName() != null) {
+
+            if (!existsObjectById(vendorModel.getId())) {
+                throw new ResourceNotFoundException(ATTRIBUTE_VALUE_ERROR_MESSAGE_1 + vendorModel.getId());
+            }
+
+            // Save Object DEACTIVATED
+            vendorModel.setStatus(false);
+            vendorRepository.save(vendorModel);
+        }
+
+        else {
+
+            BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
+            badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_2);
+            throw badResourceException;
+        }
+
     }
 }

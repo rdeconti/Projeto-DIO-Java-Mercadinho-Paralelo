@@ -7,6 +7,7 @@
 // -----------------------------------------------------------------------------------------------------------------
 package com.rdeconti.mercadinho.controller;
 
+import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.VendorModel;
 import com.rdeconti.mercadinho.services.VendorService;
@@ -132,6 +133,14 @@ public class VendorController {
 
         }
 
+        // Formatting status (due MySql has TINYINT(1))
+        assert vendorModel != null;
+        if (vendorModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
+        }
+
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(TEMPLATE_READ);
@@ -241,7 +250,7 @@ public class VendorController {
     )
 
     @RequestMapping(value={"/api/v1/get/vendors/update/id/{objectId}/"}, method = RequestMethod.GET)
-    public ModelAndView objectUpdateGet(Model model, @PathVariable long objectId) {
+    public ModelAndView objectUpdateGet(Model model, @PathVariable long objectId) throws BadResourceException, ResourceNotFoundException {
 
         VendorModel vendorModel = null;
 
@@ -255,6 +264,14 @@ public class VendorController {
             // Send message error
             model.addAttribute(ATTRIBUTE_NAME_ERROR_MESSAGE, ATTRIBUTE_VALUE_ERROR_MESSAGE);
 
+        }
+
+        // Formatting status (due MySql has TINYINT(1))
+        assert vendorModel != null;
+        if (vendorModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
         }
 
         // Set attributes to be used by Thymeleaf
@@ -336,7 +353,7 @@ public class VendorController {
 
     @RequestMapping(value={"/api/v1/get/vendors/delete/id/{objectId}"}, method = RequestMethod.GET)
     public ModelAndView objectDeleteGet(
-            Model model, @PathVariable long objectId) {
+            Model model, @PathVariable long objectId) throws BadResourceException, ResourceNotFoundException {
 
         VendorModel vendorModel = null;
 
@@ -354,6 +371,13 @@ public class VendorController {
 
         // Set attributes to be used by Thymeleaf
         model.addAttribute(ATTRIBUTE_OBJECT, vendorModel);
+
+        // Formatting status (due MySql has TINYINT(1))
+        if (vendorModel.getStatus()) {
+            model.addAttribute("currentStatus", true);
+        } else {
+            model.addAttribute("currentStatus", false);
+        }
 
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
