@@ -3,15 +3,15 @@
 // Date: 01/06/2021
 // Project: Develop an application to control stocks and e-commerce from a Grocery
 // Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
-// Class: Service level that execute business rules object STORE
+// Class: Service level that execute business rules object SALE
 // -----------------------------------------------------------------------------------------------------------------
 package com.rdeconti.mercadinho.services;
 
 import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.StoreModel;
-import com.rdeconti.mercadinho.repositories.StoreRepository;
+import com.rdeconti.mercadinho.models.SaleModel;
+import com.rdeconti.mercadinho.repositories.SaleRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class StoreService {
+public class SaleService {
 
     private static final String ATTRIBUTE_VALUE_ERROR_MESSAGE_1 = "Registro não encontrado com este ID: ";
     private static final String ATTRIBUTE_VALUE_ERROR_MESSAGE_2 = "Registro está nulo ou vazio";
@@ -34,29 +34,29 @@ public class StoreService {
     // Resolve and inject collaborating beans into our bean
     // -----------------------------------------------------------------------------------------------------------------
     @Autowired
-    private StoreRepository storeRepository;
+    private SaleRepository saleRepository;
 
     // -----------------------------------------------------------------------------------------------------------------
     // Returns whether an entity with the given id exists
     // -----------------------------------------------------------------------------------------------------------------
     private boolean existsObjectById(Long id) {
-        return storeRepository.existsById(id);
+        return saleRepository.existsById(id);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
     // Retrieves an entity by its id
     // -----------------------------------------------------------------------------------------------------------------
-    public StoreModel findObjectById(Long id) throws ResourceNotFoundException {
+    public SaleModel findObjectById(Long id) throws ResourceNotFoundException {
 
-        StoreModel storeModel = storeRepository.findById(id).orElse(null);
+        SaleModel SaleModel = saleRepository.findById(id).orElse(null);
 
-        if (storeModel==null) {
+        if (SaleModel==null) {
 
             throw new ResourceNotFoundException(ATTRIBUTE_VALUE_ERROR_MESSAGE_1 + id);
 
         } else {
 
-            return storeModel;
+            return SaleModel;
 
         }
     }
@@ -64,24 +64,24 @@ public class StoreService {
     // -----------------------------------------------------------------------------------------------------------------
     // Returns a page of entities meeting the paging restriction provided in the pageable object
     // -----------------------------------------------------------------------------------------------------------------
-    public List<StoreModel> findObjectList(int pageNumber, int rowPerPage) {
+    public List<SaleModel> findObjectList(int pageNumber, int rowPerPage) {
 
-        List<StoreModel> modelArrayList = new ArrayList<>();
+        List<SaleModel> modelArrayList = new ArrayList<>();
 
         Pageable sortedByIdAsc = PageRequest.of(pageNumber - 1, rowPerPage,
                 Sort.by("id").ascending());
 
-        storeRepository.findAll(sortedByIdAsc).forEach(modelArrayList::add);
+        saleRepository.findAll(sortedByIdAsc).forEach(modelArrayList::add);
         return modelArrayList;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
     // Create object
     // -----------------------------------------------------------------------------------------------------------------
-    public StoreModel createObject(@NotNull StoreModel storeModel) throws BadResourceException, ResourceAlreadyExistsException {
+    public SaleModel createObject(@NotNull SaleModel SaleModel) throws BadResourceException, ResourceAlreadyExistsException {
 
         // Treat null argument
-        if (storeModel.getName() == null) {
+        if (SaleModel.getPrice() == null) {
 
             BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
             badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_2);
@@ -90,7 +90,7 @@ public class StoreService {
         }
 
         // Treat object already exists
-        if (storeModel.getId() != null && existsObjectById(storeModel.getId())) {
+        if (SaleModel.getId() != null && existsObjectById(SaleModel.getId())) {
 
             BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
             badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_4);
@@ -99,25 +99,25 @@ public class StoreService {
         }
 
         // Save object
-        return storeRepository.save(storeModel);
+        return saleRepository.save(SaleModel);
 
     }
 
     // -----------------------------------------------------------------------------------------------------------------
     // Update object
     // -----------------------------------------------------------------------------------------------------------------
-    public void updateObject(StoreModel storeModel)
+    public void updateObject(SaleModel SaleModel)
             throws BadResourceException, ResourceNotFoundException {
 
         // Treat invalid argument
-        if (storeModel.getName() != null) {
+        if (SaleModel.getPrice() != null) {
 
-            if (!existsObjectById(storeModel.getId())) {
-                throw new ResourceNotFoundException(ATTRIBUTE_VALUE_ERROR_MESSAGE_1 + storeModel.getId());
+            if (!existsObjectById(SaleModel.getId())) {
+                throw new ResourceNotFoundException(ATTRIBUTE_VALUE_ERROR_MESSAGE_1 + SaleModel.getId());
             }
 
             // Save Object
-            storeRepository.save(storeModel);
+            saleRepository.save(SaleModel);
         }
 
         else {
@@ -142,7 +142,7 @@ public class StoreService {
         else {
 
             // Delete object
-            storeRepository.deleteById(id);
+            saleRepository.deleteById(id);
         }
     }
 
@@ -150,6 +150,6 @@ public class StoreService {
     // Count number of registers of Object
     // -----------------------------------------------------------------------------------------------------------------
     public Long countObject() {
-        return storeRepository.count();
+        return saleRepository.count();
     }
 }

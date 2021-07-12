@@ -1,22 +1,24 @@
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// Class: Service level that execute business rules object VENDOR
+// -----------------------------------------------------------------------------------------------------------------
 package com.rdeconti.mercadinho.services;
 
 import com.rdeconti.mercadinho.exception.BadResourceException;
 import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
-import com.rdeconti.mercadinho.models.UserModel;
 import com.rdeconti.mercadinho.models.VendorModel;
 import com.rdeconti.mercadinho.repositories.VendorRepository;
-
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

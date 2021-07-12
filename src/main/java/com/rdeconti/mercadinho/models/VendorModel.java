@@ -9,7 +9,6 @@ package com.rdeconti.mercadinho.models;
 
 import lombok.*;
 import org.hibernate.validator.constraints.br.CNPJ;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -17,7 +16,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -51,17 +49,17 @@ public class VendorModel implements Serializable {
     private String address;
 
     @Column(name = "vendor_cep")
-    //@Pattern(regexp="\\d{5}-\\d{3}")
+    @Pattern(regexp="\\d{5}-\\d{3}")
     @NotEmpty(message = "*Por favor informe o CEP do fornecedor")
     private String cep;
 
     @Column(name = "vendor_phone")
-    //@Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
+    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
     @NotEmpty(message = "*Por favor informe o telefone do fornecedor")
     private String phone;
 
     @Column(name = "vendor_whats")
-    //@Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
+    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
     @NotEmpty(message = "*Por favor informe o whatsApp do fornecedor")
     private String whats;
 

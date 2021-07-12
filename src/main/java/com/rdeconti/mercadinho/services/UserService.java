@@ -1,3 +1,10 @@
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// Class: Service level that execute business rules object USER
+// -----------------------------------------------------------------------------------------------------------------
 package com.rdeconti.mercadinho.services;
 
 import com.rdeconti.mercadinho.exception.BadResourceException;
@@ -5,7 +12,6 @@ import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.exception.ResourceNotFoundException;
 import com.rdeconti.mercadinho.models.UserModel;
 import com.rdeconti.mercadinho.repositories.UserRepository;
-
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +25,8 @@ import java.util.List;
 
 @Service
 public class UserService {
+
+    // TODO REVIEW DOCUMENTATION
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 

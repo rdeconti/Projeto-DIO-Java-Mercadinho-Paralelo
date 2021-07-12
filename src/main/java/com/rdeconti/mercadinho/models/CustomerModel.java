@@ -1,8 +1,14 @@
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// Class: Model that defines attributes regarding object CUSTOMER
+// -----------------------------------------------------------------------------------------------------------------
 package com.rdeconti.mercadinho.models;
 
 import lombok.*;
 import org.hibernate.validator.constraints.br.CNPJ;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -10,7 +16,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -57,6 +62,11 @@ public class CustomerModel implements Serializable {
     @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
     @NotEmpty(message = "*Por favor informe o whatsApp do cliente")
     private String whats;
+
+    // TODO TRATAR O TIPO DE DOCUMENTO
+    @Column(name = "customer_type")
+    @NotEmpty(message = "*Por favor informe o tipo de documento")
+    private String type;
 
     @Column(name = "customer_document")
     @CNPJ(message = "*Por favor informe CNPJ válido")
