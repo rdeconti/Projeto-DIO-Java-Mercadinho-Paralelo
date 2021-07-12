@@ -1,0 +1,99 @@
+<!--
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// HTML: Read or Delete model
+// -----------------------------------------------------------------------------------------------------------------
+-->
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="">
+
+      <!-- Include HEAD -->
+      <th:block th:include="/fragments/_head"> </th:block>
+
+      <body>
+
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
+
+        <!-- start MAIN -->
+        <main>
+
+          <div class="container" align="center">
+
+            <h1>Exibir Movimento</h1>
+
+            <div th:if="${object}">
+
+                <form class="form-horizontal"
+                      th:object="${object}">
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="name">Nome</label>
+                            <input type="text" placeholder="*Informe o nome" class="form-control input-sm" id="name" disabled th:field="*{name}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="email">Nome</label>
+                            <input type="text" placeholder="*Informe o email" class="form-control input-sm" id="email" disabled th:field="*{email}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="address">Endereço</label>
+                            <textarea rows="2" cols="30" placeholder="*Informe o endereço" class="form-control input-sm"  id="address" disabled th:field="*{address}"></textarea>
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="cep">Nome</label>
+                            <input type="text" placeholder="*Informe o CEP" class="form-control input-sm" id="cep" disabled th:field="*{cep}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="phone">Telefone</label>
+                            <input type="text" placeholder="*Informe o telefone" class="form-control input-sm" id="phone" disabled th:field="*{phone}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="whats">WhatsApp</label>
+                            <input type="text" placeholder="*Informe o WhatsApp" class="form-control input-sm" id="whats" disabled th:field="*{whats}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="cnpj">CNPJ</label>
+                            <input type="text" placeholder="*Informe o CNPJ" class="form-control input-sm" id="cnpj" disabled th:field="*{cnpj}">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="note">Observações</label>
+                            <textarea rows="2" cols="30" placeholder="*Informe as observações" class="form-control input-sm" disabled id="note" th:field="*{note}"></textarea>
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-6" for="status">Situação</label>
+                            <input type="text" class="form-control input-sm" id="status" disabled th:value="${currentStatus} ? 'Ativado' : 'Desativado'">
+                        </div>
+
+                        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"></div>
+
+                        <div class="form-group form-inline division-centered">
+                            <a class="btn btn-primary" th:href="@{/api/v1/get/movements/list/}">Listar</a>
+                        </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </main>
+
+        <!-- Include FOOTER -->
+        <th:block th:include="/fragments/_footer"> </th:block>
+
+      </body>
+
+</html>

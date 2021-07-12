@@ -1,0 +1,87 @@
+<!--
+// -----------------------------------------------------------------------------------------------------------------
+// Author: Rosemeire Deconti
+// Date: 01/06/2021
+// Project: Develop an application to control stocks and e-commerce from a Grocery
+// Origin: Suggested during Bootcamp CodeAnywhere mentoring promoted by Digital Innovation One
+// HTML: List of objects from a model
+// -----------------------------------------------------------------------------------------------------------------
+-->
+<!DOCTYPE HTML>
+
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="">
+
+      <!-- Include HEAD -->
+      <th:block th:include="/fragments/_head"> </th:block>
+
+      <body>
+
+        <!-- Include HEADER -->
+        <th:block th:include="/fragments/_header"> </th:block>
+
+        <!-- start MAIN -->
+        <main>
+
+          <div class="container" align="center">
+
+            <h1>Lista de Vendas</h1>
+
+            <div>
+
+              <table class="table table-hover">
+
+                <thead>
+
+                  <tr>
+                    <th>Número</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Exibir</th>
+                    <th>Alterar</th>
+                    <th>Excluir</th>
+                  </tr>
+
+                </thead>
+
+                <tbody>
+
+                  <tr th:each ="object : ${objects}">
+
+                    <td th:utext="${object.id}">...</td>
+                    <td th:utext="${object.name}">...</td>
+                    <td th:utext="${object.phone}">...</td>
+                    <td th:utext="${object.email}">...</td>
+
+                    <td><a th:href="@{/api/v1/get/sales/read/id/{objectId}/(objectId=${object.id})}">Exibir</a></td>
+                    <td><a th:href="@{/api/v1/get/sales/update/id/{objectId}/(objectId=${object.id})}">Alterar</a></td>
+                    <td><a th:href="@{/api/v1/get/sales/delete/id/{objectId}/(objectId=${object.id})}">Excluir</a></td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+            <div>
+              <br/>
+              <a class="btn btn-primary" th:href="@{/api/v1/get/sales/create/}">Criar</a>
+              &nbsp;&nbsp;&nbsp;
+              <span th:if="${hasPrev}"><a class="btn btn-primary" th:href="@{/api/v1/get/sales/list/?page={prev}(prev=${prev})}">Anterior</a></span>
+              &nbsp;&nbsp;&nbsp;
+              <span th:if="${hasNext}"><a class="btn btn-primary" th:href="@{/api/v1/get/sales/list/?page={next}(next=${next})}">Próxima</a></span>
+            </div>
+
+          </div>
+
+        </main>
+
+        <!-- Include FOOTER -->
+        <th:block th:include="/fragments/_footer"> </th:block>
+
+    </body>
+
+</html>
