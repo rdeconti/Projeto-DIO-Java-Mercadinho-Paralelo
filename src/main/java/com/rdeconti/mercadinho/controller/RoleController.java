@@ -27,6 +27,7 @@ public class RoleController {
     private static final String ATTRIBUTE_ROLE_PURCHASER = "Conteúdo disponível para ROLE-PURCHASER";
     private static final String ATTRIBUTE_ROLE_SELLER = "Conteúdo disponível para ROLE-SELLER";
     private static final String ATTRIBUTE_ROLE_STOCKER = "Conteúdo disponível para ROLE-STOCKER";
+    private static final String ATTRIBUTE_ROLE_USER = "Conteúdo disponível para ROLE-USER";
 
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -64,11 +65,32 @@ public class RoleController {
             case "ROLE_STOCKER":
                 return "redirect:/role/stocker";
 
+            case "ROLE_USER":
+                return "redirect:/role/user";
+
             default:
                 return "redirect:/authorization/noAccess";
 
         }
 
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // Authorization: role USER after authorized Login (GET)
+    // -----------------------------------------------------------------------------------------------------------------
+    @RequestMapping(value="/role/user", method = RequestMethod.GET)
+    public ModelAndView user(){
+
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        UserModel userModel = userService.findUserByUserName(auth.getName());
+
+        modelAndView.addObject(ATTRIBUTE_USER_NAME, ATTRIBUTE_USER_MESSAGE + userModel.getName());
+        modelAndView.addObject(ATTRIBUTE_ADMIN_MESSAGE,ATTRIBUTE_ROLE_USER);
+        modelAndView.setViewName("index/user-index");
+
+        return modelAndView;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
