@@ -22,6 +22,14 @@ Vamos tentar aplicar os conhecimentos de hoje para expandir o nosso projeto do M
 
 ## Link do projeto: https://github.com/users/rdeconti/projects/3
 
+## Conhecimento inicial:
+- Conhecimentos de Java
+- Conhecimentos de SQL e MySql
+- Conhecimentos de HTML, CSS e Bootstrap
+- Pouco conhecimento de API
+- Nenhum conhecimento de Spring, Swagger, Lombok< Thyemeleaf
+- UM GRANDE DESAFIO!!!!
+
 ## Descrição:
 A aplicação controla alguns processos de um mercadinho e tem as seguintes funcionalidades:
 - Controla as compras e fornecedores;
@@ -55,9 +63,9 @@ A aplicação controla alguns processos de um mercadinho e tem as seguintes func
 ## Modelo de banco de dados:
 - MySql script para criação BD 'groceryStore': https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/sql/GroceryStoreMySql.sql
 - Tabelas:
-  Carrinho de compras: CARTS e CARTS_ITEMS;
-  Ordens de venda: SALES e SALES_ITEMS;
-  Ordens de compra: PURCHASES e PURCHASES_ITEMS;
+  Carrinho de compras: CARTS;
+  Ordens de venda: SALES
+  Ordens de compra: PURCHASES;
   Movimento de estoque: MOVEMENTS;
   Estoque: STOCKS;
   Lojas: STORES;
@@ -66,8 +74,6 @@ A aplicação controla alguns processos de um mercadinho e tem as seguintes func
   Fornecedores: VENDORS;
   Empregados: EMPLOYEES;
   Usuários: USERS;
-  Contatos: CONTACTS (são os endereços das lojas, clientes, fornecedores e usuários);
-  Imagens: IMAGES (são as fotos dos produtos armazenadas no Github e acessadas por URL para realizar os testes);
 - Diagrama: https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/sql/model.pdf
 
 
