@@ -1,5 +1,7 @@
 package com.rdeconti.mercadinho.controller;
 
+import com.rdeconti.mercadinho.exception.BadResourceException;
+import com.rdeconti.mercadinho.exception.ResourceAlreadyExistsException;
 import com.rdeconti.mercadinho.models.UserModel;
 import com.rdeconti.mercadinho.services.UserService;
 import io.swagger.annotations.Api;
@@ -30,7 +32,7 @@ public class LoginController {
     private UserService userService;
 
     // -----------------------------------------------------------------------------------------------------------------
-    // List objects (GET)
+    // Treat Authorization NoAccess (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -42,7 +44,7 @@ public class LoginController {
     )
 
     @RequestMapping(value={"/authorization/noAccess"}, method = RequestMethod.GET)
-    public ModelAndView noAccess(){
+    public ModelAndView noAccessGet(){
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/authorization/authorization-noAccess");
@@ -50,7 +52,7 @@ public class LoginController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // List objects (GET)
+    // Treat Authorization Landing Page - Index (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -61,7 +63,7 @@ public class LoginController {
     }
     )
     @RequestMapping(value={"/"}, method = RequestMethod.GET)
-    public ModelAndView index(){
+    public ModelAndView landingPageGet(){
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/index");
@@ -69,7 +71,7 @@ public class LoginController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // List objects (GET)
+    // Treat Authorization Login Page (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -80,7 +82,7 @@ public class LoginController {
     }
     )
     @RequestMapping(value={"/authorization/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
+    public ModelAndView loginPageGet(){
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/authorization/authorization-login");
@@ -88,7 +90,7 @@ public class LoginController {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // List objects (GET)
+    // Treat Authorization Registration Page (GET)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -99,17 +101,17 @@ public class LoginController {
     }
     )
     @RequestMapping(value="/authorization/registration", method = RequestMethod.GET)
-    public ModelAndView registration(){
+    public ModelAndView registrationPageGet(){
 
         ModelAndView modelAndView = new ModelAndView();
         UserModel userModel = new UserModel();
         modelAndView.addObject("user", userModel);
-        modelAndView.setViewName("/authorization/authorization-registration");
+        modelAndView.setViewName("authorization/authorization-registration");
         return modelAndView;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // List objects (GET)
+    // Treat Authorization Registration Page (POST)
     // -----------------------------------------------------------------------------------------------------------------
     @ApiOperation(value = "Return a list of records from AGENDA", response = Iterable.class)
     @ApiResponses(value = {
@@ -120,27 +122,34 @@ public class LoginController {
     }
     )
     @RequestMapping(value = "/authorization/registration", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid UserModel userModel, BindingResult bindingResult) {
+    public ModelAndView registrationPageGetPost(@Valid UserModel userModel, BindingResult bindingResult) throws BadResourceException, ResourceAlreadyExistsException {
 
         ModelAndView modelAndView = new ModelAndView();
+
+        // Check if USER CODE already exists
         UserModel userModelExists = userService.findUserByUserName(userModel.getUserName());
 
         if (userModelExists != null) {
             bindingResult
                     .rejectValue("userName", "error.user",
                             "Já existe um usuário com este nome de usuário. Escolha outro nome!");
+            return modelAndView;
         }
 
+        // Check if form has errors from user
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("/authorization/authorization-registration");
-
-        } else {
-            userService.saveUser(userModel);
-            modelAndView.addObject("successMessage", "Conta cadastrada com sucesso!");
-            modelAndView.addObject("user", new UserModel());
-            modelAndView.setViewName("/authorization/authorization-registration");
-
+            modelAndView.setViewName("authorization/authorization-registration");
+            return modelAndView;
         }
+
+        // Create user
+        userService.createObject(userModel);
+
+        // Set message
+        modelAndView.addObject("successMessage", "Conta cadastrada com sucesso!");
+        modelAndView.addObject("user", new UserModel());
+        modelAndView.setViewName("authorization/authorization-registration");
+
         return modelAndView;
     }
 }

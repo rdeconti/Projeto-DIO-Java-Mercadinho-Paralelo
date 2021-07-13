@@ -171,7 +171,6 @@ public class UserController {
         UserModel userModel = new UserModel();
 
         // Formatting status (due MySql has TINYINT(1))
-        assert userModel != null;
         if (userModel.getStatus()) {
             model.addAttribute("currentStatus", true);
         } else {

@@ -35,9 +35,10 @@
 
                   <tr>
                     <th>Número</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
+                    <th>Código</th>
+                    <th>Role</th>
+                    <th>Name</th>
+                    <th>Situação</th>
                     <th>Exibir</th>
                     <th>Alterar</th>
                     <th>Excluir</th>
@@ -50,9 +51,10 @@
                   <tr th:each ="object : ${objects}">
 
                     <td th:utext="${object.id}">...</td>
+                    <td th:utext="${object.userName}">...</td>
+                    <td th:utext="${object.role}">...</td>
                     <td th:utext="${object.name}">...</td>
-                    <td th:utext="${object.phone}">...</td>
-                    <td th:utext="${object.email}">...</td>
+                    <td th:utext="${object.status}">...</td>
 
                     <td><a th:href="@{/api/v1/get/users/read/id/{objectId}/(objectId=${object.id})}">Exibir</a></td>
                     <td><a th:href="@{/api/v1/get/users/update/id/{objectId}/(objectId=${object.id})}">Alterar</a></td>

@@ -97,13 +97,7 @@ CREATE TABLE USERS (
 	user_password VARCHAR(255) NOT NULL, 
 	user_role VARCHAR(255) NOT NULL,
 	user_name VARCHAR(255) NOT NULL,
-	user_address VARCHAR (255),
-    user_cep VARCHAR (255),
-	user_phone VARCHAR (255),
-	user_whats VARCHAR (255),
-	user_document VARCHAR (255),
-	user_customer BIGINT NOT NULL,
-	user_status BOOLEAN NOT NULL,
+	user_status BOOLEAN DEFAULT true,
 	PRIMARY KEY (user_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -112,13 +106,13 @@ CREATE TABLE USERS (
 -- ----------------------------------------------------------------------------------
 
 SET @password = "$2a$10$f1XHZXpdECjp5C977Y6GtuSwtL1ZwiXHxJFgHP9AgtzBxVwpMRC/e";
-INSERT INTO USERS(user_ID, user_code, user_email, user_password, user_role, user_name, user_address, user_cep, user_phone, user_whats, user_document, user_customer, user_status)
+INSERT INTO USERS(user_ID, user_code, user_email, user_password, user_role, user_name, user_status)
 VALUES
-	(1, 'MANAGER', 'manager@gmail.com',  @password, 'ROLE_MANAGER', 'Manager da Silva', @address, @cep, @phone, @whats, @rg, 0, true),
-	(2, 'PURCHASER', 'purchaser@gmail.com',  @password, 'ROLE_PURCHASER', 'Purchaser da Silva', @address, @cep, @phone, @whats, @rg, 0, true),
-	(3, 'SELLER', 'seller@gmail.com',  @password, 'ROLE_SELLER', 'Seller da Silva', @address, @cep, @phone, @whats, @rg, 0, true),
-	(4, 'STOCKER', 'stocker@gmail.com',  @password, 'ROLE_STOCKER', 'Stocker da Silva', @address, @cep, @phone, @whats, @rg, 0, true),
-	(5, 'USER', 'userModel@gmail.com',  @password, 'ROLE_USER', 'User da Silva', @address, @cep, @phone, @whats, @rg, 0, true);
+	(1, 'MANAGER', 'manager@gmail.com',  @password, 'ROLE_MANAGER', 'Manager da Silva', true),
+	(2, 'PURCHASER', 'purchaser@gmail.com',  @password, 'ROLE_PURCHASER', 'Purchaser da Silva', true),
+	(3, 'SELLER', 'seller@gmail.com',  @password, 'ROLE_SELLER', 'Seller da Silva', true),
+	(4, 'STOCKER', 'stocker@gmail.com',  @password, 'ROLE_STOCKER', 'Stocker da Silva', true),
+	(5, 'USER', 'userModel@gmail.com',  @password, 'ROLE_USER', 'User da Silva', true);
     
 -- ***********************************************************************************************
 -- Create table: VENDORS
@@ -134,7 +128,7 @@ CREATE TABLE VENDORS (
 	vendor_whats VARCHAR (255),
 	vendor_document VARCHAR (255),
     vendor_note VARCHAR (3000) NULL,
-	vendor_status BOOLEAN NOT NULL, 
+	vendor_status BOOLEAN DEFAULT true, 
 	PRIMARY KEY (vendor_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -177,7 +171,7 @@ CREATE TABLE CUSTOMERS (
     customer_type VARCHAR (255),
 	customer_document VARCHAR (255),
 	customer_note VARCHAR (3000),
-	customer_status BOOLEAN NOT NULL,
+	customer_status BOOLEAN DEFAULT true,
 	PRIMARY KEY (customer_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -218,7 +212,7 @@ CREATE TABLE EMPLOYEES (
 	employee_whats VARCHAR (255),
 	employee_document VARCHAR (255),
 	employee_note VARCHAR (3000),    
-	employee_status BOOLEAN NOT NULL,
+	employee_status BOOLEAN DEFAULT true,
 	PRIMARY KEY (employee_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -259,7 +253,7 @@ CREATE TABLE STORES (
 	store_whats VARCHAR (255),
 	store_document VARCHAR (255),
 	store_note VARCHAR (3000),
-	store_status BOOLEAN NOT NULL,
+	store_status BOOLEAN DEFAULT true,
 	PRIMARY KEY (store_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -300,7 +294,7 @@ CREATE TABLE PRODUCTS (
 	product_unity VARCHAR(255) NOT NULL,
 	product_price DECIMAL NOT NULL,
     product_description VARCHAR (3000) not null,
-	product_status BOOLEAN NOT NULL,
+	product_status BOOLEAN DEFAULT true,
 	PRIMARY KEY (product_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -341,7 +335,7 @@ CREATE TABLE STOCKS (
 	stock_productID BIGINT NOT NULL,
     stock_batch  BIGINT NOT NULL,
 	stock_amount DECIMAL NOT NULL,
-    stock_status BOOLEAN NOT NULL,    
+    stock_status BOOLEAN DEFAULT true,    
 	stock_expiration DATE NOT NULL,
 	PRIMARY KEY (stock_ID),
 	FOREIGN KEY (stock_storeID) REFERENCES STORES(store_ID),
@@ -375,7 +369,7 @@ CREATE TABLE CARTS (
 	cart_discount DECIMAL NOT NULL,
 	cart_stage INT NOT NULL,
 	cart_creation DATE NOT NULL,
-    cart_status BOOLEAN NOT NULL,
+    cart_status BOOLEAN DEFAULT true,
     cart_comments VARCHAR (3000) not null,
 	PRIMARY KEY (cart_ID),
 	FOREIGN KEY (cart_userID) REFERENCES USERS(user_ID),
@@ -429,7 +423,7 @@ CREATE TABLE SALES (
 	sale_discount DECIMAL NOT NULL,
 	sale_stage INT NOT NULL,
 	sale_creation DATE NOT NULL,
-    sale_status BOOLEAN NOT NULL,
+    sale_status BOOLEAN DEFAULT true,
     sale_comments VARCHAR (3000) not null,
 	PRIMARY KEY (sale_ID),
 	FOREIGN KEY (sale_customerID) REFERENCES CUSTOMERS(customer_ID),
@@ -483,7 +477,7 @@ CREATE TABLE PURCHASES (
 	purchase_discount DECIMAL NOT NULL,
 	purchase_stage INT NOT NULL,
 	purchase_creation DATE NOT NULL,
-    purchase_status BOOLEAN NOT NULL,
+    purchase_status BOOLEAN DEFAULT true,
     purchase_comments VARCHAR (3000) not null,
 	PRIMARY KEY (purchase_ID),
 	FOREIGN KEY (purchase_vendorID) REFERENCES VENDORS(vendor_ID),
@@ -536,7 +530,7 @@ CREATE TABLE MOVEMENTS (
 	movement_date DATE NOT NULL,
 	movement_amount DECIMAL NOT NULL,
     movement_batch BIGINT NOT NULL,
-	movement_status BOOLEAN NOT NULL,
+	movement_status BOOLEAN DEFAULT true,
 	PRIMARY KEY (movement_ID),
 	FOREIGN KEY (movement_productID) REFERENCES STOCKS(stock_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

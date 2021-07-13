@@ -79,7 +79,7 @@ public class UserService {
 
         userModel.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
         userModel.setStatus(true);
-        
+
         userRepository.save(userModel);
     }
 
@@ -125,27 +125,27 @@ public class UserService {
     // -----------------------------------------------------------------------------------------------------------------
     // Create object
     // -----------------------------------------------------------------------------------------------------------------
-    public UserModel createObject(@NotNull UserModel userModel) throws BadResourceException, ResourceAlreadyExistsException {
+    public UserModel createObject(UserModel userModel) throws BadResourceException, ResourceAlreadyExistsException {
 
         // Treat null argument
         if (userModel.getName() == null) {
-
             BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
             badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_2);
             throw badResourceException;
-
         }
 
         // Treat object already exists
         if (userModel.getId() != null && existsObjectById(userModel.getId())) {
-
             BadResourceException badResourceException = new BadResourceException(ATTRIBUTE_VALUE_ERROR_MESSAGE_3);
             badResourceException.addErrorMessage(ATTRIBUTE_VALUE_ERROR_MESSAGE_4);
             throw badResourceException;
-
         }
 
         // Save object
+
+        userModel.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
+        userModel.setStatus(true);
+
         return userRepository.save(userModel);
 
     }

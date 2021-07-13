@@ -25,80 +25,51 @@
             <img th:src="@{/images/mercadinho.jpg}" class="img-responsive center-block" width="600" height="600" alt="Logo"/>
             <br/>
 
-            <div class="row">
+            <form autocomplete="off" action="#" th:action="@{/authorization/registration}"
+                  th:object="${userModel}" method="post" class="form-horizontal"
+                  roleModel="form">
 
-                <div class="col-md-6 col-md-offset-3">
+                <div class="row" align="center">
 
-                    <form autocomplete="off" action="#" th:action="@{/authorization/registration}"
-                          th:object="${userModel}" method="post" class="form-horizontal"
-                          roleModel="form">
+                    <h2>Criar conta de usuário</h2>
 
-                        <h2>Criar conta de usuário</h2>
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                                       class="validation-message"></label>
-                                <input type="text" th:field="*{name}" placeholder="Nome"
-                                       class="form-control"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-                                       class="validation-message"></label>
-                                <input type="text" th:field="*{lastName}"
-                                       placeholder="Sobrenome" class="form-control"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <input type="text" th:field="*{email}" placeholder="Email"
-                                       class="form-control"/> <label
-                                    th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                                    class="validation-message"></label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <input type="text" th:field="*{userName}" placeholder="Nome de usuário"
-                                       class="form-control"/> <label
-                                    th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
-                                    class="validation-message"></label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <input type="password" th:field="*{password}"
-                                       placeholder="Senha" class="form-control"/> <label
-                                    th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                                    class="validation-message"></label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9">
-                                <button type="submit" class="btn btn-primary btn-block">Cadastrar conta</button>
-                            </div>
-                        </div>
-
-                        <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-
-                    </form>
-
-                    <form th:action="@{/}" method="get">
+                    <div class="form-group form-inline">
+                        <label class="control-label" for="userName">Código</label>
+                        <input type="text" placeholder="Informe seu código de usuário" id="userName" name="userName"  class="form-control"/>
                         <br/>
-                        <button class="btn btn-lg btn-danger btn-block" type="Submit">Clique aqui acessar a aplicação!</button>
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label class="control-label" for="userEmail">E-mail</label>
+                        <input type="email" placeholder="Informe seu e-mail" id="userEmail" name="email"  class="form-control"/>
                         <br/>
-                    </form>
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label class="control-label" for="userPassword">Senha</label>
+                        <input type="password" placeholder="Informe sua password" id="userPassword" name="password"  class="form-control"/>
+                        <br/>
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label class="control-label" for="userFullName">Nome completo</label>
+                        <input type="text" placeholder="Informe seu nome do usuário" id="userFullName" name="name"  class="form-control"/>
+                        <br/>
+                    </div>
+
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Criar</button>
+
+                    <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
 
                 </div>
 
-            </div>
+            </form>
+
+            <form th:action="@{/}" method="get">
+                <br/>
+                <button class="btn btn-lg btn-danger btn-block" type="Submit">Clique aqui acessar o Mercadinho Paralelo!</button>
+                <br/>
+            </form>
 
         </div>
 

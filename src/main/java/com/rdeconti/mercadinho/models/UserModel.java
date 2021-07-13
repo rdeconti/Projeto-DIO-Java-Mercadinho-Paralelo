@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -34,58 +35,30 @@ public class UserModel implements Serializable {
     @Column(name = "user_ID")
     private Long id;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "user_code")
-    @Length(min = 5, message = "*Seu código de usuário deve ter pelo menos 5 caracteres")
-    @NotEmpty(message = "*Por favor informe seu código de usuário")
     private String userName;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "user_email")
-    @Email(message = "*Por favor informe e-mail válido")
-    @NotEmpty(message = "*Por favor informe seu e-mail")
     private String email;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "user_password")
-    @Length(min = 5, message = "*Sua senha deve ter pelo menos 5 caracteres")
-    @NotEmpty(message = "*Por favor informe sua senha")
     private String password;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "user_role")
-    @NotEmpty(message = "*Por favor informe a função do usuário")
-    private String role;
+    private String role = "ROLE_USER";
 
+    @Valid
+    @NotEmpty()
     @Column(name = "user_name")
-    @Size(min = 2, max = 100, message = "*O nome deve ter deve ter de 2 até 100 caracteres")
-    @NotEmpty(message = "*Por favor informe o nome do usuário")
     private String name;
-
-    @Column(name = "user_address")
-    @Size(min = 2, max = 1000, message = "*O nome deve ter deve ter de 2 até 1000 caracteres")
-    @NotEmpty(message = "*Por favor informe o endereço do usuário")
-    private String address;
-
-    @Column(name = "user_cep")
-    @Pattern(regexp="\\d{5}-\\d{3}")
-    @NotEmpty(message = "*Por favor informe o CEP do usuário")
-    private String cep;
-
-    @Column(name = "user_phone")
-    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
-    @NotEmpty(message = "*Por favor informe o telefone do usuário")
-    private String phone;
-
-    @Column(name = "user_whats")
-    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
-    @NotEmpty(message = "*Por favor informe o whatsApp do usuário")
-    private String whats;
-
-    @Column(name = "user_document")
-    @CPF(message = "*Por favor informe CPF válido")
-    @NotEmpty(message = "*Por favor informe o CPF do usuário")
-    private String cpf;
-
-    // TODO TRATAR O CÓDIGO DE CLIENTE DO USUÁRIO
-    @Column(name = "user_customer")
-    private Long customer;
 
     @Column(name = "user_status")
     private Boolean status = true;
