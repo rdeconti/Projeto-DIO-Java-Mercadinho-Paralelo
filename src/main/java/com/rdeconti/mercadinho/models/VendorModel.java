@@ -31,7 +31,7 @@ public class VendorModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "vendor_ID", nullable = false)
+    @Column(name = "vendor_ID")
     private Long id;
 
     @Valid

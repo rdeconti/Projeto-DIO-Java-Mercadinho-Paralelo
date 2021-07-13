@@ -31,7 +31,7 @@ public class StoreModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "store_ID", nullable = false)
+    @Column(name = "store_ID")
     private Long id;
 
     @Valid

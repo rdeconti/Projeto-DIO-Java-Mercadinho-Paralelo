@@ -31,7 +31,7 @@ public class PurchaseModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "purchase_ID", nullable = false)
+    @Column(name = "purchase_ID")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)

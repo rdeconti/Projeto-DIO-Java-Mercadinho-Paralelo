@@ -31,7 +31,7 @@ public class CustomerModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "customer_ID", nullable = false)
+    @Column(name = "customer_ID")
     private Long id;
 
     @Valid

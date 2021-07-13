@@ -31,7 +31,7 @@ public class StockModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "stock_ID", nullable = false)
+    @Column(name = "stock_ID")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -49,13 +49,13 @@ public class StockModel implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Valid
     @NotEmpty()
-    @Column(name = "stock_batch", nullable = false)
+    @Column(name = "stock_batch")
     private Long batch;
 
     @Valid
     @NotEmpty()
     @PositiveOrZero
-    @Column(name = "stock_amount", nullable = false)
+    @Column(name = "stock_amount")
     private BigDecimal amount;
 
     @Column(name = "product_status")

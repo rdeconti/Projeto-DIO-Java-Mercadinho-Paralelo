@@ -31,7 +31,7 @@ public class SaleModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "sale_ID", nullable = false)
+    @Column(name = "sale_ID")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)

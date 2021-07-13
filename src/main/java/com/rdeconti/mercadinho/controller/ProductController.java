@@ -140,6 +140,9 @@ public class ProductController {
             model.addAttribute("currentStatus", false);
         }
 
+        // Formatting image address
+        model.addAttribute("productImage", productModel.getImage());
+
         // Create and set template to be displayed
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(TEMPLATE_READ);

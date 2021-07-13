@@ -31,7 +31,7 @@ public class CartModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "cart_ID", nullable = false)
+    @Column(name = "cart_ID")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -25,18 +25,19 @@ SET @ean = '7891000315507';
 SET @address = 'Rua Antonio Pedro Magalhães 537, Jordanésia (Jordanésia), Cajamar, São Paulo, SP';
 SET @note = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis eget diam varius mollis ut id urna. Sed ac leo non neque molestie auctor. Pellentesque condimentum arcu vitae facilisis cursus. Quisque id tincidunt metus. Nam ornare tempus sem, a commodo mauris sodales non. Mauris elementum dignissim sem. Mauris magna turpis, ullamcorper a rutrum vehicula, auctor ut libero. Etiam odio quam, efficitur et tempus feugiat, tincidunt a justo. Integer a erat aliquet, elementum neque at, accumsan lectus.';
 SET @email = 'email@gmail.com';
-SET @image1 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/banana.jpg';
-SET @image2 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/batata.jpg';
-SET @image3 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/cenoura.jpg';
-SET @image4 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/damasco.jpg';
-SET @image5 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/framboesa.jpg';
-SET @image6 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/maca.jpg';
-SET @image7 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/melancia.jpg';
-SET @image8 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/mirtilo.jpg';
-SET @image9 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/morango.jpg';
-SET @image10 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/pepino.jpg';
-SET @image11 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/pera.jpg';
-SET @image12 = 'https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo-Images/blob/main/uva.jpg';
+
+SET @image1 = "/products/banana.jpg";
+SET @image2 = "/products/batata.jpg";
+SET @image3 = "/products/cenoura.jpg";
+SET @image4 = "/products/damasco.jpg";
+SET @image5 = "/products/framboesa.jpg";
+SET @image6 = "/products/maca.jpg";
+SET @image7 = "/products/melancia.jpg";
+SET @image8 = "/products/mirtilo.jpg";
+SET @image9 = "/products/morango.jpg";
+SET @image10 = "/products/pepino.jpg";
+SET @image11 = "/products/pera.jpg";
+SET @image12 = "/products/uva.jpg";
 
 -- ***********************************************************************************************
 -- Drop tables

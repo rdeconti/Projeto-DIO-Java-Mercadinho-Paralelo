@@ -31,7 +31,7 @@ public class EmployeeModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "employee_ID", nullable = false)
+    @Column(name = "employee_ID")
     private Long id;
 
     @Valid

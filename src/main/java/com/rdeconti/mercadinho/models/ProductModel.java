@@ -29,12 +29,12 @@ public class ProductModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "product_ID", nullable = false)
+    @Column(name = "product_ID")
     private Long id;
 
     @Valid
     @NotEmpty()
-    @Column(name = "product_image", length = 50, nullable = false)
+    @Column(name = "product_image")
     private String image;
 
     @Valid
@@ -44,27 +44,27 @@ public class ProductModel implements Serializable {
 
     @Valid
     @NotEmpty()
-    @Column(name = "product_name", length = 50, nullable = false)
+    @Column(name = "product_name")
     private String name;
 
     @Valid
     @NotEmpty()
-    @Column(name = "product_ean", length = 14, nullable = false)
+    @Column(name = "product_ean")
     private String ean;
 
     @Valid
     @NotEmpty()
-    @Column(name = "product_unity", length = 3, nullable = false)
+    @Column(name = "product_unity")
     private String unity;
 
     @Valid
     @NotEmpty()
-    @Column(name = "product_price", nullable = false)
+    @Column(name = "product_price")
     private BigDecimal price;
 
     @Valid
     @NotEmpty()
-    @Column(name = "product_description", length = 14, nullable = false)
+    @Column(name = "product_description")
     private String description;
 
     @Column(name = "product_status")

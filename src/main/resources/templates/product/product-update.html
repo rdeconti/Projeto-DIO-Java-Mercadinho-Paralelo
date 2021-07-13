@@ -31,39 +31,39 @@
                   th:action="@{/api/v1/post/products/update/id/{objectId}/(objectId=${object.id})}"
                   th:object="${object}" method="POST">
 
-                    <div class="form-group form-inline">
+                <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="image">Imagem</label>
-                        <input type="text" class="form-control input-sm" id="image" disabled th:field="*{image}">
+                        <input type="text" class="form-control input-sm" id="image" th:field="*{image}">
                     </div>
 
                     <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="category">Categoria</label>
-                        <input type="number" class="form-control input-sm" id="category" disabled th:field="*{category}">
+                        <input type="number" class="form-control input-sm" id="category" th:field="*{category}">
                     </div>
 
                     <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="name">Nome</label>
-                        <input type="text" class="form-control input-sm" id="name" disabled th:field="*{name}">
+                        <input type="text" class="form-control input-sm" id="name" th:field="*{name}">
                     </div>
 
                     <div class="form-group form-inline">
-                        <label class="control-label col-sm-6" for="ean">Nome</label>
-                        <input type="text" class="form-control input-sm" id="ean" disabled th:field="*{ean}">
+                        <label class="control-label col-sm-6" for="ean">EAN</label>
+                        <input type="text" class="form-control input-sm" id="ean" th:field="*{ean}">
                     </div>
 
                     <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="unity">Unidade</label>
-                        <input type="text" class="form-control input-sm" id="unity" disabled th:field="*{unity}">
+                        <input type="text" class="form-control input-sm" id="unity" th:field="*{unity}">
                     </div>
 
                     <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="price">Preço</label>
-                        <input type="number" class="form-control input-sm" id="price" disabled th:field="*{price}">
+                        <input type="number" class="form-control input-sm" id="price" th:field="*{price}">
                     </div>
 
                     <div class="form-group form-inline">
                         <label class="control-label col-sm-6" for="description">Descrição</label>
-                        <textarea rows="2" cols="30" class="form-control input-sm"  id="description" disabled th:field="*{description}"></textarea>
+                        <textarea rows="2" cols="30" class="form-control input-sm" id="description" th:field="*{description}"></textarea>
                     </div>
 
                     <div class="form-group form-inline">

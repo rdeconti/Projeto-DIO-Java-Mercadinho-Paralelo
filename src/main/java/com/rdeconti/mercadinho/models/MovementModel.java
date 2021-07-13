@@ -31,7 +31,7 @@ public class MovementModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "movement_ID", nullable = false)
+    @Column(name = "movement_ID")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -65,7 +65,7 @@ public class MovementModel implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Valid
     @NotEmpty()
-    @Column(name = "movement_batch", nullable = false)
+    @Column(name = "movement_batch")
     private Long batch;
 
     @Column(name = "movement_status")
