@@ -26,15 +26,15 @@ public class MyErrorController implements ErrorController {
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
                 // handle HTTP 404 Not Found error
-                errorPage = "error-404";
+                errorPage = "error/error-404";
 
             } else if (statusCode == HttpStatus.FORBIDDEN.value()) {
                 // handle HTTP 403 Forbidden error
-                errorPage = "error-403";
+                errorPage = "error/error-403";
 
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 // handle HTTP 500 Internal Server error
-                errorPage = "error-500";
+                errorPage = "error/error-500";
 
             }
         }

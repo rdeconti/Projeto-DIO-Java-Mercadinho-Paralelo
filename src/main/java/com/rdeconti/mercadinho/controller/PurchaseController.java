@@ -48,7 +48,7 @@ public class PurchaseController {
     // Resolve and inject collaborating beans into our bean
     // -----------------------------------------------------------------------------------------------------------------
     @Autowired
-    private PurchaseService PurchaseService;
+    private PurchaseService purchaseService;
 
     // -----------------------------------------------------------------------------------------------------------------
     // List objects Purchase (GET)
@@ -68,15 +68,15 @@ public class PurchaseController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Purchases/list/"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/purchases/list/"}, method = RequestMethod.GET)
     public ModelAndView objectsList(Model model,
                                     @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         // Create list of objects limited at rows per page
-        List<PurchaseModel> PurchaseModelList = PurchaseService.findObjectList(pageNumber, ROW_PER_PAGE);
+        List<PurchaseModel> PurchaseModelList = purchaseService.findObjectList(pageNumber, ROW_PER_PAGE);
 
         // Calculate number of pages and define values to previous and next
-        long count = PurchaseService.countObject();
+        long count = purchaseService.countObject();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = ((long) pageNumber * ROW_PER_PAGE) < count;
 
@@ -112,7 +112,7 @@ public class PurchaseController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Purchases/read/id/{objectId}"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/purchases/read/id/{objectId}"}, method = RequestMethod.GET)
     public ModelAndView objectRead(Model model, @PathVariable long objectId) {
 
         PurchaseModel PurchaseModel = null;
@@ -120,7 +120,7 @@ public class PurchaseController {
         try {
 
             // Obtain object by ID
-            PurchaseModel = PurchaseService.findObjectById(objectId);
+            PurchaseModel = purchaseService.findObjectById(objectId);
 
             // Set attributes to be used by Thymeleaf
             model.addAttribute(ATTRIBUTE_OBJECT, PurchaseModel);
@@ -156,7 +156,7 @@ public class PurchaseController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Purchases/create/"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/purchases/create/"}, method = RequestMethod.GET)
     public ModelAndView objectCreateGet(Model model) {
 
         // Generate empty object
@@ -190,18 +190,18 @@ public class PurchaseController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/post/Purchases/create/"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/api/v1/post/purchases/create/"}, method = RequestMethod.POST)
     public ModelAndView objectCreatePost(Model model,
                                          @ModelAttribute("object") PurchaseModel PurchaseModel) {
 
         try {
 
             // Create object
-            PurchaseModel newContact = PurchaseService.createObject(PurchaseModel);
+            PurchaseModel newContact = purchaseService.createObject(PurchaseModel);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/api/v1/get/Purchases/list/");
+            modelAndView.setViewName("redirect:/api/v1/get/purchases/list/");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -240,7 +240,7 @@ public class PurchaseController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Purchases/update/id/{objectId}/"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/purchases/update/id/{objectId}/"}, method = RequestMethod.GET)
     public ModelAndView objectUpdateGet(Model model, @PathVariable long objectId) {
 
         PurchaseModel PurchaseModel = null;
@@ -248,7 +248,7 @@ public class PurchaseController {
         try {
 
             // Obtain object by ID
-            PurchaseModel = PurchaseService.findObjectById(objectId);
+            PurchaseModel = purchaseService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
@@ -284,7 +284,7 @@ public class PurchaseController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/post/Purchases/update/id/{objectId}"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/api/v1/post/purchases/update/id/{objectId}"}, method = RequestMethod.POST)
     public ModelAndView objectUpdatePost(Model model,
                                          @PathVariable long objectId,
                                          @ModelAttribute("object") PurchaseModel PurchaseModel) {
@@ -293,11 +293,11 @@ public class PurchaseController {
 
             // Update object
             PurchaseModel.setId(objectId);
-            PurchaseService.updateObject(PurchaseModel);
+            purchaseService.updateObject(PurchaseModel);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/api/v1/get/Purchases/read/id/" + PurchaseModel.getId());
+            modelAndView.setViewName("redirect:/api/v1/get/purchases/read/id/" + PurchaseModel.getId());
             return modelAndView;
 
         } catch (Exception exception) {
@@ -334,7 +334,7 @@ public class PurchaseController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Purchases/delete/id/{objectId}"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/purchases/delete/id/{objectId}"}, method = RequestMethod.GET)
     public ModelAndView objectDeleteGet(
             Model model, @PathVariable long objectId) {
 
@@ -343,7 +343,7 @@ public class PurchaseController {
         try {
 
             // Obtain object by ID
-            PurchaseModel = PurchaseService.findObjectById(objectId);
+            PurchaseModel = purchaseService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
@@ -379,18 +379,18 @@ public class PurchaseController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/post/Purchases/delete/id/{objectId}"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/api/v1/post/purchases/delete/id/{objectId}"}, method = RequestMethod.POST)
     public ModelAndView objectDeletePost(
             Model model, @PathVariable long objectId) {
 
         try {
 
             // Delete object
-            PurchaseService.deleteObject(objectId);
+            purchaseService.deleteObject(objectId);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/api/v1/get/Purchases/list/");
+            modelAndView.setViewName("redirect:/api/v1/get/purchases/list/");
             return modelAndView;
 
         } catch (ResourceNotFoundException exception) {

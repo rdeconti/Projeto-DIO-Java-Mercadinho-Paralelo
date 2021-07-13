@@ -34,10 +34,14 @@
                 <thead>
 
                   <tr>
-                    <th>Número</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
+                    <th>Fornecedor</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Desconto</th>
+                    <th>Fase</th>
+                    <th>Criação</th>
+                    <th>Situação</th>
                     <th>Exibir</th>
                     <th>Alterar</th>
                     <th>Excluir</th>
@@ -49,10 +53,14 @@
 
                   <tr th:each ="object : ${objects}">
 
-                    <td th:utext="${object.id}">...</td>
-                    <td th:utext="${object.name}">...</td>
-                    <td th:utext="${object.phone}">...</td>
-                    <td th:utext="${object.email}">...</td>
+                    <td th:utext="${object.vendorID}">...</td>
+                    <td th:utext="${object.productID}">...</td>
+                    <td th:utext="${object.amount}">...</td>
+                    <td th:utext="${object.price}">...</td>
+                    <td th:utext="${object.discount}">...</td>
+                    <td th:utext="${object.stage}">...</td>
+                    <td th:utext="${object.creation}">...</td>
+                    <td th:utext="${object.status}">...</td>
 
                     <td><a th:href="@{/api/v1/get/purchases/read/id/{objectId}/(objectId=${object.id})}">Exibir</a></td>
                     <td><a th:href="@{/api/v1/get/purchases/update/id/{objectId}/(objectId=${object.id})}">Alterar</a></td>

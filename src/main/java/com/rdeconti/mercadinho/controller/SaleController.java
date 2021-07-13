@@ -48,7 +48,7 @@ public class SaleController {
     // Resolve and inject collaborating beans into our bean
     // -----------------------------------------------------------------------------------------------------------------
     @Autowired
-    private SaleService SaleService;
+    private SaleService saleService;
 
     // -----------------------------------------------------------------------------------------------------------------
     // List objects Sale (GET)
@@ -68,15 +68,15 @@ public class SaleController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Sales/list/"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/sales/list/"}, method = RequestMethod.GET)
     public ModelAndView objectsList(Model model,
                                     @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         // Create list of objects limited at rows per page
-        List<SaleModel> SaleModelList = SaleService.findObjectList(pageNumber, ROW_PER_PAGE);
+        List<SaleModel> SaleModelList = saleService.findObjectList(pageNumber, ROW_PER_PAGE);
 
         // Calculate number of pages and define values to previous and next
-        long count = SaleService.countObject();
+        long count = saleService.countObject();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = ((long) pageNumber * ROW_PER_PAGE) < count;
 
@@ -112,7 +112,7 @@ public class SaleController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Sales/read/id/{objectId}"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/sales/read/id/{objectId}"}, method = RequestMethod.GET)
     public ModelAndView objectRead(Model model, @PathVariable long objectId) {
 
         SaleModel SaleModel = null;
@@ -120,7 +120,7 @@ public class SaleController {
         try {
 
             // Obtain object by ID
-            SaleModel = SaleService.findObjectById(objectId);
+            SaleModel = saleService.findObjectById(objectId);
 
             // Set attributes to be used by Thymeleaf
             model.addAttribute(ATTRIBUTE_OBJECT, SaleModel);
@@ -156,7 +156,7 @@ public class SaleController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Sales/create/"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/sales/create/"}, method = RequestMethod.GET)
     public ModelAndView objectCreateGet(Model model) {
 
         // Generate empty object
@@ -190,18 +190,18 @@ public class SaleController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/post/Sales/create/"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/api/v1/post/sales/create/"}, method = RequestMethod.POST)
     public ModelAndView objectCreatePost(Model model,
                                          @ModelAttribute("object") SaleModel SaleModel) {
 
         try {
 
             // Create object
-            SaleModel newContact = SaleService.createObject(SaleModel);
+            SaleModel newContact = saleService.createObject(SaleModel);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/api/v1/get/Sales/list/");
+            modelAndView.setViewName("redirect:/api/v1/get/sales/list/");
             return modelAndView;
 
         } catch (Exception exception) {
@@ -240,7 +240,7 @@ public class SaleController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Sales/update/id/{objectId}/"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/sales/update/id/{objectId}/"}, method = RequestMethod.GET)
     public ModelAndView objectUpdateGet(Model model, @PathVariable long objectId) {
 
         SaleModel SaleModel = null;
@@ -248,7 +248,7 @@ public class SaleController {
         try {
 
             // Obtain object by ID
-            SaleModel = SaleService.findObjectById(objectId);
+            SaleModel = saleService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
@@ -284,7 +284,7 @@ public class SaleController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/post/Sales/update/id/{objectId}"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/api/v1/post/sales/update/id/{objectId}"}, method = RequestMethod.POST)
     public ModelAndView objectUpdatePost(Model model,
                                          @PathVariable long objectId,
                                          @ModelAttribute("object") SaleModel SaleModel) {
@@ -293,11 +293,11 @@ public class SaleController {
 
             // Update object
             SaleModel.setId(objectId);
-            SaleService.updateObject(SaleModel);
+            saleService.updateObject(SaleModel);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/api/v1/get/Sales/read/id/" + SaleModel.getId());
+            modelAndView.setViewName("redirect:/api/v1/get/sales/read/id/" + SaleModel.getId());
             return modelAndView;
 
         } catch (Exception exception) {
@@ -334,7 +334,7 @@ public class SaleController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/get/Sales/delete/id/{objectId}"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/api/v1/get/sales/delete/id/{objectId}"}, method = RequestMethod.GET)
     public ModelAndView objectDeleteGet(
             Model model, @PathVariable long objectId) {
 
@@ -343,7 +343,7 @@ public class SaleController {
         try {
 
             // Obtain object by ID
-            SaleModel = SaleService.findObjectById(objectId);
+            SaleModel = saleService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
@@ -379,18 +379,18 @@ public class SaleController {
     }
     )
 
-    @RequestMapping(value={"/api/v1/post/Sales/delete/id/{objectId}"}, method = RequestMethod.POST)
+    @RequestMapping(value={"/api/v1/post/sales/delete/id/{objectId}"}, method = RequestMethod.POST)
     public ModelAndView objectDeletePost(
             Model model, @PathVariable long objectId) {
 
         try {
 
             // Delete object
-            SaleService.deleteObject(objectId);
+            saleService.deleteObject(objectId);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/api/v1/get/Sales/list/");
+            modelAndView.setViewName("redirect:/api/v1/get/sales/list/");
             return modelAndView;
 
         } catch (ResourceNotFoundException exception) {

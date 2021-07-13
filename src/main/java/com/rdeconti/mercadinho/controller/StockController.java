@@ -48,7 +48,7 @@ public class StockController {
     // Resolve and inject collaborating beans into our bean
     // -----------------------------------------------------------------------------------------------------------------
     @Autowired
-    private StockService StockService;
+    private StockService stockService;
 
     // -----------------------------------------------------------------------------------------------------------------
     // List objects Stock (GET)
@@ -73,10 +73,10 @@ public class StockController {
                                     @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         // Create list of objects limited at rows per page
-        List<StockModel> StockModelList = StockService.findObjectList(pageNumber, ROW_PER_PAGE);
+        List<StockModel> StockModelList = stockService.findObjectList(pageNumber, ROW_PER_PAGE);
 
         // Calculate number of pages and define values to previous and next
-        long count = StockService.countObject();
+        long count = stockService.countObject();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = ((long) pageNumber * ROW_PER_PAGE) < count;
 
@@ -120,7 +120,7 @@ public class StockController {
         try {
 
             // Obtain object by ID
-            StockModel = StockService.findObjectById(objectId);
+            StockModel = stockService.findObjectById(objectId);
 
             // Set attributes to be used by Thymeleaf
             model.addAttribute(ATTRIBUTE_OBJECT, StockModel);
@@ -197,7 +197,7 @@ public class StockController {
         try {
 
             // Create object
-            StockModel newContact = StockService.createObject(StockModel);
+            StockModel newContact = stockService.createObject(StockModel);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
@@ -248,7 +248,7 @@ public class StockController {
         try {
 
             // Obtain object by ID
-            StockModel = StockService.findObjectById(objectId);
+            StockModel = stockService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
@@ -293,7 +293,7 @@ public class StockController {
 
             // Update object
             StockModel.setId(objectId);
-            StockService.updateObject(StockModel);
+            stockService.updateObject(StockModel);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
@@ -343,7 +343,7 @@ public class StockController {
         try {
 
             // Obtain object by ID
-            StockModel = StockService.findObjectById(objectId);
+            StockModel = stockService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
@@ -386,7 +386,7 @@ public class StockController {
         try {
 
             // Delete object
-            StockService.deleteObject(objectId);
+            stockService.deleteObject(objectId);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();

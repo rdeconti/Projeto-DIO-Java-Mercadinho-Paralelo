@@ -48,7 +48,7 @@ public class CartController {
     // Resolve and inject collaborating beans into our bean
     // -----------------------------------------------------------------------------------------------------------------
     @Autowired
-    private CartService CartService;
+    private CartService cartService;
 
     // -----------------------------------------------------------------------------------------------------------------
     // List objects Cart (GET)
@@ -73,10 +73,10 @@ public class CartController {
                                     @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
         // Create list of objects limited at rows per page
-        List<CartModel> CartModelList = CartService.findObjectList(pageNumber, ROW_PER_PAGE);
+        List<CartModel> CartModelList = cartService.findObjectList(pageNumber, ROW_PER_PAGE);
 
         // Calculate number of pages and define values to previous and next
-        long count = CartService.countObject();
+        long count = cartService.countObject();
         boolean hasPrev = pageNumber > 1;
         boolean hasNext = ((long) pageNumber * ROW_PER_PAGE) < count;
 
@@ -120,7 +120,7 @@ public class CartController {
         try {
 
             // Obtain object by ID
-            CartModel = CartService.findObjectById(objectId);
+            CartModel = cartService.findObjectById(objectId);
 
             // Set attributes to be used by Thymeleaf
             model.addAttribute(ATTRIBUTE_OBJECT, CartModel);
@@ -197,7 +197,7 @@ public class CartController {
         try {
 
             // Create object
-            CartModel newContact = CartService.createObject(CartModel);
+            CartModel newContact = cartService.createObject(CartModel);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
@@ -248,7 +248,7 @@ public class CartController {
         try {
 
             // Obtain object by ID
-            CartModel = CartService.findObjectById(objectId);
+            CartModel = cartService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
@@ -293,7 +293,7 @@ public class CartController {
 
             // Update object
             CartModel.setId(objectId);
-            CartService.updateObject(CartModel);
+            cartService.updateObject(CartModel);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
@@ -343,7 +343,7 @@ public class CartController {
         try {
 
             // Obtain object by ID
-            CartModel = CartService.findObjectById(objectId);
+            CartModel = cartService.findObjectById(objectId);
 
         } catch (ResourceNotFoundException exception) {
 
@@ -386,7 +386,7 @@ public class CartController {
         try {
 
             // Delete object
-            CartService.deleteObject(objectId);
+            cartService.deleteObject(objectId);
 
             // Create and set template to be displayed
             ModelAndView modelAndView = new ModelAndView();
