@@ -11,6 +11,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -33,43 +34,44 @@ public class VendorModel implements Serializable {
     @Column(name = "vendor_ID", nullable = false)
     private Long id;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "vendor_name")
-    @Size(min = 2, max = 100, message = "*O nome deve ter deve ter de 2 até 100 caracteres")
-    @NotEmpty(message = "*Por favor informe o nome do fornecedor")
     private String name;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "vendor_email")
-    @Email(message = "*Por favor informe e-mail válido")
-    @NotEmpty(message = "*Por favor informe o e-mail do fornecedor")
     private String email;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "vendor_address")
-    @Size(min = 2, max = 1000, message = "*O nome deve ter deve ter de 2 até 1000 caracteres")
-    @NotEmpty(message = "*Por favor informe o endereço do fornecedor")
     private String address;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "vendor_cep")
-    @Pattern(regexp="\\d{5}-\\d{3}")
-    @NotEmpty(message = "*Por favor informe o CEP do fornecedor")
     private String cep;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "vendor_phone")
-    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
-    @NotEmpty(message = "*Por favor informe o telefone do fornecedor")
     private String phone;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "vendor_whats")
-    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
-    @NotEmpty(message = "*Por favor informe o whatsApp do fornecedor")
     private String whats;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "vendor_document")
-    @CNPJ(message = "*Por favor informe CNPJ válido")
-    @NotEmpty(message = "*Por favor informe o CNPJ do fornecedor")
     private String cnpj;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "vendor_note")
-    @NotEmpty(message = "*Por favor informe observações do fornecedor")
     private String note;
 
     @Column(name = "vendor_status")

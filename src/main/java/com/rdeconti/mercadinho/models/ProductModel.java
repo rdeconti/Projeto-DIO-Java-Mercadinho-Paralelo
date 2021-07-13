@@ -10,6 +10,7 @@ package com.rdeconti.mercadinho.models;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -31,32 +32,38 @@ public class ProductModel implements Serializable {
     @Column(name = "product_ID", nullable = false)
     private Long id;
 
-    @NotEmpty(message = "*Por favor informar a imagem do produto")
-    @Size(min = 2, max = 1000, message = "*O endereço da imagem deve ter deve ter de 2 até 1000 caracteres")
+    @Valid
+    @NotEmpty()
     @Column(name = "product_image", length = 50, nullable = false)
     private String image;
 
-    @NotEmpty(message = "*Por favor informar a categoria do produto")
+    @Valid
+    @NotEmpty()
     @Column(name = "product_category")
     private Integer category;
 
-    @NotEmpty(message = "*Por favor informar o nome do produto")
+    @Valid
+    @NotEmpty()
     @Column(name = "product_name", length = 50, nullable = false)
     private String name;
 
-    @NotEmpty(message = "*Por favor informar o código EAN do produto")
+    @Valid
+    @NotEmpty()
     @Column(name = "product_ean", length = 14, nullable = false)
     private String ean;
 
-    @NotEmpty(message = "*Por favor informar a unidade do produto")
+    @Valid
+    @NotEmpty()
     @Column(name = "product_unity", length = 3, nullable = false)
     private String unity;
 
-    @NotEmpty(message = "*Por favor informar o preço do produto")
+    @Valid
+    @NotEmpty()
     @Column(name = "product_price", nullable = false)
     private BigDecimal price;
 
-    @NotEmpty(message = "*Por favor informar a descrição do produto")
+    @Valid
+    @NotEmpty()
     @Column(name = "product_description", length = 14, nullable = false)
     private String description;
 

@@ -5,7 +5,7 @@
 
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 
-        <a class="navbar-brand" th:href="@{/purchaser/index}">
+        <a class="navbar-brand" href="/">
             <img alt="logo" style="width:140px; height:60px;" th:src="@{/images/mercadinho.jpg}">
         </a>
 
@@ -19,9 +19,8 @@
                 <a class="nav-link" th:href="@{/api/v1/get/agendas/list/}">Agenda</a>
             </li>
 
-            <!-- TODO PROGRAMMING SPRING SECURITY LOGOUT -->
             <li class="nav-item">
-                <a class="nav-link" Href="/">Sair</a>
+                <a class="nav-link" href="/">Sair</a>
             </li>
 
         </ul>

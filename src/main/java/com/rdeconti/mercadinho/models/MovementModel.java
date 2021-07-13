@@ -40,9 +40,9 @@ public class MovementModel implements Serializable {
     @NotEmpty()
     private ProductModel productID;
 
-    @Column(name = "movement_order")
     @Valid
     @NotEmpty()
+    @Column(name = "movement_order")
     private Long order;
 
     @Valid

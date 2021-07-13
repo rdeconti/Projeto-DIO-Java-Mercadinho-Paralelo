@@ -11,6 +11,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -33,48 +34,50 @@ public class CustomerModel implements Serializable {
     @Column(name = "customer_ID", nullable = false)
     private Long id;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "customer_name")
-    @Size(min = 2, max = 100, message = "*O nome deve ter deve ter de 2 até 100 caracteres")
-    @NotEmpty(message = "*Por favor informe o nome do cliente")
     private String name;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "customer_email")
-    @Email(message = "*Por favor informe e-mail válido")
-    @NotEmpty(message = "*Por favor informe o e-mail do cliente")
     private String email;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "customer_address")
-    @Size(min = 2, max = 1000, message = "*O nome deve ter deve ter de 2 até 1000 caracteres")
-    @NotEmpty(message = "*Por favor informe o endereço do cliente")
     private String address;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "customer_cep")
-    @Pattern(regexp="\\d{5}-\\d{3}")
-    @NotEmpty(message = "*Por favor informe o CEP do cliente")
     private String cep;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "customer_phone")
-    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
-    @NotEmpty(message = "*Por favor informe o telefone do cliente")
     private String phone;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "customer_whats")
-    @Pattern(regexp="(\\d{2})\\d{4}-\\d{4}$")
-    @NotEmpty(message = "*Por favor informe o whatsApp do cliente")
     private String whats;
 
     // TODO TRATAR O TIPO DE DOCUMENTO
+    // @Valid
+    // @NotEmpty()
     @Column(name = "customer_type")
-    @NotEmpty(message = "*Por favor informe o tipo de documento")
     private String type;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "customer_document")
-    @CNPJ(message = "*Por favor informe CNPJ válido")
-    @NotEmpty(message = "*Por favor informe o CNPJ do cliente")
     private String cnpj;
 
+    @Valid
+    @NotEmpty()
     @Column(name = "customer_note")
-    @NotEmpty(message = "*Por favor informe observações do cliente")
     private String note;
     
     @Column(name = "customer_status")
