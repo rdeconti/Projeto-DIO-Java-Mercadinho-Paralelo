@@ -20,7 +20,7 @@ Vamos tentar aplicar os conhecimentos de hoje para expandir o nosso projeto do M
 
 # Projeto desenvolvido: Mercadinho Paralelo Versão 1
 
-## Link do projeto: https://github.com/users/rdeconti/projects/3
+## Link do projeto: https://github.com/users/rdeconti/projects/3 (aqui estão as tarefas realizadas e em andamento)
 
 ## Conhecimento inicial:
 - Conhecimentos de Java
@@ -55,7 +55,6 @@ A aplicação controla alguns processos de um mercadinho e tem as seguintes func
 
 ## Link Swagger UI
 - http://localhost:8080/swagger-ui/
--
 
 ## Melhorias futuras:
 - A versão 2 será uma aplicação que utilizará micro serviços.
@@ -75,6 +74,13 @@ A aplicação controla alguns processos de um mercadinho e tem as seguintes func
   Empregados: EMPLOYEES;
   Usuários: USERS;
 - Diagrama: https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/sql/model.pdf
+
+## Usuários, Roles e Senhas que podem ser utilizados para os testes (além dos usuários que podem ser criados)
+	- MANAGER, ROLE_MANAGER, 12345
+	- PURCHASER, ROLE_PURCHASER, 12345
+	- SELLER,ROLE_SELLER, 12345
+	- STOCKER, ROLE_STOCKER, 12345
+	- USER, ROLE_USER, 12345
 
 
 
