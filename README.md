@@ -82,5 +82,29 @@ A aplicação controla alguns processos de um mercadinho e tem as seguintes func
 	- STOCKER, ROLE_STOCKER, 12345
 	- USER, ROLE_USER, 12345
 
+## Telas de exemplo do ROLE-PURCHASER e CRUD FORNECEDORES
+
+### Tela inicial
+<img align="right" alt="GIF" src="https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/telas/tela-1-entrada.png" />
+
+### Tela Login
+<img align="right" alt="GIF" src="https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/telas/tela-2-login.png" />
+
+### Tela com as funções do Role Purchaser
+<img align="right" alt="GIF" src="https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/telas/tela-3-role-purchaser.png" />
+
+### Tela Lista de fornecedores
+<img align="right" alt="GIF" src="https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/telas/tela-4-role-purchaser-lista-fornecedores.png" />
+
+### Tela para exibir Fornecedor
+<img align="right" alt="GIF" src="https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/telas/tela-5-role-purchaser-exibir-fornecedor.png" />
+
+### Tela para alterar Fornecedor
+<img align="right" alt="GIF" src="https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/telas/tela-6-role-purchaser-alterar-fornecedor.png" />
+
+### Tela para excluir Fornecedor
+<img align="right" alt="GIF" src="https://github.com/rdeconti/Projeto-DIO-Java-Mercadinho-Paralelo/blob/main/telas/tela-7-role-purchaser-excluir-fornecedor.png" />
+
+
 
 
